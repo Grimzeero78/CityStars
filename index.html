@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>City Stars Chuka — FC | Chuka University Premier League</title>
     <meta name="description" content="City Stars Chuka — Chuka University's own football family. Est. 2020. Chuka Premier League. Matches, squad, staff and club blog." />
+    <meta name="google-site-verification" content="oeDfPU047d5Lk5H24rfTv4vU2PEvHqSo0VTYtD4FUUU" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -15,13 +15,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="icon" href="citystaricon.png" type="image/png">
+    <link rel="icon" href="citystarsicon.png" type="image/png">
     <link rel="shortcut icon" href="citystarsicon.png" type="image/png">
 
     <style>
-        /* ============================================================
-                   ROOT VARIABLES
-                   ============================================================ */
         :root {
             --bg: #0a0e1a;
             --bg2: #0d1324;
@@ -43,10 +40,6 @@
             --radius: 12px;
             --shadow: 0 20px 48px rgba(0, 0, 0, .55);
         }
-
-        /* ============================================================
-                   RESET & BASE
-                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -96,9 +89,6 @@
             outline-offset: 3px;
         }
 
-        /* ============================================================
-               UTILITY
-               ============================================================ */
         .wrap {
             width: min(1200px, 92%);
             margin: 0 auto;
@@ -156,9 +146,6 @@
             transform: none;
         }
 
-        /* ============================================================
-               BUTTONS
-               ============================================================ */
         .btn {
             display: inline-block;
             border: none;
@@ -199,9 +186,6 @@
             box-shadow: inset 0 0 0 1px var(--gold);
         }
 
-        /* ============================================================
-               TICKER
-               ============================================================ */
         .ticker {
             background: #0b1120;
             border-bottom: 1px solid var(--line);
@@ -237,9 +221,6 @@
             }
         }
 
-        /* ============================================================
-               HEADER
-               ============================================================ */
         header {
             position: sticky;
             top: 0;
@@ -358,9 +339,6 @@
             }
         }
 
-        /* ============================================================
-               HERO
-               ============================================================ */
         .hero {
             position: relative;
             padding: 70px 0 90px;
@@ -466,9 +444,6 @@
             fill: #08240f;
         }
 
-        /* ============================================================
-               COLLAGE — images use object-fit: contain
-               ============================================================ */
         .collage {
             position: relative;
             height: 580px;
@@ -576,9 +551,6 @@
             }
         }
 
-        /* ============================================================
-               BAND
-               ============================================================ */
         .band {
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
@@ -606,9 +578,6 @@
             font-weight: 400;
         }
 
-        /* ============================================================
-               SECTIONS
-               ============================================================ */
         section {
             padding: 90px 0;
         }
@@ -621,9 +590,6 @@
             flex-wrap: wrap;
         }
 
-        /* ============================================================
-               MATCHES
-               ============================================================ */
         .matches-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -723,9 +689,6 @@
             }
         }
 
-        /* ============================================================
-               COUNTDOWN
-               ============================================================ */
         .countdown-wrap {
             background: var(--panel);
             border: 1px solid var(--line-strong);
@@ -776,9 +739,6 @@
             font-style: normal;
         }
 
-        /* ============================================================
-               SQUAD — images use object-fit: contain
-               ============================================================ */
         #squad {
             background: var(--bg2);
             border-top: 1px solid var(--line);
@@ -956,9 +916,6 @@
             fill: #141414;
         }
 
-        /* ============================================================
-               STAFF — images use object-fit: contain
-               ============================================================ */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1013,9 +970,6 @@
             margin-top: .7rem;
         }
 
-        /* ============================================================
-               STANDINGS
-               ============================================================ */
         .standings-wrap {
             background: var(--panel2);
             border: 1px solid var(--line);
@@ -1066,9 +1020,6 @@
             border-left: 3px solid var(--gold);
         }
 
-        /* ============================================================
-               BLOG — images use object-fit: contain
-               ============================================================ */
         #news {
             background: var(--bg2);
             border-top: 1px solid var(--line);
@@ -1198,9 +1149,6 @@
             }
         }
 
-        /* ============================================================
-               JOIN
-               ============================================================ */
         .join-panel {
             display: grid;
             grid-template-columns: 1.15fr .85fr;
@@ -1268,9 +1216,6 @@
             }
         }
 
-        /* ============================================================
-               FOOTER
-               ============================================================ */
         footer {
             background: #080b14;
             border-top: 1px solid var(--line);
@@ -1387,9 +1332,6 @@
             color: var(--muted);
         }
 
-        /* ============================================================
-               FLOATING WHATSAPP
-               ============================================================ */
         .wa-float {
             position: fixed;
             right: 22px;
@@ -1415,9 +1357,6 @@
             transform: scale(1.1) rotate(6deg);
         }
 
-        /* ============================================================
-               LIGHTBOX / ZOOM MODAL
-               ============================================================ */
         .lightbox {
             display: none;
             position: fixed;
@@ -1524,9 +1463,6 @@
             }
         }
 
-        /* ============================================================
-               RESPONSIVE
-               ============================================================ */
         @media(max-width:920px) {
             .foot-grid {
                 grid-template-columns: 1fr;
@@ -1563,9 +1499,6 @@
             }
         }
 
-        /* ============================================================
-               REDUCED MOTION
-               ============================================================ */
         @media(prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1595,9 +1528,6 @@
 
 <body>
 
-    <!-- ============================================================
-    SVG SPRITE
-    ============================================================ -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
             <symbol id="crest" viewBox="0 0 100 110">
@@ -1622,16 +1552,10 @@
         </defs>
     </svg>
 
-    <!-- ============================================================
-    TOP TICKER
-    ============================================================ -->
     <div class="ticker" aria-label="Club ticker">
         <div class="ticker-track" id="tickerTrack"></div>
     </div>
 
-    <!-- ============================================================
-    HEADER
-    ============================================================ -->
     <header id="header">
         <div class="wrap nav">
             <a href="#top" class="brand">
@@ -1657,7 +1581,6 @@
         </div>
     </header>
 
-    <!-- mobile menu -->
     <nav class="mobile-menu" id="mobileMenu">
         <a href="#matches">Matches</a>
         <a href="#squad">Squad</a>
@@ -1667,9 +1590,6 @@
         <a href="#standings">Standings</a>
     </nav>
 
-    <!-- ============================================================
-    LIGHTBOX (ZOOM MODAL)
-    ============================================================ -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
         <button class="close-btn" id="lightboxClose" aria-label="Close zoom">✕</button>
         <button class="nav-btn prev" id="lightboxPrev" aria-label="Previous image">‹</button>
@@ -1678,12 +1598,8 @@
         <span class="counter" id="lightboxCounter"></span>
     </div>
 
-    <!-- ============================================================
-    MAIN
-    ============================================================ -->
     <main id="top">
 
-        <!-- HERO -->
         <section class="hero">
             <div class="wrap hero-grid">
                 <div>
@@ -1718,7 +1634,6 @@
                     </div>
                 </div>
 
-                <!-- 3 hero photos -->
                 <div class="collage reveal">
                     <figure class="f1">
                         <div class="ph">
@@ -1742,7 +1657,6 @@
             </div>
         </section>
 
-        <!-- scrolling band -->
         <div class="band" aria-hidden="true">
             <div class="band-track">
                 <span>CITY STARS CHUKA <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
@@ -1750,9 +1664,6 @@
             </div>
         </div>
 
-        <!-- ============================================================
-        MATCHES
-        ============================================================ -->
         <section id="matches">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -1775,7 +1686,6 @@
                     </div>
                 </div>
 
-                <!-- COUNTDOWN -->
                 <div class="countdown-wrap reveal" id="countdownWrap">
                     <div>
                         <div class="cd-label">Next Match</div>
@@ -1791,9 +1701,6 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        SQUAD
-        ============================================================ -->
         <section id="squad">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -1813,9 +1720,6 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        STAFF
-        ============================================================ -->
         <section id="staff">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -1828,9 +1732,6 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        STANDINGS
-        ============================================================ -->
         <section id="standings" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -1844,9 +1745,6 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        BLOG
-        ============================================================ -->
         <section id="news">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -1859,9 +1757,6 @@
             </div>
         </section>
 
-        <!-- ============================================================
-        JOIN
-        ============================================================ -->
         <section id="join">
             <div class="wrap">
                 <div class="join-panel reveal">
@@ -1888,9 +1783,6 @@
         </section>
     </main>
 
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
     <footer>
         <p class="foot-watermark" aria-hidden="true">City Stars</p>
         <div class="wrap">
@@ -1944,25 +1836,24 @@
         </div>
     </footer>
 
-    <!-- floating WhatsApp button -->
     <a class="wa-float js-wa" data-msg="Hello City Stars! 👋" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
         <svg><use href="#wa-logo"/></svg>
     </a>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
     <script>
-        /* ============================================================
-               CONFIG
-               ============================================================ */
-        const CONFIG = {
-            whatsapp: "254712345678",
-            tiktok: "https://www.tiktok.com/@citystarschuka",
-            facebook: "https://www.facebook.com/CityStarsChuka",
-        };
+        // ============================================================
+        // ✏️ EDITABLE SECTION — change everything here
+        // ============================================================
 
-        const TICKER = [
+        // WhatsApp number (country code + number, no "+", no spaces)
+        const WHATSAPP_NUMBER = "254712345678";
+
+        // Social media URLs
+        const TIKTOK_URL = "https://www.tiktok.com/@citystarschuka";
+        const FACEBOOK_URL = "https://www.facebook.com/CityStarsChuka";
+
+        // Ticker messages (scroll across top)
+        const TICKER_MESSAGES = [
             "★ WELCOME TO CITY STARS CHUKA",
             "★ EST. 2020 · CHUKA UNIVERSITY",
             "★ NEXT: CITY STARS v Philites — MAIN PITCH",
@@ -1970,7 +1861,9 @@
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
 
-        const MATCHES = [
+        // Matches: { d: "YYYY-MM-DD", t: "HH:MM", opp: "Team", h: true/false, us: goals, them: goals }
+        // For upcoming matches, omit 'us' and 'them'. For results, include them.
+        const MATCH_DATA = [
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
             { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
             { d: "2026-08-01", opp: "philites", h: true, us: 2, them: 1 },
@@ -1979,7 +1872,8 @@
             { d: "2026-07-11", opp: "fc", h: false, us: 1, them: 2 },
         ];
 
-        const SQUAD = [{
+        // Squad: { name, pos: "GK"|"DF"|"MF"|"FW", no, goals, cleanSheets, apps, role, photo, ig, tt, fb }
+        const SQUAD_DATA = [{
             name: "MORGA",
             pos: "DF",
             no: 4,
@@ -2106,7 +2000,8 @@
             ig: "minnot19"
         }, ];
 
-        const STAFF = [
+        // Staff: { name, role, note, photo, ig, tt }
+        const STAFF_DATA = [
             { name: "Davick", role: "Head Coach",
             note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football." },
             { name: "??", role: "Assistant Coach", note: "Runs our set-pieces and the early-morning fitness block.",
@@ -2120,7 +2015,8 @@
                 note: "Runs our TikTok & Facebook — the reason you see every goal online.", tt: "tinachieng" },
         ];
 
-        const NEWS = [
+        // News: { tag, date: "YYYY-MM-DD", title, ex, seed }
+        const NEWS_DATA = [
             { tag: "Match Report", date: "2026-08-01", title: "Stars edge Marimanti Blues 2–1 at the main pitch",
                 ex: "A late Josephat Mose header sealed it in front of our loudest crowd of the season.",
                 seed: "citystars-marimanti-win" },
@@ -2135,7 +2031,8 @@
                 seed: "citystars-membership" },
         ];
 
-        const STANDINGS = [
+        // League standings: { pos, team, p, w, d, l, gf, ga, pts }
+        const STANDINGS_DATA = [
             { pos: 1, team: "City Stars FC", p: 9, w: 3, d: 1, l: 0, gf: 8, ga: 3, pts: 10 },
             { pos: 2, team: "philites", p: 9, w: 3, d: 0, l: 1, gf: 7, ga: 4, pts: 9 },
             { pos: 3, team: "foxes", p: 9, w: 2, d: 2, l: 0, gf: 6, ga: 2, pts: 8 },
@@ -2146,37 +2043,32 @@
             { pos: 8, team: "fc", p: 9, w: 0, d: 1, l: 3, gf: 2, ga: 7, pts: 1 },
         ];
 
-        /* ============================================================
-               —————— NO EDITING NEEDED BELOW ——————
-               ============================================================ */
+        // ============================================================
+        // —————— END OF EDITABLE SECTION ——————
+        // ============================================================
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const $ = s => document.querySelector(s);
         const $$ = s => document.querySelectorAll(s);
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        /* WhatsApp */
-        const wa = m => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
+        // WhatsApp links
+        const wa = m => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(m)}`;
         document.querySelectorAll('.js-wa').forEach(a => {
             a.href = wa(a.dataset.msg || 'Hello City Stars! 👋');
         });
         document.querySelectorAll('[data-soc]').forEach(a => {
             const key = a.dataset.soc;
-            const url = CONFIG[key];
+            const url = { facebook: FACEBOOK_URL, tiktok: TIKTOK_URL } [key];
             if (url) a.href = url;
             else if (key !== 'whatsapp') a.style.display = 'none';
         });
-        document.querySelectorAll('.socials a.wa, .soc-mini a.wa').forEach(a => {
-            if (!a.href || a.href === '#') {
-                a.href = wa(a.dataset.msg || 'Hello City Stars! 👋');
-            }
-        });
 
-        /* Ticker */
-        const items = TICKER.map(t => `<span>${t}</span>`).join('');
-        $('#tickerTrack').innerHTML = items + items;
+        // Ticker
+        const tickerItems = TICKER_MESSAGES.map(t => `<span>${t}</span>`).join('');
+        $('#tickerTrack').innerHTML = tickerItems + tickerItems;
 
-        /* Header scroll & mobile */
+        // Header scroll & mobile
         addEventListener('scroll', () => {
             $('#header').classList.toggle('scrolled', scrollY > 30);
         }, { passive: true });
@@ -2187,16 +2079,13 @@
             a.addEventListener('click', () => $('#mobileMenu').classList.remove('open'));
         });
 
-        /* Matches */
-        const pd = s => {
-            const [y, m, d] = s.split('-').map(Number);
-            return new Date(y, m - 1, d);
-        };
+        // Matches
+        const pd = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
         const fDow = d => d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
-        const upcoming = MATCHES.filter(m => m.us === undefined).sort((a, b) => a.d.localeCompare(b.d));
-        const results = MATCHES.filter(m => m.us !== undefined).sort((a, b) => b.d.localeCompare(a.d));
+        const upcoming = MATCH_DATA.filter(m => m.us === undefined).sort((a, b) => a.d.localeCompare(b.d));
+        const results = MATCH_DATA.filter(m => m.us !== undefined).sort((a, b) => b.d.localeCompare(a.d));
 
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
             const d = pd(m.d);
@@ -2231,17 +2120,13 @@
                     </div>`;
         }).join('');
 
-        /* Countdown */
+        // Countdown
         function updateCountdown() {
             const nextMatch = upcoming[0];
-            if (!nextMatch) {
-                $('#cdOpp').textContent = 'No upcoming matches';
-                return;
-            }
+            if (!nextMatch) { $('#cdOpp').textContent = 'No upcoming matches'; return; }
             const matchDate = pd(nextMatch.d);
             const [h, m] = (nextMatch.t || '14:00').split(':').map(Number);
             matchDate.setHours(h || 14, m || 0, 0, 0);
-
             const now = new Date();
             let diff = Math.max(0, (matchDate - now) / 1000);
             const days = Math.floor(diff / 86400);
@@ -2250,30 +2135,25 @@
             diff -= hours * 3600;
             const mins = Math.floor(diff / 60);
             const secs = Math.floor(diff % 60);
-
             document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
             document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
             document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
             document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
-
             const opp = nextMatch.h ? `vs ${nextMatch.opp}` : `@ ${nextMatch.opp}`;
-            document.getElementById('cdOpp').innerHTML =
-                `<em>${fDay(matchDate)}</em> &nbsp;·&nbsp; ${opp}`;
+            document.getElementById('cdOpp').innerHTML = `<em>${fDay(matchDate)}</em> &nbsp;·&nbsp; ${opp}`;
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        /* Squad */
+        // Squad
         const POS = { GK: 'Goalkeeper', DF: 'Defender', MF: 'Midfielder', FW: 'Forward' };
         const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
-
         const getRoleTag = (role) => {
             if (role === 'captain') return '<span class="player-role captain">★ Captain</span>';
             if (role === 'vice-captain') return '<span class="player-role vice">✦ Vice-Captain</span>';
             return '';
         };
-
-        $('#squadGrid').innerHTML = SQUAD.map(p => {
+        $('#squadGrid').innerHTML = SQUAD_DATA.map(p => {
             const stat = p.pos === 'GK' ? `${p.cleanSheets ?? 0} CLEAN SHEETS` : `${p.goals ?? 0} GOALS`;
             const imgSrc = p.photo ||
                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460"%3E%3Crect width="400" height="460" fill="%230d1324"/%3E%3Ctext x="200" y="230" font-family="Arial" font-size="20" fill="%2398a2ba" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
@@ -2285,17 +2165,13 @@
                 `<a class="psoc" target="_blank" rel="noopener" href="https://tiktok.com/@${p.tt}" aria-label="TikTok"><svg><use href="#tt-logo"/></svg></a>`;
             if (p.fb) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
-            const roleTag = getRoleTag(p.role);
             return `<article class="player reveal" data-pos="${p.pos}">
                         <div class="player-img">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" />
                             <span class="player-num">${p.no}</span>
                         </div>
                         <div class="player-info">
-                            <div class="name-row">
-                                <h4>${p.name}</h4>
-                                ${roleTag}
-                            </div>
+                            <div class="name-row"><h4>${p.name}</h4>${getRoleTag(p.role)}</div>
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
                             <div class="player-stats"><span>${stat}</span><span>${p.apps ?? 0} APPS</span></div>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
@@ -2303,8 +2179,8 @@
                     </article>`;
         }).join('');
 
-        /* Staff */
-        $('#staffGrid').innerHTML = STAFF.map(s => {
+        // Staff
+        $('#staffGrid').innerHTML = STAFF_DATA.map(s => {
             const img = s.photo || `https://picsum.photos/seed/${seedOf(s.name)}/400/400`;
             const zoomSrc = s.photo || img;
             let soc = '';
@@ -2323,14 +2199,12 @@
                     </article>`;
         }).join('');
 
-        /* Standings */
+        // Standings
         document.getElementById('standingsWrap').innerHTML = `
                 <table>
-                    <thead>
-                        <tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr>
-                    </thead>
+                    <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr></thead>
                     <tbody>
-                        ${STANDINGS.map(s => `
+                        ${STANDINGS_DATA.map(s => `
                             <tr class="${s.team === 'City Stars FC' ? 'highlight' : ''}">
                                 <td class="pos">${s.pos}</td>
                                 <td class="team-name">${s.team}</td>
@@ -2343,8 +2217,8 @@
                 </table>
             `;
 
-        /* News */
-        const [feat, ...rest] = NEWS;
+        // News
+        const [feat, ...rest] = NEWS_DATA;
         $('#newsGrid').innerHTML = `
                 <article class="news-feature reveal">
                     <div class="kb"><img loading="lazy" src="https://picsum.photos/seed/${feat.seed}/1000/760" alt="" data-zoom="https://picsum.photos/seed/${feat.seed}/1400/1000" /></div>
@@ -2370,7 +2244,7 @@
                 </div>
             `;
 
-        /* Squad filter */
+        // Squad filter
         document.querySelectorAll('.pill').forEach(p => {
             p.addEventListener('click', () => {
                 document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
@@ -2379,28 +2253,20 @@
                 document.querySelectorAll('.player').forEach(c => {
                     const show = p.dataset.pos === 'all' || c.dataset.pos === p.dataset.pos;
                     c.classList.remove('pop');
-                    if (show) {
-                        c.classList.remove('hide');
-                        if (!reduced) setTimeout(() => c.classList.add('pop'), i++ * 40);
-                    } else {
-                        c.classList.add('hide');
-                    }
+                    if (show) { c.classList.remove('hide'); if (!reduced) setTimeout(() => c.classList.add(
+                            'pop'), i++ * 40); } else { c.classList.add('hide'); }
                 });
             });
         });
 
-        /* Reveal on scroll */
+        // Reveal on scroll
         const io = new IntersectionObserver(es => {
-            es.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('in');
-                    io.unobserve(e.target);
-                }
-            });
+            es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in');
+                    io.unobserve(e.target); } });
         }, { threshold: .12 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        /* Scramble titles */
+        // Scramble title
         function scramble(el) {
             const text = el.dataset.text;
             if (reduced) { el.textContent = text; return; }
@@ -2415,31 +2281,21 @@
         }
         scramble($('#scramble1'));
 
-        /* ============================================================
-               LIGHTBOX / ZOOM FUNCTIONALITY (DELEGATED)
-               ============================================================ */
+        // Lightbox / Zoom (delegated)
         document.addEventListener('click', function(e) {
             const img = e.target.closest('img[data-zoom]');
             if (img) {
                 e.preventDefault();
                 const src = img.dataset.zoom;
                 if (src && !src.includes('No Image')) {
-                    // Collect all zoomable images
                     window.zoomImages = Array.from(document.querySelectorAll('img[data-zoom]'))
-                        .map(el => el.dataset.zoom)
-                        .filter(s => s && !s.includes('No Image'));
-                    // Remove duplicates
+                        .map(el => el.dataset.zoom).filter(s => s && !s.includes('No Image'));
                     window.zoomImages = [...new Set(window.zoomImages)];
-
                     window.zoomIndex = window.zoomImages.indexOf(src);
-                    if (window.zoomIndex === -1) {
-                        window.zoomImages = [src];
-                        window.zoomIndex = 0;
-                    }
-
+                    if (window.zoomIndex === -1) { window.zoomImages = [src];
+                        window.zoomIndex = 0; }
                     const lightbox = document.getElementById('lightbox');
-                    const lightboxImg = document.getElementById('lightboxImg');
-                    lightboxImg.src = src;
+                    document.getElementById('lightboxImg').src = src;
                     lightbox.classList.add('open');
                     document.body.style.overflow = 'hidden';
                     updateLightboxControls();
@@ -2464,16 +2320,13 @@
             }
         }
 
-        // Close lightbox
         document.getElementById('lightboxClose').addEventListener('click', function() {
             document.getElementById('lightbox').classList.remove('open');
             document.body.style.overflow = '';
         });
         document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('open');
-                document.body.style.overflow = '';
-            }
+            if (e.target === this) { this.classList.remove('open');
+                document.body.style.overflow = ''; }
         });
         document.getElementById('lightboxPrev').addEventListener('click', function(e) {
             e.stopPropagation();
@@ -2490,21 +2343,16 @@
             updateLightboxControls();
         });
 
-        // Keyboard navigation for lightbox
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('open')) return;
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-            if (e.key === 'ArrowLeft') {
-                document.getElementById('lightboxPrev').click();
-            }
-            if (e.key === 'ArrowRight') {
-                document.getElementById('lightboxNext').click();
-            }
+            if (e.key === 'Escape') { lightbox.classList.remove('open');
+                document.body.style.overflow = ''; }
+            if (e.key === 'ArrowLeft') { document.getElementById('lightboxPrev').click(); }
+            if (e.key === 'ArrowRight') { document.getElementById('lightboxNext').click(); }
         });
     </script>
+
 </body>
 </html>
+```
