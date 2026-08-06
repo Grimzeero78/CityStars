@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>City Stars FC — Chuka University | Chuka Premier League</title>
-    <meta name="description" content="City Stars FC — Chuka University's football family. Est. 2020. Chuka Premier League. Matches, squad, staff and club blog." />
+    <title>City Stars Chuka — FC | Chuka University Premier League</title>
+    <meta name="description" content="City Stars Chuka — Chuka University's own football family. Est. 2020. Chuka Premier League. Matches, squad, staff and club blog." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -15,12 +16,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="citystarsicon.png" type="image/png">
-    <link rel="shortcut icon" href="citystaricon.png" type="image/png">
+    <link rel="shortcut icon" href="citystarsicon.png" type="image/png">
 
     <style>
         /* ============================================================
-               ROOT VARIABLES
-               ============================================================ */
+                   ROOT VARIABLES
+                   ============================================================ */
         :root {
             --bg: #0a0e1a;
             --bg2: #0d1324;
@@ -44,8 +45,8 @@
         }
 
         /* ============================================================
-               RESET & BASE
-               ============================================================ */
+                   RESET & BASE
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -1688,16 +1689,15 @@
                 <div>
                     <p class="kicker">Chuka Premier League · Est. 2020</p>
                     <h1>
-                        <span id="scramble1" data-text="CITY">CITY</span><br>
-                        <span class="gold" id="scramble2" data-text="STARS">STARS</span>
+                        <span id="scramble1" data-text="CITY STARS CHUKA">CITY STARS CHUKA</span>
                     </h1>
                     <p class="hero-sub">
-                        Chuka University's own football family. We train on campus, we play for pride,
+                        <strong>City Stars Chuka</strong>, Chuka University's own football family. We train on campus, we play for pride,
                         and we write our story one match at a time.
                     </p>
                     <div class="hero-chips">
                         <span class="hchip"><b>EST.</b> 2020</span>
-                        <span class="hchip"><b>HOME</b> <a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener">CHUKA UNIVERSITY</a></span>
+                        <span class="hchip"><b>HOME</b> <a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener" class="chuka-link">CHUKA UNIVERSITY</a></span>
                         <span class="hchip"><b>LEAGUE</b> CHUKA PREMIER</span>
                     </div>
                     <div class="hero-actions">
@@ -1745,8 +1745,8 @@
         <!-- scrolling band -->
         <div class="band" aria-hidden="true">
             <div class="band-track">
-                <span>CITY STARS <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
-                <span>CITY STARS <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
+                <span>CITY STARS CHUKA <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
+                <span>CITY STARS CHUKA <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
             </div>
         </div>
 
@@ -1900,7 +1900,7 @@
                         <svg width="46" height="50" aria-hidden="true"><use href="#crest"/></svg>
                         <span class="brand-name">CITY <em>STARS</em></span>
                     </a>
-                    <p>Chuka University's football family. Est. 2020. Playing with pride in the Chuka Premier League.</p>
+                    <p><strong>City Stars Chuka</strong>, Chuka University's football family. Est. 2020. Playing with pride in the Chuka Premier League.</p>
                     <div class="socials">
                         <a data-soc="tiktok" target="_blank" rel="noopener" class="tt">
                             <svg><use href="#tt-logo"/></svg> TikTok
@@ -1927,7 +1927,7 @@
                 <div>
                     <h5>The Club</h5>
                     <ul>
-                        <li><a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener">Chuka University, Kenya</a></li>
+                        <li><a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener" class="chuka-link">Chuka University, Kenya</a></li>
                         <li><a href="#matches">Chuka Premier League</a></li>
                         <li>
                             <a class="js-wa" data-msg="Hello City Stars! I have a question." target="_blank" rel="noopener">
@@ -1938,7 +1938,7 @@
                 </div>
             </div>
             <div class="foot-base">
-                <span>© <span id="year"></span> CITY STARS FC · CHUKA UNIVERSITY</span>
+                <span>© <span id="year"></span> CITY STARS CHUKA · CHUKA UNIVERSITY</span>
                 <span>UP THE STARS ★</span>
             </div>
         </div>
@@ -1963,7 +1963,7 @@
         };
 
         const TICKER = [
-            "★ WELCOME TO THE OFFICIAL HOME OF CITY STARS FC",
+            "★ WELCOME TO CITY STARS CHUKA",
             "★ EST. 2020 · CHUKA UNIVERSITY",
             "★ NEXT: CITY STARS v Philites — MAIN PITCH",
             "★ BECOME A STAR FOR KSH 350 — TAP 'JOIN'",
@@ -2414,131 +2414,97 @@
             }, 42);
         }
         scramble($('#scramble1'));
-        setTimeout(() => scramble($('#scramble2')), 350);
 
         /* ============================================================
-               LIGHTBOX / ZOOM FUNCTIONALITY
+               LIGHTBOX / ZOOM FUNCTIONALITY (DELEGATED)
                ============================================================ */
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-        const lightboxPrev = document.getElementById('lightboxPrev');
-        const lightboxNext = document.getElementById('lightboxNext');
-        const lightboxCounter = document.getElementById('lightboxCounter');
-
-        let zoomImages = [];
-        let currentZoomIndex = 0;
-
-        function openLightbox(src, index) {
-            if (!src || src.includes('No Image')) return;
-            lightboxImg.src = src;
-            lightbox.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            currentZoomIndex = index;
-            updateCounter();
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        function updateCounter() {
-            if (zoomImages.length > 1) {
-                lightboxCounter.textContent = `${currentZoomIndex + 1} / ${zoomImages.length}`;
-                lightboxCounter.style.display = 'block';
-            } else {
-                lightboxCounter.style.display = 'none';
-            }
-            lightboxPrev.style.display = zoomImages.length > 1 ? 'flex' : 'none';
-            lightboxNext.style.display = zoomImages.length > 1 ? 'flex' : 'none';
-        }
-
-        function showPrev() {
-            if (zoomImages.length < 2) return;
-            currentZoomIndex = (currentZoomIndex - 1 + zoomImages.length) % zoomImages.length;
-            lightboxImg.src = zoomImages[currentZoomIndex];
-            updateCounter();
-        }
-
-        function showNext() {
-            if (zoomImages.length < 2) return;
-            currentZoomIndex = (currentZoomIndex + 1) % zoomImages.length;
-            lightboxImg.src = zoomImages[currentZoomIndex];
-            updateCounter();
-        }
-
-        // Collect all images with data-zoom attribute
-        function collectZoomImages() {
-            zoomImages = [];
-            document.querySelectorAll('img[data-zoom]').forEach((img, idx) => {
+        document.addEventListener('click', function(e) {
+            const img = e.target.closest('img[data-zoom]');
+            if (img) {
+                e.preventDefault();
                 const src = img.dataset.zoom;
                 if (src && !src.includes('No Image')) {
-                    zoomImages.push(src);
-                    img.dataset.zoomIndex = idx;
-                    // Remove any existing click listener to avoid duplicates
-                    img.removeEventListener('click', img._zoomHandler);
-                    img._zoomHandler = function(e) {
-                        e.stopPropagation();
-                        const index = zoomImages.indexOf(this.dataset.zoom);
-                        if (index !== -1) {
-                            openLightbox(this.dataset.zoom, index);
-                        } else {
-                            // fallback: just use this image
-                            openLightbox(this.dataset.zoom, zoomImages.length);
-                        }
-                    };
-                    img.addEventListener('click', img._zoomHandler);
-                }
-            });
-            // Also handle images without data-zoom but with src
-            document.querySelectorAll('img:not([data-zoom])').forEach(img => {
-                if (img.src && !img.src.includes('No Image') && !img.src.includes('data:image')) {
-                    // Check if it's already in the list
-                    const exists = zoomImages.some(z => z === img.src);
-                    if (!exists) {
-                        zoomImages.push(img.src);
-                        img.removeEventListener('click', img._zoomHandler);
-                        img._zoomHandler = function(e) {
-                            e.stopPropagation();
-                            const idx = zoomImages.indexOf(this.src);
-                            openLightbox(this.src, idx !== -1 ? idx : 0);
-                        };
-                        img.addEventListener('click', img._zoomHandler);
+                    // Collect all zoomable images
+                    window.zoomImages = Array.from(document.querySelectorAll('img[data-zoom]'))
+                        .map(el => el.dataset.zoom)
+                        .filter(s => s && !s.includes('No Image'));
+                    // Remove duplicates
+                    window.zoomImages = [...new Set(window.zoomImages)];
+
+                    window.zoomIndex = window.zoomImages.indexOf(src);
+                    if (window.zoomIndex === -1) {
+                        window.zoomImages = [src];
+                        window.zoomIndex = 0;
                     }
+
+                    const lightbox = document.getElementById('lightbox');
+                    const lightboxImg = document.getElementById('lightboxImg');
+                    lightboxImg.src = src;
+                    lightbox.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                    updateLightboxControls();
                 }
-            });
-            // Rebuild index mapping
-            zoomImages = zoomImages.filter((src, i, self) => self.indexOf(src) === i);
-            updateCounter();
+            }
+        });
+
+        function updateLightboxControls() {
+            const total = window.zoomImages ? window.zoomImages.length : 0;
+            const counter = document.getElementById('lightboxCounter');
+            const prev = document.getElementById('lightboxPrev');
+            const next = document.getElementById('lightboxNext');
+            if (total > 1) {
+                counter.textContent = `${window.zoomIndex + 1} / ${total}`;
+                counter.style.display = 'block';
+                prev.style.display = 'flex';
+                next.style.display = 'flex';
+            } else {
+                counter.style.display = 'none';
+                prev.style.display = 'none';
+                next.style.display = 'none';
+            }
         }
 
-        // Lightbox controls
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === this) closeLightbox();
+        // Close lightbox
+        document.getElementById('lightboxClose').addEventListener('click', function() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
         });
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+        document.getElementById('lightboxPrev').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!window.zoomImages || window.zoomImages.length === 0) return;
+            window.zoomIndex = (window.zoomIndex - 1 + window.zoomImages.length) % window.zoomImages.length;
+            document.getElementById('lightboxImg').src = window.zoomImages[window.zoomIndex];
+            updateLightboxControls();
+        });
+        document.getElementById('lightboxNext').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!window.zoomImages || window.zoomImages.length === 0) return;
+            window.zoomIndex = (window.zoomIndex + 1) % window.zoomImages.length;
+            document.getElementById('lightboxImg').src = window.zoomImages[window.zoomIndex];
+            updateLightboxControls();
+        });
+
+        // Keyboard navigation for lightbox
         document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
             if (!lightbox.classList.contains('open')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            if (e.key === 'ArrowLeft') {
+                document.getElementById('lightboxPrev').click();
+            }
+            if (e.key === 'ArrowRight') {
+                document.getElementById('lightboxNext').click();
+            }
         });
-        lightboxPrev.addEventListener('click', function(e) { e.stopPropagation();
-            showPrev(); });
-        lightboxNext.addEventListener('click', function(e) { e.stopPropagation();
-            showNext(); });
-
-        // Collect zoom images after DOM is ready
-        setTimeout(collectZoomImages, 300);
-
-        // Also re-collect when squad/staff/news are dynamically rendered
-        const observer = new MutationObserver(() => {
-            setTimeout(collectZoomImages, 200);
-        });
-        observer.observe(document.getElementById('squadGrid'), { childList: true, subtree: true });
-        observer.observe(document.getElementById('staffGrid'), { childList: true, subtree: true });
-        observer.observe(document.getElementById('newsGrid'), { childList: true, subtree: true });
     </script>
 </body>
 </html>
