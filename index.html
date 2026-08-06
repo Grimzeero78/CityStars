@@ -8,20 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
- 
-    <!-- FAVICON - absolute root path + local fallback -->
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="citystarsicon.png" type="image/png">
-    <!-- additional fallback for all browsers -->
     <link rel="shortcut icon" href="citystaricon.png" type="image/png">
 
     <style>
         /* ============================================================
-                   ROOT VARIABLES — keeps everything consistent
-                   ============================================================ */
+               ROOT VARIABLES
+               ============================================================ */
         :root {
             --bg: #0a0e1a;
             --bg2: #0d1324;
@@ -45,8 +44,8 @@
         }
 
         /* ============================================================
-                   RESET & BASE
-                   ============================================================ */
+               RESET & BASE
+               ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -80,6 +79,8 @@
             display: block;
             max-width: 100%;
             height: auto;
+            cursor: pointer;
+            transition: transform .3s ease;
         }
         a {
             color: inherit;
@@ -95,8 +96,8 @@
         }
 
         /* ============================================================
-                   UTILITY CLASSES
-                   ============================================================ */
+               UTILITY
+               ============================================================ */
         .wrap {
             width: min(1200px, 92%);
             margin: 0 auto;
@@ -155,8 +156,8 @@
         }
 
         /* ============================================================
-                   BUTTONS
-                   ============================================================ */
+               BUTTONS
+               ============================================================ */
         .btn {
             display: inline-block;
             border: none;
@@ -198,8 +199,8 @@
         }
 
         /* ============================================================
-                   TICKER
-                   ============================================================ */
+               TICKER
+               ============================================================ */
         .ticker {
             background: #0b1120;
             border-bottom: 1px solid var(--line);
@@ -236,8 +237,8 @@
         }
 
         /* ============================================================
-                   HEADER
-                   ============================================================ */
+               HEADER
+               ============================================================ */
         header {
             position: sticky;
             top: 0;
@@ -357,8 +358,8 @@
         }
 
         /* ============================================================
-                   HERO
-                   ============================================================ */
+               HERO
+               ============================================================ */
         .hero {
             position: relative;
             padding: 70px 0 90px;
@@ -407,6 +408,13 @@
             color: var(--muted);
         }
         .hchip b {
+            color: var(--gold);
+        }
+        .hchip a {
+            color: var(--paper);
+            transition: color .25s;
+        }
+        .hchip a:hover {
             color: var(--gold);
         }
         .hero-actions {
@@ -458,8 +466,8 @@
         }
 
         /* ============================================================
-                   COLLAGE
-                   ============================================================ */
+               COLLAGE — images use object-fit: contain
+               ============================================================ */
         .collage {
             position: relative;
             height: 580px;
@@ -486,20 +494,19 @@
         }
         .collage .ph {
             overflow: hidden;
+            background: #0a0e1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .collage img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            animation: kenburns 16s ease-in-out infinite alternate;
+            object-fit: contain;
+            transition: transform .6s ease;
         }
-        @keyframes kenburns {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.12) translate(-2%, -2%);
-            }
+        .collage figure:hover img {
+            transform: scale(1.04);
         }
         .collage figcaption {
             font-family: var(--mono);
@@ -553,6 +560,7 @@
             .collage figure {
                 position: static;
                 width: auto !important;
+                transform: none !important;
             }
             .collage .ph {
                 height: 200px !important;
@@ -568,8 +576,8 @@
         }
 
         /* ============================================================
-                   BAND
-                   ============================================================ */
+               BAND
+               ============================================================ */
         .band {
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
@@ -598,8 +606,8 @@
         }
 
         /* ============================================================
-                   SECTIONS
-                   ============================================================ */
+               SECTIONS
+               ============================================================ */
         section {
             padding: 90px 0;
         }
@@ -613,8 +621,8 @@
         }
 
         /* ============================================================
-                   MATCHES
-                   ============================================================ */
+               MATCHES
+               ============================================================ */
         .matches-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -715,8 +723,8 @@
         }
 
         /* ============================================================
-                   COUNTDOWN
-                   ============================================================ */
+               COUNTDOWN
+               ============================================================ */
         .countdown-wrap {
             background: var(--panel);
             border: 1px solid var(--line-strong);
@@ -768,8 +776,8 @@
         }
 
         /* ============================================================
-                   SQUAD — enhanced with roles and social icons
-                   ============================================================ */
+               SQUAD — images use object-fit: contain
+               ============================================================ */
         #squad {
             background: var(--bg2);
             border-top: 1px solid var(--line);
@@ -841,17 +849,18 @@
             height: 240px;
             overflow: hidden;
             background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .player-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: grayscale(.35) contrast(1.05);
-            transition: transform .6s, filter .4s;
+            object-fit: contain;
+            transition: transform .6s ease;
         }
         .player:hover .player-img img {
-            transform: scale(1.07);
-            filter: grayscale(0);
+            transform: scale(1.06);
         }
         .player-num {
             position: absolute;
@@ -862,6 +871,7 @@
             color: transparent;
             -webkit-text-stroke: 1.5px var(--gold);
             line-height: 1;
+            pointer-events: none;
         }
         .player-info {
             padding: 1.05rem 1.1rem 1.15rem;
@@ -878,7 +888,6 @@
             letter-spacing: .04em;
             margin: 0;
         }
-        /* Role Badges */
         .player-role {
             display: inline-block;
             font-family: var(--mono);
@@ -947,8 +956,8 @@
         }
 
         /* ============================================================
-                   STAFF
-                   ============================================================ */
+               STAFF — images use object-fit: contain
+               ============================================================ */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -966,17 +975,19 @@
         .staff-card .ph {
             height: 220px;
             overflow: hidden;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .staff-card img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            filter: grayscale(.5);
-            transition: filter .4s, transform .6s;
+            object-fit: contain;
+            transition: transform .6s ease;
         }
         .staff-card:hover img {
-            filter: grayscale(0);
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
         .staff-card .txt {
             padding: 1.1rem 1.1rem 1.2rem;
@@ -1002,8 +1013,8 @@
         }
 
         /* ============================================================
-                   STANDINGS
-                   ============================================================ */
+               STANDINGS
+               ============================================================ */
         .standings-wrap {
             background: var(--panel2);
             border: 1px solid var(--line);
@@ -1055,8 +1066,8 @@
         }
 
         /* ============================================================
-                   BLOG
-                   ============================================================ */
+               BLOG — images use object-fit: contain
+               ============================================================ */
         #news {
             background: var(--bg2);
             border-top: 1px solid var(--line);
@@ -1078,18 +1089,23 @@
         .news-feature .kb {
             position: absolute;
             inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .news-feature img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            animation: kenburns 18s ease-in-out infinite alternate;
+            object-fit: contain;
+            transition: transform .6s ease;
         }
         .news-feature .kb::after {
             content: "";
             position: absolute;
             inset: 0;
             background: linear-gradient(200deg, rgba(10, 14, 26, .1) 30%, rgba(10, 14, 26, .93));
+            pointer-events: none;
         }
         .news-feature .nfc {
             position: relative;
@@ -1147,12 +1163,16 @@
         .news-item .thumb {
             overflow: hidden;
             height: 110px;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .news-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform .6s;
+            object-fit: contain;
+            transition: transform .6s ease;
         }
         .news-item:hover img {
             transform: scale(1.08);
@@ -1178,8 +1198,8 @@
         }
 
         /* ============================================================
-                   JOIN
-                   ============================================================ */
+               JOIN
+               ============================================================ */
         .join-panel {
             display: grid;
             grid-template-columns: 1.15fr .85fr;
@@ -1248,8 +1268,8 @@
         }
 
         /* ============================================================
-                   FOOTER
-                   ============================================================ */
+               FOOTER
+               ============================================================ */
         footer {
             background: #080b14;
             border-top: 1px solid var(--line);
@@ -1367,8 +1387,8 @@
         }
 
         /* ============================================================
-                   FLOATING WHATSAPP
-                   ============================================================ */
+               FLOATING WHATSAPP
+               ============================================================ */
         .wa-float {
             position: fixed;
             right: 22px;
@@ -1395,8 +1415,117 @@
         }
 
         /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
+               LIGHTBOX / ZOOM MODAL
+               ============================================================ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, .92);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+        .lightbox.open {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .7);
+            cursor: default;
+            animation: zoomIn .3s ease both;
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .lightbox .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.4rem;
+            color: var(--paper);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--display);
+            transition: transform .25s, color .25s;
+            z-index: 10;
+        }
+        .lightbox .close-btn:hover {
+            transform: rotate(90deg);
+            color: var(--gold);
+        }
+        .lightbox .counter {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--mono);
+            font-size: .8rem;
+            color: var(--muted);
+            letter-spacing: .2em;
+            background: rgba(0, 0, 0, .5);
+            padding: .4rem 1rem;
+            border-radius: 30px;
+        }
+        .lightbox .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid var(--line-strong);
+            color: var(--paper);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .25s, transform .25s;
+            font-family: var(--display);
+        }
+        .lightbox .nav-btn:hover {
+            background: rgba(255, 196, 46, .2);
+            border-color: var(--gold);
+        }
+        .lightbox .nav-btn.prev {
+            left: 20px;
+        }
+        .lightbox .nav-btn.next {
+            right: 20px;
+        }
+        @media(max-width:640px) {
+            .lightbox .nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
+            }
+            .lightbox .nav-btn.prev {
+                left: 8px;
+            }
+            .lightbox .nav-btn.next {
+                right: 8px;
+            }
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
         @media(max-width:920px) {
             .foot-grid {
                 grid-template-columns: 1fr;
@@ -1434,8 +1563,8 @@
         }
 
         /* ============================================================
-                   REDUCED MOTION
-                   ============================================================ */
+               REDUCED MOTION
+               ============================================================ */
         @media(prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1466,11 +1595,10 @@
 <body>
 
     <!-- ============================================================
-    SVG SPRITE — all icons (including Instagram & TikTok)
+    SVG SPRITE
     ============================================================ -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
-            <!-- Club crest -->
             <symbol id="crest" viewBox="0 0 100 110">
                 <path d="M50 4 L92 15 V56 C92 83 73 100 50 107 C27 100 8 83 8 56 V15 Z" fill="#101830" stroke="#ffc42e" stroke-width="3.5"/>
                 <path d="M0,-6 L1.76,-1.85 L6,-1.85 L2.85,.7 L4.24,4.85 L0,2.4 L-4.24,4.85 L-2.85,.7 L-6,-1.85 L-1.76,-1.85 Z" fill="#ffc42e" transform="translate(30,32)"/>
@@ -1478,23 +1606,15 @@
                 <path d="M0,-6 L1.76,-1.85 L6,-1.85 L2.85,.7 L4.24,4.85 L0,2.4 L-4.24,4.85 L-2.85,.7 L-6,-1.85 L-1.76,-1.85 Z" fill="#ffc42e" transform="translate(70,32)"/>
                 <text x="50" y="78" text-anchor="middle" font-family="Anton, sans-serif" font-size="26" fill="#f4f1e8">CS</text>
             </symbol>
-
-            <!-- Facebook -->
             <symbol id="fb-logo" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </symbol>
-
-            <!-- WhatsApp -->
             <symbol id="wa-logo" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </symbol>
-
-            <!-- TikTok -->
             <symbol id="tt-logo" viewBox="0 0 24 24">
                 <path d="M12.525.02c1.31-.013 2.61-.018 3.91-.02.063 1.6.569 3.179 1.408 4.53.84 1.35 2.007 2.451 3.375 3.113v3.23a8.143 8.143 0 01-3.399-1.157c-.045-.025-.09-.05-.135-.075v5.473a7.89 7.89 0 01-2.342 5.602 7.892 7.892 0 01-5.602 2.343 7.89 7.89 0 01-5.602-2.343 7.89 7.89 0 010-11.159 7.893 7.893 0 015.602-2.343c.472 0 .94.067 1.394.194v3.4a3.895 3.895 0 00-2.34-.79 3.876 3.876 0 00-2.742 1.135 3.876 3.876 0 00-1.135 2.742 3.876 3.876 0 001.135 2.742 3.877 3.877 0 002.742 1.135 3.877 3.877 0 002.742-1.135 3.877 3.877 0 001.135-2.742v-9.64h.001z"/>
             </symbol>
-
-            <!-- Instagram -->
             <symbol id="ig-logo" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
             </symbol>
@@ -1547,6 +1667,17 @@
     </nav>
 
     <!-- ============================================================
+    LIGHTBOX (ZOOM MODAL)
+    ============================================================ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+        <button class="close-btn" id="lightboxClose" aria-label="Close zoom">✕</button>
+        <button class="nav-btn prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+        <button class="nav-btn next" id="lightboxNext" aria-label="Next image">›</button>
+        <img id="lightboxImg" src="" alt="Zoomed image" />
+        <span class="counter" id="lightboxCounter"></span>
+    </div>
+
+    <!-- ============================================================
     MAIN
     ============================================================ -->
     <main id="top">
@@ -1566,7 +1697,7 @@
                     </p>
                     <div class="hero-chips">
                         <span class="hchip"><b>EST.</b> 2020</span>
-                        <span class="hchip"><b>HOME</b> CHUKA UNIVERSITY</span>
+                        <span class="hchip"><b>HOME</b> <a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener">CHUKA UNIVERSITY</a></span>
                         <span class="hchip"><b>LEAGUE</b> CHUKA PREMIER</span>
                     </div>
                     <div class="hero-actions">
@@ -1587,23 +1718,23 @@
                     </div>
                 </div>
 
-                <!-- 3 hero photos — swap the image URLs with your own -->
+                <!-- 3 hero photos -->
                 <div class="collage reveal">
                     <figure class="f1">
                         <div class="ph">
-                            <img src="https://picsum.photos/seed/chuka-citystars-matchday/700/620" alt="City Stars on matchday" loading="lazy" />
+                            <img src="https://picsum.photos/seed/chuka-citystars-matchday/700/620" alt="City Stars on matchday" loading="lazy" data-zoom="https://picsum.photos/seed/chuka-citystars-matchday/1200/900" />
                         </div>
                         <figcaption>★ Matchday</figcaption>
                     </figure>
                     <figure class="f2">
                         <div class="ph">
-                            <img src="https://picsum.photos/seed/chuka-citystars-training/600/460" alt="Training on campus" loading="lazy" />
+                            <img src="https://picsum.photos/seed/chuka-citystars-training/600/460" alt="Training on campus" loading="lazy" data-zoom="https://picsum.photos/seed/chuka-citystars-training/1200/900" />
                         </div>
                         <figcaption>★ Training</figcaption>
                     </figure>
                     <figure class="f3">
                         <div class="ph">
-                            <img src="https://picsum.photos/seed/chuka-citystars-family/640/480" alt="The team family" loading="lazy" />
+                            <img src="https://picsum.photos/seed/chuka-citystars-family/640/480" alt="The team family" loading="lazy" data-zoom="https://picsum.photos/seed/chuka-citystars-family/1200/900" />
                         </div>
                         <figcaption>★ The Family</figcaption>
                     </figure>
@@ -1661,7 +1792,7 @@
         </section>
 
         <!-- ============================================================
-        SQUAD — Enhanced with Role Tags & Social Icons
+        SQUAD
         ============================================================ -->
         <section id="squad">
             <div class="wrap">
@@ -1698,7 +1829,7 @@
         </section>
 
         <!-- ============================================================
-        LEAGUE STANDINGS
+        STANDINGS
         ============================================================ -->
         <section id="standings" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
             <div class="wrap">
@@ -1709,9 +1840,7 @@
                     </div>
                     <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER · 2026</p>
                 </div>
-                <div class="standings-wrap reveal" id="standingsWrap">
-                    <!-- table injected by JS -->
-                </div>
+                <div class="standings-wrap reveal" id="standingsWrap"></div>
             </div>
         </section>
 
@@ -1798,7 +1927,7 @@
                 <div>
                     <h5>The Club</h5>
                     <ul>
-                        <li><a href="#top">Chuka University, Kenya</a></li>
+                        <li><a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener">Chuka University, Kenya</a></li>
                         <li><a href="#matches">Chuka Premier League</a></li>
                         <li>
                             <a class="js-wa" data-msg="Hello City Stars! I have a question." target="_blank" rel="noopener">
@@ -1821,29 +1950,18 @@
     </a>
 
     <!-- ============================================================
-    JAVASCRIPT — Edit the CONFIG and data arrays below
+    JAVASCRIPT
     ============================================================ -->
     <script>
         /* ============================================================
-               ✏️✏️ EDITING ZONE — change everything here
+               CONFIG
                ============================================================ */
-
-        /**
-         * CONFIG — your club's contact info and social links
-         */
         const CONFIG = {
-            // Your WhatsApp number: country code + number, no "+", no spaces.
-            // Example for Kenya: "254712345678"
             whatsapp: "254712345678",
-
-            // Your team's social media URLs
             tiktok: "https://www.tiktok.com/@citystarschuka",
             facebook: "https://www.facebook.com/CityStarsChuka",
         };
 
-        /**
-         * TICKER — messages that scroll across the top bar.
-         */
         const TICKER = [
             "★ WELCOME TO THE OFFICIAL HOME OF CITY STARS FC",
             "★ EST. 2020 · CHUKA UNIVERSITY",
@@ -1852,37 +1970,15 @@
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
 
-        /**
-         * MATCHES — fixtures and results.
-         * For upcoming: d (YYYY-MM-DD), t (time), opp (opponent), h (home true/false)
-         * For results: add us (goals we scored) and them (goals they scored)
-         */
         const MATCHES = [
-            // Upcoming fixtures
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
             { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
-            // Recent results
             { d: "2026-08-01", opp: "philites", h: true, us: 2, them: 1 },
             { d: "2026-07-25", opp: "Ateker", h: false, us: 0, them: 0 },
             { d: "2026-07-18", opp: "Foxes", h: true, us: 3, them: 2 },
             { d: "2026-07-11", opp: "fc", h: false, us: 1, them: 2 },
         ];
 
-        /**
-         * SQUAD — add any number of players.
-         * 
-         * @property {string} name - Player's full name.
-         * @property {string} pos - Position: "GK" | "DF" | "MF" | "FW"
-         * @property {number} no - Squad number.
-         * @property {number} goals - Goals scored (for outfield players).
-         * @property {number} cleanSheets - Clean sheets (for goalkeepers).
-         * @property {number} apps - Appearances.
-         * @property {string} [photo] - DIRECT IMAGE URL (e.g., from Imgur). If empty, a placeholder is used.
-         * @property {string} [role] - 'captain' or 'vice-captain' (optional).
-         * @property {string} [ig] - Instagram handle (without @).
-         * @property {string} [tt] - TikTok handle (without @).
-         * @property {string} [fb] - Facebook handle (optional).
-         */
         const SQUAD = [{
             name: "MORGA",
             pos: "DF",
@@ -1890,7 +1986,6 @@
             goals: 2,
             apps: 14,
             role: 'captain',
-            // 👇 Paste your Imgur (or any direct) image URL here
             photo: "https://i.imgur.com/0QenBte.jpeg",
             ig: "morga4",
             tt: "morga4"
@@ -1949,8 +2044,7 @@
             goals: 0,
             apps: 8,
             photo: "https://i.imgur.com/sample-df4.jpg"
-        }, 
-        {
+        }, {
             name: "Mandevuu",
             pos: "MF",
             no: 6,
@@ -2012,30 +2106,35 @@
             ig: "minnot19"
         }, ];
 
-        /**
-         * STAFF — coaches, managers, support team.
-         */
         const STAFF = [
-            { name: "Davick", role: "Head Coach", note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football." },
-            { name: "??", role: "Assistant Coach", note: "Runs our set-pieces and the early-morning fitness block.", tt: "coachbarasa" },
-            { name: "Baite", role: "Team Manager", note: "Fixtures, registrations, kit logistics — nothing moves without the TM.", ig: "nancy_njeri_tm" },
-            { name: "??", role: "Physiotherapist", note: "Keeps the squad on the pitch with taping, rehab and honest advice." },
-            { name: "Champe", role: "Media Manager", note: "Runs our TikTok & Facebook — the reason you see every goal online.", tt: "tinachieng" },
+            { name: "Davick", role: "Head Coach",
+            note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football." },
+            { name: "??", role: "Assistant Coach", note: "Runs our set-pieces and the early-morning fitness block.",
+                tt: "coachbarasa" },
+            { name: "Baite", role: "Team Manager",
+                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.",
+            ig: "nancy_njeri_tm" },
+            { name: "??", role: "Physiotherapist",
+                note: "Keeps the squad on the pitch with taping, rehab and honest advice." },
+            { name: "Champe", role: "Media Manager",
+                note: "Runs our TikTok & Facebook — the reason you see every goal online.", tt: "tinachieng" },
         ];
 
-        /**
-         * NEWS — newest first. seed is used for placeholder images.
-         */
         const NEWS = [
-            { tag: "Match Report", date: "2026-08-01", title: "Stars edge Marimanti Blues 2–1 at the main pitch", ex: "A late Josephat Mose header sealed it in front of our loudest crowd of the season.", seed: "citystars-marimanti-win" },
-            { tag: "Campus News", date: "2026-07-28", title: "Five first-years join first-team training", ex: "Fresh talent from the faculty tournaments steps up with the senior squad.", seed: "citystars-freshers" },
-            { tag: "Interview", date: "2026-07-22", title: "Coach's corner: “We grow one session at a time”", ex: "Coach Mwangi on the 2026 season, the title race and what the Stars mean to campus.", seed: "citystars-coach-talk" },
-            { tag: "Club", date: "2026-07-15", title: "Become a Star: membership now open for KSH 350", ex: "One fee, no hidden charges — every shilling goes to the team. Join via WhatsApp.", seed: "citystars-membership" },
+            { tag: "Match Report", date: "2026-08-01", title: "Stars edge Marimanti Blues 2–1 at the main pitch",
+                ex: "A late Josephat Mose header sealed it in front of our loudest crowd of the season.",
+                seed: "citystars-marimanti-win" },
+            { tag: "Campus News", date: "2026-07-28", title: "Five first-years join first-team training",
+                ex: "Fresh talent from the faculty tournaments steps up with the senior squad.",
+                seed: "citystars-freshers" },
+            { tag: "Interview", date: "2026-07-22", title: "Coach's corner: “We grow one session at a time”",
+                ex: "Coach Mwangi on the 2026 season, the title race and what the Stars mean to campus.",
+                seed: "citystars-coach-talk" },
+            { tag: "Club", date: "2026-07-15", title: "Become a Star: membership now open for KSH 350",
+                ex: "One fee, no hidden charges — every shilling goes to the team. Join via WhatsApp.",
+                seed: "citystars-membership" },
         ];
 
-        /**
-         * LEAGUE STANDINGS
-         */
         const STANDINGS = [
             { pos: 1, team: "City Stars FC", p: 9, w: 3, d: 1, l: 0, gf: 8, ga: 3, pts: 10 },
             { pos: 2, team: "philites", p: 9, w: 3, d: 0, l: 1, gf: 7, ga: 4, pts: 9 },
@@ -2048,7 +2147,7 @@
         ];
 
         /* ============================================================
-               —————— NO EDITING NEEDED BELOW THIS LINE ——————
+               —————— NO EDITING NEEDED BELOW ——————
                ============================================================ */
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2056,7 +2155,7 @@
         const $$ = s => document.querySelectorAll(s);
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        /* WhatsApp links */
+        /* WhatsApp */
         const wa = m => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
         document.querySelectorAll('.js-wa').forEach(a => {
             a.href = wa(a.dataset.msg || 'Hello City Stars! 👋');
@@ -2077,7 +2176,7 @@
         const items = TICKER.map(t => `<span>${t}</span>`).join('');
         $('#tickerTrack').innerHTML = items + items;
 
-        /* Header scroll & mobile menu */
+        /* Header scroll & mobile */
         addEventListener('scroll', () => {
             $('#header').classList.toggle('scrolled', scrollY > 30);
         }, { passive: true });
@@ -2164,7 +2263,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        /* Squad — Enhanced with Role Tags & Social Icons */
+        /* Squad */
         const POS = { GK: 'Goalkeeper', DF: 'Defender', MF: 'Midfielder', FW: 'Forward' };
         const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
 
@@ -2176,10 +2275,9 @@
 
         $('#squadGrid').innerHTML = SQUAD.map(p => {
             const stat = p.pos === 'GK' ? `${p.cleanSheets ?? 0} CLEAN SHEETS` : `${p.goals ?? 0} GOALS`;
-            // Use provided photo or fallback to a minimal placeholder
             const imgSrc = p.photo ||
                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460"%3E%3Crect width="400" height="460" fill="%230d1324"/%3E%3Ctext x="200" y="230" font-family="Arial" font-size="20" fill="%2398a2ba" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
-
+            const zoomSrc = p.photo || imgSrc;
             let soc = '';
             if (p.ig) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://instagram.com/${p.ig}" aria-label="Instagram"><svg><use href="#ig-logo"/></svg></a>`;
@@ -2187,12 +2285,10 @@
                 `<a class="psoc" target="_blank" rel="noopener" href="https://tiktok.com/@${p.tt}" aria-label="TikTok"><svg><use href="#tt-logo"/></svg></a>`;
             if (p.fb) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
-
             const roleTag = getRoleTag(p.role);
-
             return `<article class="player reveal" data-pos="${p.pos}">
                         <div class="player-img">
-                            <img loading="lazy" src="${imgSrc}" alt="${p.name}">
+                            <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" />
                             <span class="player-num">${p.no}</span>
                         </div>
                         <div class="player-info">
@@ -2210,13 +2306,14 @@
         /* Staff */
         $('#staffGrid').innerHTML = STAFF.map(s => {
             const img = s.photo || `https://picsum.photos/seed/${seedOf(s.name)}/400/400`;
+            const zoomSrc = s.photo || img;
             let soc = '';
             if (s.ig) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://instagram.com/${s.ig}"><svg><use href="#ig-logo"/></svg></a>`;
             if (s.tt) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://tiktok.com/@${s.tt}"><svg><use href="#tt-logo"/></svg></a>`;
             return `<article class="staff-card reveal">
-                        <div class="ph"><img loading="lazy" src="${img}" alt="${s.name}"></div>
+                        <div class="ph"><img loading="lazy" src="${img}" alt="${s.name}" data-zoom="${zoomSrc}" /></div>
                         <div class="txt">
                             <p class="staff-role">${s.role}</p>
                             <h4>${s.name}</h4>
@@ -2227,7 +2324,7 @@
         }).join('');
 
         /* Standings */
-        const standingsHTML = `
+        document.getElementById('standingsWrap').innerHTML = `
                 <table>
                     <thead>
                         <tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr>
@@ -2245,13 +2342,12 @@
                     </tbody>
                 </table>
             `;
-        document.getElementById('standingsWrap').innerHTML = standingsHTML;
 
         /* News */
         const [feat, ...rest] = NEWS;
         $('#newsGrid').innerHTML = `
                 <article class="news-feature reveal">
-                    <div class="kb"><img loading="lazy" src="https://picsum.photos/seed/${feat.seed}/1000/760" alt=""></div>
+                    <div class="kb"><img loading="lazy" src="https://picsum.photos/seed/${feat.seed}/1000/760" alt="" data-zoom="https://picsum.photos/seed/${feat.seed}/1400/1000" /></div>
                     <div class="nfc">
                         <span class="tag">${feat.tag}</span>
                         <h3>${feat.title}</h3>
@@ -2262,7 +2358,7 @@
                 <div class="news-stack">
                     ${rest.map(n => `
                         <article class="news-item reveal">
-                            <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/${n.seed}/400/300" alt=""></div>
+                            <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/${n.seed}/400/300" alt="" data-zoom="https://picsum.photos/seed/${n.seed}/800/600" /></div>
                             <div>
                                 <span class="tag alt">${n.tag}</span>
                                 <h4>${n.title}</h4>
@@ -2319,7 +2415,130 @@
         }
         scramble($('#scramble1'));
         setTimeout(() => scramble($('#scramble2')), 350);
-    </script>
 
+        /* ============================================================
+               LIGHTBOX / ZOOM FUNCTIONALITY
+               ============================================================ */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        let zoomImages = [];
+        let currentZoomIndex = 0;
+
+        function openLightbox(src, index) {
+            if (!src || src.includes('No Image')) return;
+            lightboxImg.src = src;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            currentZoomIndex = index;
+            updateCounter();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function updateCounter() {
+            if (zoomImages.length > 1) {
+                lightboxCounter.textContent = `${currentZoomIndex + 1} / ${zoomImages.length}`;
+                lightboxCounter.style.display = 'block';
+            } else {
+                lightboxCounter.style.display = 'none';
+            }
+            lightboxPrev.style.display = zoomImages.length > 1 ? 'flex' : 'none';
+            lightboxNext.style.display = zoomImages.length > 1 ? 'flex' : 'none';
+        }
+
+        function showPrev() {
+            if (zoomImages.length < 2) return;
+            currentZoomIndex = (currentZoomIndex - 1 + zoomImages.length) % zoomImages.length;
+            lightboxImg.src = zoomImages[currentZoomIndex];
+            updateCounter();
+        }
+
+        function showNext() {
+            if (zoomImages.length < 2) return;
+            currentZoomIndex = (currentZoomIndex + 1) % zoomImages.length;
+            lightboxImg.src = zoomImages[currentZoomIndex];
+            updateCounter();
+        }
+
+        // Collect all images with data-zoom attribute
+        function collectZoomImages() {
+            zoomImages = [];
+            document.querySelectorAll('img[data-zoom]').forEach((img, idx) => {
+                const src = img.dataset.zoom;
+                if (src && !src.includes('No Image')) {
+                    zoomImages.push(src);
+                    img.dataset.zoomIndex = idx;
+                    // Remove any existing click listener to avoid duplicates
+                    img.removeEventListener('click', img._zoomHandler);
+                    img._zoomHandler = function(e) {
+                        e.stopPropagation();
+                        const index = zoomImages.indexOf(this.dataset.zoom);
+                        if (index !== -1) {
+                            openLightbox(this.dataset.zoom, index);
+                        } else {
+                            // fallback: just use this image
+                            openLightbox(this.dataset.zoom, zoomImages.length);
+                        }
+                    };
+                    img.addEventListener('click', img._zoomHandler);
+                }
+            });
+            // Also handle images without data-zoom but with src
+            document.querySelectorAll('img:not([data-zoom])').forEach(img => {
+                if (img.src && !img.src.includes('No Image') && !img.src.includes('data:image')) {
+                    // Check if it's already in the list
+                    const exists = zoomImages.some(z => z === img.src);
+                    if (!exists) {
+                        zoomImages.push(img.src);
+                        img.removeEventListener('click', img._zoomHandler);
+                        img._zoomHandler = function(e) {
+                            e.stopPropagation();
+                            const idx = zoomImages.indexOf(this.src);
+                            openLightbox(this.src, idx !== -1 ? idx : 0);
+                        };
+                        img.addEventListener('click', img._zoomHandler);
+                    }
+                }
+            });
+            // Rebuild index mapping
+            zoomImages = zoomImages.filter((src, i, self) => self.indexOf(src) === i);
+            updateCounter();
+        }
+
+        // Lightbox controls
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+        lightboxPrev.addEventListener('click', function(e) { e.stopPropagation();
+            showPrev(); });
+        lightboxNext.addEventListener('click', function(e) { e.stopPropagation();
+            showNext(); });
+
+        // Collect zoom images after DOM is ready
+        setTimeout(collectZoomImages, 300);
+
+        // Also re-collect when squad/staff/news are dynamically rendered
+        const observer = new MutationObserver(() => {
+            setTimeout(collectZoomImages, 200);
+        });
+        observer.observe(document.getElementById('squadGrid'), { childList: true, subtree: true });
+        observer.observe(document.getElementById('staffGrid'), { childList: true, subtree: true });
+        observer.observe(document.getElementById('newsGrid'), { childList: true, subtree: true });
+    </script>
 </body>
 </html>
