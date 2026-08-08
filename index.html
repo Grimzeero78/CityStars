@@ -245,8 +245,8 @@
             gap: .8rem;
         }
         .brand svg {
-            width: 42px;
-            height: 46px;
+            width: 50px;
+            height: 60px;
             flex-shrink: 0;
         }
         .brand-name {
@@ -849,6 +849,14 @@
             letter-spacing: .04em;
             margin: 0;
         }
+        .player-info .nickname {
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--gold);
+            letter-spacing: .12em;
+            display: block;
+            margin-top: 2px;
+        }
         .player-role {
             display: inline-block;
             font-family: var(--mono);
@@ -883,6 +891,10 @@
         }
         .player-role.discipline {
             background: #e74c3c;
+            color: #141414;
+        }
+        .player-role.gkcoach {
+            background: #f39c12;
             color: #141414;
         }
         .player-meta {
@@ -1578,12 +1590,15 @@
 
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
         <defs>
-            <symbol id="crest" viewBox="0 0 100 110">
-                <path d="M50 4 L92 15 V56 C92 83 73 100 50 107 C27 100 8 83 8 56 V15 Z" fill="#101830" stroke="#ffc42e" stroke-width="3.5"/>
-                <path d="M0,-6 L1.76,-1.85 L6,-1.85 L2.85,.7 L4.24,4.85 L0,2.4 L-4.24,4.85 L-2.85,.7 L-6,-1.85 L-1.76,-1.85 Z" fill="#ffc42e" transform="translate(30,32)"/>
-                <path d="M0,-6 L1.76,-1.85 L6,-1.85 L2.85,.7 L4.24,4.85 L0,2.4 L-4.24,4.85 L-2.85,.7 L-6,-1.85 L-1.76,-1.85 Z" fill="#ffc42e" transform="translate(50,25) scale(1.2)"/>
-                <path d="M0,-6 L1.76,-1.85 L6,-1.85 L2.85,.7 L4.24,4.85 L0,2.4 L-4.24,4.85 L-2.85,.7 L-6,-1.85 L-1.76,-1.85 Z" fill="#ffc42e" transform="translate(70,32)"/>
-                <text x="50" y="78" text-anchor="middle" font-family="Anton, sans-serif" font-size="26" fill="#f4f1e8">CS</text>
+            <!-- Updated crest with "CITY STARS 20 22 CLUB" -->
+            <symbol id="crest" viewBox="0 0 120 130">
+                <path d="M60 6 L112 20 V62 C112 92 90 110 60 118 C30 110 8 92 8 62 V20 Z" fill="#101830" stroke="#ffc42e" stroke-width="4"/>
+                <rect x="18" y="24" width="84" height="42" rx="4" fill="none" stroke="#ffc42e" stroke-width="1.5"/>
+                <text x="60" y="40" text-anchor="middle" font-family="Anton, sans-serif" font-size="14" fill="#f4f1e8" letter-spacing="2">CITY</text>
+                <text x="60" y="58" text-anchor="middle" font-family="Anton, sans-serif" font-size="18" fill="#ffc42e" letter-spacing="3">STARS</text>
+                <text x="60" y="88" text-anchor="middle" font-family="Anton, sans-serif" font-size="16" fill="#f4f1e8" letter-spacing="2">20</text>
+                <text x="68" y="88" text-anchor="middle" font-family="Anton, sans-serif" font-size="16" fill="#ffc42e" letter-spacing="2">22</text>
+                <text x="60" y="108" text-anchor="middle" font-family="Anton, sans-serif" font-size="12" fill="#f4f1e8" letter-spacing="3">CLUB</text>
             </symbol>
             <symbol id="fb-logo" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -1926,6 +1941,7 @@
         ];
 
         // Squad: { name, pos: "GK"|"DF"|"MF"|"FW", no, goals, cleanSheets, apps, role, nick, photo, ig, tt, fb }
+        // Added Brian "Champez" and Johnson "Kajony" as players; updated Outtah to GK, no 24, role gkcoach.
         const SQUAD_DATA = [{
             name: "Morgan Ongeko",
             nick: "Morga",
@@ -2109,15 +2125,32 @@
         }, {
             name: "Outtah Tychicus",
             nick: "Outtah",
-            pos: "FW",
-            no: 21,
-            goals: 2,
-            apps: 4,
-            role: 'welfare',
-            photo: "https://i.imgur.com/sample-fw4.jpg"
-        }, ];
+            pos: "GK",
+            no: 24,
+            cleanSheets: 2,
+            apps: 5,
+            role: 'gkcoach',
+            photo: "https://i.imgur.com/sample-gk2.jpg"
+        }, {
+            name: "Brian Mishelelei",
+            nick: "Champez",
+            pos: "MF",
+            no: 22,
+            goals: 3,
+            apps: 10,
+            photo: "https://i.imgur.com/sample-mf4.jpg",
+            tt: "tinachieng"
+        }, {
+            name: "Johnson",
+            nick: "Kajony",
+            pos: "MF",
+            no: 23,
+            goals: 1,
+            apps: 8,
+            photo: "https://i.imgur.com/sample-mf.jpg"
+        }];
 
-        // Staff: { name, role, note, nick, photo, ig, tt }
+        // Staff: removed Champez and Kajony; added Outtah as Goalkeeper Coach (optional, but we keep him as player already)
         const STAFF_DATA = [
             { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
                 note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football.",
@@ -2129,11 +2162,7 @@
                 photo: "" },
             { name: "Kimanzi Musyoka", nick: "", role: "Team CEO",
                 note: "The vision behind the Stars — driving the club forward both on and off the pitch.", photo: "" },
-            { name: "Brian Mishelelei", nick: "Champez", role: "Club Spokesman & Media Person",
-                note: "Runs our TikTok & Facebook — the reason you see every goal online.", tt: "tinachieng",
-                photo: "" },
-            { name: "Johnson", nick: "Kajony", role: "Secretary",
-                note: "Keeps the club organised — from meeting minutes to match-day coordination.", photo: "" },
+            // Outtah is already in squad as GK and Goalkeeper Coach, so we can add him here as well if desired, but we'll skip to avoid duplication.
         ];
 
         // News: { tag, date: "YYYY-MM-DD", title, ex, seed, photo (optional) }
@@ -2286,6 +2315,7 @@
             if (role === 'treasurer') return '<span class="player-role treasurer">💰 Treasurer</span>';
             if (role === 'welfare') return '<span class="player-role welfare">❤️ Welfare</span>';
             if (role === 'discipline') return '<span class="player-role discipline">⚔️ Discipline</span>';
+            if (role === 'gkcoach') return '<span class="player-role gkcoach">🧤 GK Coach</span>';
             return '';
         };
         $('#squadGrid').innerHTML = SQUAD_DATA.map(p => {
@@ -2301,14 +2331,20 @@
             if (p.fb) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
-            const displayName = p.nick ? `${p.name} “${p.nick}”` : p.name;
+            // Display name and nickname separately
+            const nameDisplay = p.name;
+            const nickDisplay = p.nick ? `<span class="nickname">“${p.nick}”</span>` : '';
             return `<article class="player reveal" data-pos="${p.pos}">
                         <div class="player-img">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" data-caption="${caption}" />
                             <span class="player-num">${p.no}</span>
                         </div>
                         <div class="player-info">
-                            <div class="name-row"><h4>${displayName}</h4>${getRoleTag(p.role)}</div>
+                            <div class="name-row">
+                                <h4>${nameDisplay}</h4>
+                                ${getRoleTag(p.role)}
+                            </div>
+                            ${nickDisplay}
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
                             <div class="player-stats"><span>${stat}</span><span>${p.apps ?? 0} APPS</span></div>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
@@ -2327,13 +2363,13 @@
             if (s.tt) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://tiktok.com/@${s.tt}"><svg><use href="#tt-logo"/></svg></a>`;
             const caption = `${s.name} · ${s.role}`;
-            const displayName = s.nick ? `${s.name} “${s.nick}”` : s.name;
+            const nickDisplay = s.nick ? `<div class="nick">★ ${s.nick}</div>` : '';
             return `<article class="staff-card reveal">
                         <div class="ph"><img loading="lazy" src="${img}" alt="${s.name}" data-zoom="${zoomSrc}" data-caption="${caption}" /></div>
                         <div class="txt">
                             <p class="staff-role">${s.role}</p>
-                            <h4>${displayName}</h4>
-                            ${s.nick ? `<p class="nick">★ ${s.nick}</p>` : ''}
+                            <h4>${s.name}</h4>
+                            ${nickDisplay}
                             <p class="note">${s.note}</p>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
                         </div>
