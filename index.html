@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>City Stars Chuka — FC | Chuka Premier League</title>
-    <meta name="description" content="City Stars Chuka — Chuka University's own football family. Est. 2020. Chuka Premier League. Matches, squad, staff and club blog." />
+    <meta name="description" content="City Stars Chuka — Chuka University's own football family. Begun in February 2022. Chuka Premier League. Matches, squad, staff and club blog." />
     <meta name="google-site-verification" content="oeDfPU047d5Lk5H24rfTv4vU2PEvHqSo0VTYtD4FUUU" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -869,6 +869,22 @@
             background: #a0aec0;
             color: #141414;
         }
+        .player-role.third {
+            background: #cd7f32;
+            color: #141414;
+        }
+        .player-role.treasurer {
+            background: #2ecc71;
+            color: #141414;
+        }
+        .player-role.welfare {
+            background: #3498db;
+            color: #141414;
+        }
+        .player-role.discipline {
+            background: #e74c3c;
+            color: #141414;
+        }
         .player-meta {
             font-family: var(--mono);
             font-size: .6rem;
@@ -960,7 +976,14 @@
         }
         .staff-card h4 {
             font-size: 1.1rem;
-            margin: .35rem 0 .5rem;
+            margin: .35rem 0 .2rem;
+        }
+        .staff-card .nick {
+            font-family: var(--mono);
+            font-size: .6rem;
+            color: var(--gold);
+            letter-spacing: .12em;
+            margin-bottom: .3rem;
         }
         .staff-card .note {
             font-size: .8rem;
@@ -1631,15 +1654,17 @@
         <section class="hero">
             <div class="wrap hero-grid">
                 <div>
-                    <p class="kicker">Chuka Premier League · Est. 2020</p>
+                    <p class="kicker">Chuka Premier League · Begun February 2022</p>
                     <h1>
                         <span id="scramble1" data-text="CITY STARS CHUKA">CITY STARS CHUKA</span>
+                        <span style="display:block;font-size:.45em;color:var(--gold);letter-spacing:.15em;">— THE CELESTIAL —</span>
                     </h1>
                     <p class="hero-sub">
                         <strong>City Stars Chuka</strong>, Welcome to City Stars Fc Official website,we are located in Chuka and we are a team of passionate university students who balance books and boots. More than just a team, we are a family that pushes each other to win on the pitch and in life.
                     </p>
                     <div class="hero-chips">
-                        <span class="hchip"><b>EST.</b> 2020</span>
+                        <span class="hchip"><b>BEGUN</b> FEB 2022</span>
+                        <span class="hchip"><b>NICKNAME</b> THE CELESTIAL</span>
                         <span class="hchip"><b>HOME</b> <a href="https://www.chuka.ac.ke/" target="_blank" rel="noopener" class="chuka-link">CHUKA UNIVERSITY</a></span>
                         <span class="hchip"><b>LEAGUE</b> CHUKA PREMIER</span>
                     </div>
@@ -1669,8 +1694,8 @@
 
         <div class="band" aria-hidden="true">
             <div class="band-track">
-                <span>CITY STARS CHUKA <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
-                <span>CITY STARS CHUKA <b>★</b> EST. 2020 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
+                <span>CITY STARS CHUKA <b>★</b> THE CELESTIAL <b>★</b> BEGUN FEB 2022 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
+                <span>CITY STARS CHUKA <b>★</b> THE CELESTIAL <b>★</b> BEGUN FEB 2022 <b>★</b> CHUKA UNIVERSITY <b>★</b> CHUKA PREMIER LEAGUE <b>★</b>&nbsp;</span>
             </div>
         </div>
 
@@ -1802,7 +1827,7 @@
                         <svg width="46" height="50" aria-hidden="true"><use href="#crest"/></svg>
                         <span class="brand-name">CITY <em>STARS</em></span>
                     </a>
-                    <p><strong>City Stars Chuka</strong>, Chuka University's football family. Est. 2020. Playing with pride in the Chuka Premier League.</p>
+                    <p><strong>City Stars Chuka</strong>, Chuka University's football family. Begun in February 2022. Playing with pride in the Chuka Premier League.</p>
                     <div class="socials">
                         <a data-soc="tiktok" target="_blank" rel="noopener" class="tt">
                             <svg><use href="#tt-logo"/></svg> TikTok
@@ -1841,7 +1866,7 @@
             </div>
             <div class="foot-base">
                 <span>© <span id="year"></span> CITY STARS CHUKA · CHUKA UNIVERSITY</span>
-                <span>UP THE STARS ★</span>
+                <span>UP THE CELESTIAL ★</span>
             </div>
         </div>
     </footer>
@@ -1864,8 +1889,8 @@
 
         // Ticker messages (scroll across top)
         const TICKER_MESSAGES = [
-            "★ WELCOME TO CITY STARS CHUKA",
-            "★ EST. 2020 · CHUKA UNIVERSITY",
+            "★ WELCOME TO CITY STARS CHUKA — THE CELESTIAL",
+            "★ BEGUN FEBRUARY 2022 · CHUKA UNIVERSITY",
             "★ NEXT: CITY STARS v Philites — MAIN PITCH",
             "★ BECOME A STAR FOR KSH 350 — TAP 'JOIN'",
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
@@ -1900,9 +1925,10 @@
             { d: "2026-07-11", opp: "fc", h: false, us: 1, them: 2 },
         ];
 
-        // Squad: { name, pos: "GK"|"DF"|"MF"|"FW", no, goals, cleanSheets, apps, role, photo, ig, tt, fb }
+        // Squad: { name, pos: "GK"|"DF"|"MF"|"FW", no, goals, cleanSheets, apps, role, nick, photo, ig, tt, fb }
         const SQUAD_DATA = [{
-            name: "MORGA",
+            name: "Morgan Ongeko",
+            nick: "Morga",
             pos: "DF",
             no: 4,
             goals: 2,
@@ -1912,9 +1938,10 @@
             ig: "morga4",
             tt: "morga4"
         }, {
-            name: "Evanso",
+            name: "Evans",
+            nick: "Evanso",
             pos: "DF",
-            no: 4,
+            no: 3,
             goals: 6,
             apps: 14,
             role: 'vice-captain',
@@ -1922,7 +1949,18 @@
             ig: "evanso4",
             tt: "evanso4"
         }, {
+            name: "Alex Juma",
+            nick: "AJ",
+            pos: "MF",
+            no: 10,
+            goals: 4,
+            apps: 12,
+            role: 'third',
+            photo: "https://i.imgur.com/sample-mf2.jpg",
+            ig: "alexjuma10"
+        }, {
             name: "Clemoo",
+            nick: "Clem",
             pos: "GK",
             no: 1,
             cleanSheets: 6,
@@ -1931,6 +1969,7 @@
             ig: "clemoo1"
         }, {
             name: "Hunter",
+            nick: "Hunt",
             pos: "GK",
             no: 16,
             cleanSheets: 1,
@@ -1938,6 +1977,7 @@
             photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
             name: "Davii",
+            nick: "Davi",
             pos: "DF",
             no: 2,
             goals: 0,
@@ -1945,22 +1985,35 @@
             photo: "https://i.imgur.com/sample-df.jpg",
             ig: "davii2"
         }, {
-            name: "Wikii",
+            name: "Wickliff Murimi",
+            nick: "Wikii",
             pos: "DF",
             no: 5,
             goals: 1,
             apps: 12,
+            role: 'treasurer',
             photo: "https://i.imgur.com/sample-df2.jpg"
         }, {
+            name: "Alex Waweru",
+            nick: "Waweru",
+            pos: "MF",
+            no: 12,
+            goals: 2,
+            apps: 9,
+            role: 'treasurer',
+            photo: "https://i.imgur.com/sample-mf3.jpg"
+        }, {
             name: "Kafish",
+            nick: "Kaf",
             pos: "DF",
-            no: 3,
+            no: 6,
             goals: 0,
             apps: 14,
             photo: "https://i.imgur.com/sample-df3.jpg",
             tt: "kafish3"
         }, {
             name: "Alekoo",
+            nick: "Aleks",
             pos: "DF",
             no: 15,
             goals: 0,
@@ -1968,21 +2021,25 @@
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
             name: "Mandevuu",
+            nick: "Mando",
             pos: "MF",
-            no: 6,
+            no: 7,
             goals: 1,
             apps: 14,
             photo: "https://i.imgur.com/sample-mf.jpg"
         }, {
-            name: "Miguel",
+            name: "Miguel Fredrick",
+            nick: "Miguel",
             pos: "MF",
             no: 8,
             goals: 4,
             apps: 13,
+            role: 'welfare',
             photo: "https://i.imgur.com/sample-mf2.jpg",
             ig: "miguel8"
         }, {
             name: "Manuu",
+            nick: "Manu",
             pos: "MF",
             no: 14,
             goals: 2,
@@ -1990,6 +2047,7 @@
             photo: "https://i.imgur.com/sample-mf3.jpg"
         }, {
             name: "Hillary",
+            nick: "Hills",
             pos: "MF",
             no: 20,
             goals: 1,
@@ -1997,52 +2055,85 @@
             photo: "https://i.imgur.com/sample-mf4.jpg"
         }, {
             name: "Johnny",
+            nick: "John",
             pos: "FW",
-            no: 7,
+            no: 9,
             goals: 8,
             apps: 14,
             photo: "https://i.imgur.com/sample-fw.jpg",
             tt: "johnny7"
         }, {
             name: "Yanikoo",
+            nick: "Yani",
             pos: "FW",
-            no: 9,
+            no: 11,
             goals: 11,
             apps: 14,
             photo: "https://i.imgur.com/sample-fw2.jpg",
             ig: "yanikoo9"
         }, {
             name: "TopKid",
+            nick: "Top",
             pos: "FW",
-            no: 11,
+            no: 17,
             goals: 7,
             apps: 13,
             photo: "https://i.imgur.com/sample-fw3.jpg"
         }, {
             name: "Minnot",
+            nick: "Minn",
             pos: "FW",
             no: 19,
             goals: 3,
             apps: 8,
             photo: "https://i.imgur.com/sample-fw4.jpg",
             ig: "minnot19"
+        }, {
+            name: "Isaac",
+            nick: "Bazenga",
+            pos: "DF",
+            no: 13,
+            goals: 0,
+            apps: 6,
+            role: 'discipline',
+            photo: "https://i.imgur.com/sample-df4.jpg"
+        }, {
+            name: "Ambrose Ngetich",
+            nick: "Kipyegon",
+            pos: "DF",
+            no: 18,
+            goals: 0,
+            apps: 5,
+            role: 'discipline',
+            photo: "https://i.imgur.com/sample-df3.jpg"
+        }, {
+            name: "Outtah Tychicus",
+            nick: "Outtah",
+            pos: "FW",
+            no: 21,
+            goals: 2,
+            apps: 4,
+            role: 'welfare',
+            photo: "https://i.imgur.com/sample-fw4.jpg"
         }, ];
 
-        // Staff: { name, role, note, photo, ig, tt }
+        // Staff: { name, role, note, nick, photo, ig, tt }
         const STAFF_DATA = [
-            { name: "Davick", role: "Head Coach",
-            note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football.",
+            { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
+                note: "Founding member. Built the Stars from scratch in 2020 and still demands one-touch football.",
                 photo: "" },
-            { name: "??", role: "Assistant Coach", note: "Runs our set-pieces and the early-morning fitness block.",
-                tt: "coachbarasa", photo: "" },
-            { name: "Baite", role: "Team Manager",
-                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.",
-                ig: "nancy_njeri_tm", photo: "" },
-            { name: "??", role: "Physiotherapist",
-                note: "Keeps the squad on the pitch with taping, rehab and honest advice.", photo: "" },
-            { name: "Champe", role: "Media Manager",
+            { name: "Emmy Taylor", nick: "", role: "Assistant Coach",
+                note: "Runs our set-pieces and the early-morning fitness block.", tt: "coachbarasa", photo: "" },
+            { name: "Martin Kimathi", nick: "", role: "Team Manager",
+                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.", ig: "nancy_njeri_tm",
+                photo: "" },
+            { name: "Kimanzi Musyoka", nick: "", role: "Team CEO",
+                note: "The vision behind the Stars — driving the club forward both on and off the pitch.", photo: "" },
+            { name: "Brian Mishelelei", nick: "Champez", role: "Club Spokesman & Media Person",
                 note: "Runs our TikTok & Facebook — the reason you see every goal online.", tt: "tinachieng",
                 photo: "" },
+            { name: "Johnson", nick: "Kajony", role: "Secretary",
+                note: "Keeps the club organised — from meeting minutes to match-day coordination.", photo: "" },
         ];
 
         // News: { tag, date: "YYYY-MM-DD", title, ex, seed, photo (optional) }
@@ -2191,6 +2282,10 @@
         const getRoleTag = (role) => {
             if (role === 'captain') return '<span class="player-role captain">★ Captain</span>';
             if (role === 'vice-captain') return '<span class="player-role vice">✦ Vice-Captain</span>';
+            if (role === 'third') return '<span class="player-role third">✦ 3rd Captain</span>';
+            if (role === 'treasurer') return '<span class="player-role treasurer">💰 Treasurer</span>';
+            if (role === 'welfare') return '<span class="player-role welfare">❤️ Welfare</span>';
+            if (role === 'discipline') return '<span class="player-role discipline">⚔️ Discipline</span>';
             return '';
         };
         $('#squadGrid').innerHTML = SQUAD_DATA.map(p => {
@@ -2206,13 +2301,14 @@
             if (p.fb) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
+            const displayName = p.nick ? `${p.name} “${p.nick}”` : p.name;
             return `<article class="player reveal" data-pos="${p.pos}">
                         <div class="player-img">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" data-caption="${caption}" />
                             <span class="player-num">${p.no}</span>
                         </div>
                         <div class="player-info">
-                            <div class="name-row"><h4>${p.name}</h4>${getRoleTag(p.role)}</div>
+                            <div class="name-row"><h4>${displayName}</h4>${getRoleTag(p.role)}</div>
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
                             <div class="player-stats"><span>${stat}</span><span>${p.apps ?? 0} APPS</span></div>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
@@ -2231,11 +2327,13 @@
             if (s.tt) soc +=
                 `<a class="psoc" target="_blank" rel="noopener" href="https://tiktok.com/@${s.tt}"><svg><use href="#tt-logo"/></svg></a>`;
             const caption = `${s.name} · ${s.role}`;
+            const displayName = s.nick ? `${s.name} “${s.nick}”` : s.name;
             return `<article class="staff-card reveal">
                         <div class="ph"><img loading="lazy" src="${img}" alt="${s.name}" data-zoom="${zoomSrc}" data-caption="${caption}" /></div>
                         <div class="txt">
                             <p class="staff-role">${s.role}</p>
-                            <h4>${s.name}</h4>
+                            <h4>${displayName}</h4>
+                            ${s.nick ? `<p class="nick">★ ${s.nick}</p>` : ''}
                             <p class="note">${s.note}</p>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
                         </div>
@@ -2389,7 +2487,6 @@
                 const src = img.dataset.zoom;
                 const caption = img.dataset.caption || '';
                 if (src && !src.includes('No Image')) {
-                    // Build fresh list from all images with data-zoom
                     const allZoom = document.querySelectorAll('img[data-zoom]');
                     zoomImages = [];
                     zoomCaptions = [];
@@ -2401,7 +2498,6 @@
                             zoomCaptions.push(c);
                         }
                     });
-                    // Remove duplicates (keep first occurrence)
                     const unique = [];
                     const uniqueCaptions = [];
                     const seen = new Set();
