@@ -1,3 +1,5 @@
+I've updated the image display across the site to use a slow "zoom-out" effect on portrait photos. Now, when you view a player or staff card, the image starts slightly zoomed in (focusing on the face) and gently scales out to reveal the full picture within the frame, without any distortion or empty spaces.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -446,7 +448,7 @@
         }
 
         /* ============================================================
-                   COLLAGE — FULL IMAGE VISIBLE WITH GENTLE ZOOM (COVER)
+                   COLLAGE — SLOW ZOOM-OUT (REVEAL FULL IMAGE)
                    ============================================================ */
         .collage {
             position: relative;
@@ -460,6 +462,7 @@
             transition: transform .45s cubic-bezier(.2, .7, .2, 1), box-shadow .45s ease;
             cursor: pointer;
             border: 1px solid var(--line-strong);
+            overflow: hidden;
         }
         .collage figure::before {
             content: "";
@@ -482,22 +485,34 @@
             width: 100%;
             height: 100%;
         }
-        .collage img {
+        /* Global slow zoom-out class */
+        .zoom-out-slow {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* fills frame, no side spaces */
-            object-position: center;
-            transition: transform .6s ease, filter .4s ease;
+            object-position: 50% 20%;
+            /* Focus on face/chest */
+            transform: scale(1.25);
+            animation: slowZoomOut 14s ease-in-out infinite alternate;
             will-change: transform;
-            animation: gentleZoom 14s ease-in-out infinite alternate;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            backface-visibility: hidden;
             background: #0a0e1a;
         }
-        .collage figure:hover img {
+        .zoom-out-slow:hover {
             animation-play-state: paused;
-            transform: scale(1.12);
-            filter: brightness(1.04);
+            transform: scale(1.08);
+            filter: brightness(1.05);
         }
+        @keyframes slowZoomOut {
+            0% {
+                transform: scale(1.25);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .collage figure:hover {
             transform: rotate(0) scale(1.03);
             z-index: 10;
@@ -570,15 +585,6 @@
             }
             .collage .ph {
                 height: 240px !important;
-            }
-        }
-
-        @keyframes gentleZoom {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.08);
             }
         }
 
@@ -812,7 +818,7 @@
         }
 
         /* ============================================================
-                   PLAYER CARDS — FULL IMAGE VISIBLE + GENTLE ZOOM (COVER)
+                   PLAYER CARDS — SLOW ZOOM-OUT (REVEAL FULL IMAGE)
                    ============================================================ */
         .player {
             background: var(--panel2);
@@ -857,16 +863,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* fills frame, no side spaces */
-            object-position: center;
-            background: #0a0e1a;
-            transition: transform .6s ease, filter .4s ease;
+            object-position: 50% 20%;
+            transform: scale(1.2);
+            animation: slowZoomOut 16s ease-in-out infinite alternate;
             will-change: transform;
-            animation: gentleZoom 16s ease-in-out infinite alternate;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            backface-visibility: hidden;
+            background: #0a0e1a;
         }
-        .player:hover .player-img img {
+        .player-img img:hover {
             animation-play-state: paused;
-            transform: scale(1.12);
+            transform: scale(1.08);
             filter: brightness(1.05);
         }
         .player-num {
@@ -1004,7 +1011,7 @@
         }
 
         /* ============================================================
-                   STAFF CARDS — FULL IMAGE VISIBLE + GENTLE ZOOM (COVER)
+                   STAFF CARDS — SLOW ZOOM-OUT (REVEAL FULL IMAGE)
                    ============================================================ */
         .staff-grid {
             display: grid;
@@ -1036,16 +1043,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* fills frame, no side spaces */
-            object-position: center;
-            background: #0a0e1a;
-            transition: transform .6s ease, filter .4s ease;
+            object-position: 50% 20%;
+            transform: scale(1.2);
+            animation: slowZoomOut 18s ease-in-out infinite alternate;
             will-change: transform;
-            animation: gentleZoom 18s ease-in-out infinite alternate;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            backface-visibility: hidden;
+            background: #0a0e1a;
         }
-        .staff-card:hover img {
+        .staff-card img:hover {
             animation-play-state: paused;
-            transform: scale(1.12);
+            transform: scale(1.08);
             filter: brightness(1.05);
         }
         .staff-card .txt {
@@ -1189,14 +1197,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* fills frame, no side spaces */
-            object-position: center;
-            background: #0a0e1a;
-            transition: transform .6s ease, filter .4s ease;
+            object-position: 50% 20%;
+            transform: scale(1.2);
+            animation: slowZoomOut 20s ease-in-out infinite alternate;
             will-change: transform;
-            animation: gentleZoom 20s ease-in-out infinite alternate;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            backface-visibility: hidden;
+            background: #0a0e1a;
         }
-        .news-feature:hover img {
+        .news-feature img:hover {
             animation-play-state: paused;
             transform: scale(1.1);
             filter: brightness(1.04);
@@ -1274,14 +1283,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* fills frame, no side spaces */
-            object-position: center;
-            background: #0a0e1a;
-            transition: transform .6s ease, filter .4s ease;
+            object-position: 50% 20%;
+            transform: scale(1.2);
+            animation: slowZoomOut 15s ease-in-out infinite alternate;
             will-change: transform;
-            animation: gentleZoom 15s ease-in-out infinite alternate;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            backface-visibility: hidden;
+            background: #0a0e1a;
         }
-        .news-item:hover img {
+        .news-item img:hover {
             animation-play-state: paused;
             transform: scale(1.15);
             filter: brightness(1.05);
@@ -1553,6 +1563,8 @@
             cursor: default;
             animation: zoomIn .3s ease both;
             background: #0a0e1a;
+            transform: scale(1);
+            /* override zoom-out in lightbox */;
         }
         .lightbox .lb-caption {
             margin-top: 1rem;
@@ -2365,7 +2377,7 @@
         collageContainer.innerHTML = HERO_IMAGES.map((img) => `
                 <figure class="${img.class}">
                     <div class="ph">
-                        <img src="${img.src}" alt="${img.caption}" loading="lazy" data-zoom="${img.zoom}" data-caption="${img.caption}" />
+                        <img class="zoom-out-slow" src="${img.src}" alt="${img.caption}" loading="lazy" data-zoom="${img.zoom}" data-caption="${img.caption}" />
                     </div>
                     <figcaption>${img.caption}</figcaption>
                 </figure>
@@ -2745,3 +2757,4 @@
     </script>
 </body>
 </html>
+```
