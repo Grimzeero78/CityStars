@@ -483,13 +483,11 @@
             width: 100%;
             height: 100%;
         }
-        /* Global slow zoom-out class */
         .zoom-out-slow {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: 50% 20%;
-            /* Focus on face/chest */
             transform: scale(1.25);
             animation: slowZoomOut 14s ease-in-out infinite alternate;
             will-change: transform;
@@ -960,6 +958,11 @@
             background: #1abc9c;
             color: #fff;
         }
+        /* NEW: tactical coach badge */
+        .player-role.tactical-coach {
+            background: #e67e22;
+            color: #fff;
+        }
         .player-meta {
             font-family: var(--mono);
             font-size: .6rem;
@@ -1277,7 +1280,7 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        .news-item img {
+        .news-item .thumb img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1289,10 +1292,17 @@
             backface-visibility: hidden;
             background: #0a0e1a;
         }
-        .news-item img:hover {
+        .news-item .thumb img:hover {
             animation-play-state: paused;
             transform: scale(1.15);
             filter: brightness(1.05);
+        }
+        /* video wrapper for news items */
+        .news-item .thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #0a0e1a;
         }
         .news-item h4 {
             font-size: 1rem;
@@ -1555,14 +1565,12 @@
             max-width: 100%;
             max-height: 75vh;
             object-fit: contain;
-            /* show full image in lightbox */
             border-radius: 4px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, .7);
             cursor: default;
             animation: zoomIn .3s ease both;
             background: #0a0e1a;
             transform: scale(1);
-            /* override zoom-out in lightbox */;
         }
         .lightbox .lb-caption {
             margin-top: 1rem;
@@ -1833,9 +1841,7 @@
                             <a data-soc="facebook" target="_blank" rel="noopener" aria-label="Facebook" class="fb">
                                 <svg><use href="#fb-logo"/></svg>
                             </a>
-                            <a data-soc="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa">
-                                <svg><use href="#wa-logo"/></svg>
-                            </a>
+                            <!-- WhatsApp button removed from hero per user request -->
                             <a data-soc="tiktok" target="_blank" rel="noopener" aria-label="TikTok">
                                 <svg><use href="#tt-logo"/></svg>
                             </a>
@@ -2032,16 +2038,26 @@
     </a>
 
     <script>
-        // ============================================================
-        // ✏️ EDITABLE SECTION — CHANGE EVERYTHING HERE
-        // ============================================================
+        // ================================================================
+        //  ✏️  EDITABLE SECTION — CHANGE EVERYTHING HERE
+        //  ================================================================
+        //  This is the only place you need to edit to update the website.
+        //  Everything below this block is rendering logic.
+        //  ================================================================
 
-        // 1. CONTACT & SOCIAL
-        const WHATSAPP_NUMBER = "254768737643"; // Country code + number, no "+" or spaces
+        // -----------------------------------------------------------------
+        //  1.  CONTACT & SOCIAL
+        // -----------------------------------------------------------------
+        //  WHATSAPP_NUMBER:  country code + number, no "+" or spaces.
+        //  TIKTOK_URL, FACEBOOK_URL:  full URLs to your social pages.
+        // -----------------------------------------------------------------
+        const WHATSAPP_NUMBER = "254768737643";
         const TIKTOK_URL = "https://www.tiktok.com/@citystarschuka";
         const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61581415439167";
 
-        // 2. TICKER MESSAGES (scrolls across top)
+        // -----------------------------------------------------------------
+        //  2.  TICKER — scrolling messages at the very top
+        // -----------------------------------------------------------------
         const TICKER_MESSAGES = [
             "★ WELCOME TO CITY STARS CHUKA — THE CELESTIAL",
             "★ BEGUN FEBRUARY 2022 · CHUKA UNIVERSITY",
@@ -2050,7 +2066,9 @@
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
 
-        // 3. HERO SECTION
+        // -----------------------------------------------------------------
+        //  3.  HERO SECTION — main banner at the top
+        // -----------------------------------------------------------------
         const HERO_CONFIG = {
             kicker: "Chuka Premier League · Begun February 2022",
             title: "CITY STARS CHUKA",
@@ -2063,7 +2081,10 @@
             ]
         };
 
-        // 4. HERO COLLAGE IMAGES
+        // -----------------------------------------------------------------
+        //  4.  HERO COLLAGE — three images in the hero area
+        //      Each item: src, zoom (high-res for lightbox), caption, class
+        // -----------------------------------------------------------------
         const HERO_IMAGES = [{
             src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
             zoom: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
@@ -2081,17 +2102,32 @@
             class: "f3"
         }];
 
-        // 5. MATCH DATA — includes both upcoming and played
+        // -----------------------------------------------------------------
+        //  5.  MATCH DATA
+        //      - Upcoming:    { d: "YYYY-MM-DD", t: "HH:MM", opp: "Team", h: true/false }
+        //      - Played:      { d: "YYYY-MM-DD", opp: "Team", h: true/false, us: 0, them: 0 }
+        //      h = true  => City Stars at home
+        //      h = false => City Stars away
+        // -----------------------------------------------------------------
         const MATCH_DATA = [
-            // Upcoming
+            // ----- UPCOMING (no us/them) -----
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
             { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
-            // Played (example)
-            { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
+            // ----- PLAYED (have us and them) -----
+            { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 },
         ];
 
-        // 6. SQUAD DATA — GOALS/CLEAN SHEETS SET TO 0 (EASY TO EDIT)
-        //    APPEARANCES (apps) HAVE BEEN FULLY REMOVED.
+        // -----------------------------------------------------------------
+        //  6.  SQUAD DATA
+        //      Each player:
+        //        name, nick (optional), pos ("GK"|"DF"|"MF"|"FW"),
+        //        no (jersey number), goals (for outfield) or cleanSheets (for GK),
+        //        role (optional): captain, vice-captain, third, treasurer,
+        //          welfare, discipline, gkcoach, spokesman, secretary,
+        //          tactical-coach  ← NEW for Miguel
+        //        photo: full image URL (or blank for placeholder)
+        //        ig, tt, fb: social handles (without @)
+        // -----------------------------------------------------------------
         const SQUAD_DATA = [{
             name: "Morgan undisputed",
             nick: "Captain Morgan",
@@ -2186,12 +2222,13 @@
             goals: 0,
             photo: "https://i.imgur.com/sample-mf.jpg"
         }, {
+            // ===== MIGUEL — now has role 'tactical-coach' =====
             name: "Miguel Fredrick",
             nick: "",
             pos: "MF",
             no: 8,
             goals: 0,
-            role: 'tactical coach',
+            role: 'tactical-coach',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg"
         }, {
             name: "Manuu",
@@ -2281,37 +2318,85 @@
             photo: "https://i.imgur.com/sample-mf.jpg"
         }];
 
-        // 7. STAFF DATA
+        // -----------------------------------------------------------------
+        //  7.  STAFF DATA
+        //      Each staff member: name, nick (optional), role, note, photo,
+        //      ig, tt (social handles without @)
+        // -----------------------------------------------------------------
         const STAFF_DATA = [
             { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
                 note: "Founding member. Built the Stars from scratch in 2022 and still demands one-touch football.",
                 photo: "" },
-            { name: "Emmy Taylor", nick: "", role: "Assistant Coach",
-                note: "Runs our set-pieces and the early-morning fitness block.", tt: "coachbarasa", photo: "" },
+            { name: "Emmaculate Mutua", nick: "Emmy Taylor", role: "Assistant Coach",
+                note: "Runs our set-pieces and the early-morning fitness block.",
+                tt: "emmyTaylor", ig: "emmyTaylor", photo: "" },
             { name: "Martin Kimathi", nick: "", role: "Team Manager",
-                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.", ig: "nancy_njeri_tm",
-                photo: "" },
+                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.",
+                ig: "nancy_njeri_tm", photo: "" },
             { name: "Kimanzi Musyoka", nick: "", role: "Team CEO",
-                note: "The vision behind the Stars — driving the club forward both on and off the pitch.", photo: "" },
+                note: "The vision behind the Stars driving the club forward both on and off the pitch.",
+                photo: "" },
         ];
 
-        // 8. NEWS DATA
+        // -----------------------------------------------------------------
+        //  8.  NEWS & BLOG — now with image / video support
+        //      Each item:
+        //        tag:        label (e.g. "Match Report", "Interview")
+        //        date:       "YYYY-MM-DD"
+        //        title:      headline
+        //        excerpt:    short description
+        //        image:      (optional) full URL to an image
+        //        video:      (optional) full URL to a video file (MP4)
+        //        seed:       (fallback) a unique string for placeholder images
+        //      If BOTH image and video are provided, VIDEO takes priority.
+        //      If neither is provided, a placeholder image is generated.
+        // -----------------------------------------------------------------
         const NEWS_DATA = [
-            { tag: "Match Report", date: "2026-08-01", title: "Stars edge Marimanti Blues 2–1 at the main pitch",
-                ex: "A late Josephat Mose header sealed it in front of our loudest crowd of the season.",
-                seed: "citystars-marimanti-win" },
-            { tag: "Campus News", date: "2026-07-28", title: "Five first-years join first-team training",
-                ex: "Fresh talent from the faculty tournaments steps up with the senior squad.",
-                seed: "citystars-freshers" },
-            { tag: "Interview", date: "2026-07-22", title: "Coach's corner: “We grow one session at a time”",
-                ex: "Coach Mwangi on the 2026 season, the title race and what the Stars mean to campus.",
-                seed: "citystars-coach-talk" },
-            { tag: "Club", date: "2026-07-15", title: "Become a Star: membership now open for KSH 350",
-                ex: "One fee, no hidden charges very shilling goes to the team. Join via WhatsApp.",
-                seed: "citystars-membership" },
+            {
+                tag: "Match Report",
+                date: "2026-08-01",
+                title: "Stars edge Marimanti Blues 2–1 at the main pitch",
+                excerpt: "A late Josephat Mose header sealed it in front of our loudest crowd of the season.",
+                // --- EDIT YOUR IMAGE/VIDEO HERE ---
+                image: "", // e.g. "https://example.com/photo.jpg"
+                video: "", // e.g. "https://example.com/highlight.mp4"
+                // --- fallback seed for placeholder ---
+                seed: "citystars-marimanti-win"
+            },
+            {
+                tag: "Campus News",
+                date: "2026-07-28",
+                title: "Five first-years join first-team training",
+                excerpt: "Fresh talent from the faculty tournaments steps up with the senior squad.",
+                image: "",
+                video: "",
+                seed: "citystars-freshers"
+            },
+            {
+                tag: "Interview",
+                date: "2026-07-22",
+                title: "Coach's corner: “We grow one session at a time”",
+                excerpt: "Coach Mwangi on the 2026 season, the title race and what the Stars mean to campus.",
+                image: "",
+                video: "",
+                seed: "citystars-coach-talk"
+            },
+            {
+                tag: "Club",
+                date: "2026-07-15",
+                title: "Become a Star: membership now open for KSH 350",
+                excerpt: "One fee, no hidden charges — every shilling goes to the team. Join via WhatsApp.",
+                image: "",
+                video: "",
+                seed: "citystars-membership"
+            },
         ];
 
-        // 9. STANDINGS DATA — ALL ZEROS
+        // -----------------------------------------------------------------
+        //  9.  STANDINGS — league table
+        //      Each row: pos, team, p (played), w, d, l, gf, ga, pts
+        //      City Stars FC is automatically highlighted.
+        // -----------------------------------------------------------------
         const STANDINGS_DATA = [
             { pos: 1, team: "City Stars FC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
             { pos: 2, team: "b", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
@@ -2323,9 +2408,11 @@
             { pos: 8, team: "h", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         ];
 
-        // ============================================================
-        // —————— END OF EDITABLE SECTION ——————
-        // ============================================================
+        // ================================================================
+        //  ——————  END OF EDITABLE SECTION  ——————
+        //  ================================================================
+        //  Everything below is rendering logic — you don't need to change it.
+        //  ================================================================
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const $ = s => document.querySelector(s);
@@ -2388,9 +2475,7 @@
         const fDow = d => d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
-        // Upcoming (no us/them)
         const upcoming = MATCH_DATA.filter(m => m.us === undefined).sort((a, b) => a.d.localeCompare(b.d));
-        // Results (has us and them)
         const results = MATCH_DATA.filter(m => m.us !== undefined).sort((a, b) => b.d.localeCompare(a.d));
 
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
@@ -2409,7 +2494,6 @@
                     </div>`;
         }).join('');
 
-        // Render results dynamically
         if (results.length) {
             $('#resultsList').innerHTML = results.map(m => {
                 const d = pd(m.d);
@@ -2458,10 +2542,9 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // ============================================================
-        // SQUAD — SORT BY ROLE PRIORITY + RENDER
-        //    Players with titles appear FIRST (Captain, Vice, 3rd, etc.)
-        // ============================================================
+        // ================================================================
+        //  SQUAD — sort by role priority, then render
+        // ================================================================
         const rolePriority = {
             'captain': 1,
             'vice-captain': 2,
@@ -2471,7 +2554,8 @@
             'discipline': 6,
             'gkcoach': 7,
             'spokesman': 8,
-            'secretary': 9
+            'secretary': 9,
+            'tactical-coach': 10 // Miguel's new role
         };
 
         const sortedSquad = [...SQUAD_DATA].sort((a, b) => {
@@ -2482,21 +2566,25 @@
         });
 
         const POS = { GK: 'Goalkeeper', DF: 'Defender', MF: 'Midfielder', FW: 'Forward' };
-        const getRoleTag = (role) => {
-            if (role === 'captain') return '<span class="player-role captain">★ Captain</span>';
-            if (role === 'vice-captain') return '<span class="player-role vice">✦ Vice-Captain</span>';
-            if (role === 'third') return '<span class="player-role third">✦ 3rd Captain</span>';
-            if (role === 'treasurer') return '<span class="player-role treasurer">💰 Treasurer</span>';
-            if (role === 'welfare') return '<span class="player-role welfare">❤️ Welfare</span>';
-            if (role === 'discipline') return '<span class="player-role discipline">⚔️ Discipline</span>';
-            if (role === 'gkcoach') return '<span class="player-role gkcoach">🧤 GK Coach</span>';
-            if (role === 'spokesman') return '<span class="player-role spokesman">📢 Spokesman & Media</span>';
-            if (role === 'secretary') return '<span class="player-role secretary">📋 Secretary</span>';
-            return '';
-        };
+
+        function getRoleTag(role) {
+            if (!role) return '';
+            const map = {
+                'captain': '<span class="player-role captain">★ Captain</span>',
+                'vice-captain': '<span class="player-role vice">✦ Vice-Captain</span>',
+                'third': '<span class="player-role third">✦ 3rd Captain</span>',
+                'treasurer': '<span class="player-role treasurer">💰 Treasurer</span>',
+                'welfare': '<span class="player-role welfare">❤️ Welfare</span>',
+                'discipline': '<span class="player-role discipline">⚔️ Discipline</span>',
+                'gkcoach': '<span class="player-role gkcoach">🧤 GK Coach</span>',
+                'spokesman': '<span class="player-role spokesman">📢 Spokesman & Media</span>',
+                'secretary': '<span class="player-role secretary">📋 Secretary</span>',
+                'tactical-coach': '<span class="player-role tactical-coach">📐 Tactical Coach</span>',
+            };
+            return map[role] || '';
+        }
 
         $('#squadGrid').innerHTML = sortedSquad.map(p => {
-            // Determine stat: goals for outfield, clean sheets for GK
             let stat = '';
             if (p.pos === 'GK') {
                 stat = `${p.cleanSheets !== undefined ? p.cleanSheets : 0} CLEAN SHEETS`;
@@ -2533,9 +2621,7 @@
                     </article>`;
         }).join('');
 
-        // ============================================================
-        // STAFF — RENDER
-        // ============================================================
+        // Staff
         const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
         $('#staffGrid').innerHTML = STAFF_DATA.map(s => {
             const img = s.photo || `https://picsum.photos/seed/${seedOf(s.name)}/400/400`;
@@ -2581,32 +2667,56 @@
                 </table>
             `;
 
-        // News
+        // ================================================================
+        //  NEWS — with image / video support
+        // ================================================================
         const [feat, ...rest] = NEWS_DATA;
-        $('#newsGrid').innerHTML = `
+
+        function renderNewsMedia(item, isFeature) {
+            // If video is provided, use it; else if image, use it; else fallback to picsum
+            if (item.video) {
+                return `<video autoplay muted loop playsinline src="${item.video}"></video>`;
+            }
+            if (item.image) {
+                return `<img loading="lazy" src="${item.image}" alt="${item.title}" data-zoom="${item.image}" data-caption="${item.title}" />`;
+            }
+            // fallback placeholder
+            const size = isFeature ? '1000/760' : '400/300';
+            const seed = item.seed || 'citystars-default';
+            return `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}" alt="${item.title}" data-zoom="https://picsum.photos/seed/${seed}/1400/1000" data-caption="${item.title}" />`;
+        }
+
+        // Feature news
+        const featMedia = renderNewsMedia(feat, true);
+        const featHtml = `
                 <article class="news-feature reveal">
-                    <div class="kb"><img loading="lazy" src="https://picsum.photos/seed/${feat.seed}/1000/760" alt="${feat.title}" data-zoom="https://picsum.photos/seed/${feat.seed}/1400/1000" data-caption="${feat.title}" /></div>
+                    <div class="kb">${featMedia}</div>
                     <div class="nfc">
                         <span class="tag">${feat.tag}</span>
                         <h3>${feat.title}</h3>
-                        <p class="muted" style="margin-top:.7rem;font-size:.9rem">${feat.ex}</p>
+                        <p class="muted" style="margin-top:.7rem;font-size:.9rem">${feat.excerpt}</p>
                         <span class="date">${fDay(pd(feat.date))} ${pd(feat.date).getFullYear()}</span>
                     </div>
                 </article>
-                <div class="news-stack">
-                    ${rest.map(n => `
-                        <article class="news-item reveal">
-                            <div class="thumb"><img loading="lazy" src="https://picsum.photos/seed/${n.seed}/400/300" alt="${n.title}" data-zoom="https://picsum.photos/seed/${n.seed}/800/600" data-caption="${n.title}" /></div>
-                            <div>
-                                <span class="tag alt">${n.tag}</span>
-                                <h4>${n.title}</h4>
-                                <p class="ex">${n.ex}</p>
-                                <span class="date">${fDay(pd(n.date))} ${pd(n.date).getFullYear()}</span>
-                            </div>
-                        </article>
-                    `).join('')}
-                </div>
             `;
+
+        // Stack news
+        const stackHtml = rest.map(n => {
+            const media = renderNewsMedia(n, false);
+            return `
+                    <article class="news-item reveal">
+                        <div class="thumb">${media}</div>
+                        <div>
+                            <span class="tag alt">${n.tag}</span>
+                            <h4>${n.title}</h4>
+                            <p class="ex">${n.excerpt}</p>
+                            <span class="date">${fDay(pd(n.date))} ${pd(n.date).getFullYear()}</span>
+                        </div>
+                    </article>
+                `;
+        }).join('');
+
+        $('#newsGrid').innerHTML = featHtml + `<div class="news-stack">${stackHtml}</div>`;
 
         // Squad filter
         document.querySelectorAll('.pill').forEach(p => {
@@ -2757,4 +2867,3 @@
     </script>
 </body>
 </html>
-```
