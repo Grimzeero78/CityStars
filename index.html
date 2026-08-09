@@ -476,10 +476,11 @@
             align-items: center;
             justify-content: center;
         }
+        /* Hero collage images now fill their frames without distortion */
         .collage img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             transition: transform .6s ease;
         }
         .collage figure:hover img {
