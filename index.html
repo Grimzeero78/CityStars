@@ -476,7 +476,6 @@
             align-items: center;
             justify-content: center;
         }
-        /* Hero collage images now fill their frames without distortion */
         .collage img {
             width: 100%;
             height: 100%;
@@ -1767,7 +1766,7 @@
                     </div>
                     <div class="mcol reveal">
                         <h3>Recent Results</h3>
-                        <div id="resultsList"></div>
+                        <div id="resultsList"><p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet.</p></div>
                     </div>
                 </div>
 
@@ -1937,7 +1936,7 @@
         const TICKER_MESSAGES = [
             "★ WELCOME TO CITY STARS CHUKA — THE CELESTIAL",
             "★ BEGUN FEBRUARY 2022 · CHUKA UNIVERSITY",
-            "★ NEXT: CITY STARS v Philites — MAIN PITCH",
+            "★ NEXT: CITY STARS v Foxes — MAIN PITCH",
             "★ BECOME A STAR FOR KSH 350 — TAP 'JOIN'",
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
@@ -1971,21 +1970,24 @@
             class: "f3"
         }];
 
+        // ============================================================
+        // MATCH DATA — ONLY UPCOMING FIXTURES (no results)
+        // ============================================================
         const MATCH_DATA = [
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
-            { d: "2026-07-11", opp: "fc", h: false, us: 1, them: 2 },
+            { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
+            { d: "2026-09-05", t: "15:00", opp: "Ateker", h: false },
+            { d: "2026-09-19", t: "14:00", opp: "Blues", h: true },
         ];
 
         // ============================================================
-        // SQUAD DATA — with rolePriority for sorting
+        // SQUAD DATA — ALL GOALS/CLEAN SHEETS = 0, NO APPS
         // ============================================================
         const SQUAD_DATA = [{
             name: "Morgan Ongeko",
             nick: "Morga",
             pos: "DF",
             no: 4,
-            goals: 0,
-            apps: 0,
             role: 'captain',
             photo: "https://i.imgur.com/0QenBte.jpeg",
             ig: "",
@@ -1995,8 +1997,6 @@
             nick: "Evanso",
             pos: "DF",
             no: 3,
-            goals: 6,
-            apps: 14,
             role: 'vice-captain',
             photo: "https://i.imgur.com/sample-vice.jpg",
             ig: "evanso4",
@@ -2006,8 +2006,6 @@
             nick: "AJ",
             pos: "MF",
             no: 10,
-            goals: 4,
-            apps: 12,
             role: 'third',
             photo: "https://i.imgur.com/sample-mf2.jpg",
             ig: "alexjuma10"
@@ -2016,8 +2014,6 @@
             nick: "Clem",
             pos: "GK",
             no: 1,
-            cleanSheets: 6,
-            apps: 14,
             photo: "https://i.imgur.com/sample-gk.jpg",
             ig: "clemoo1"
         }, {
@@ -2025,16 +2021,12 @@
             nick: "Hunt",
             pos: "GK",
             no: 16,
-            cleanSheets: 1,
-            apps: 3,
             photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
             name: "Davii",
             nick: "Davi",
             pos: "DF",
             no: 2,
-            goals: 0,
-            apps: 13,
             photo: "https://i.imgur.com/sample-df.jpg",
             ig: "davii2"
         }, {
@@ -2042,8 +2034,6 @@
             nick: "Wikii",
             pos: "DF",
             no: 5,
-            goals: 1,
-            apps: 12,
             role: 'treasurer',
             photo: "https://i.imgur.com/sample-df2.jpg"
         }, {
@@ -2051,8 +2041,6 @@
             nick: "Waweru",
             pos: "MF",
             no: 12,
-            goals: 2,
-            apps: 9,
             role: 'treasurer',
             photo: "https://i.imgur.com/sample-mf3.jpg"
         }, {
@@ -2060,8 +2048,6 @@
             nick: "Kaf",
             pos: "DF",
             no: 6,
-            goals: 0,
-            apps: 14,
             photo: "https://i.imgur.com/sample-df3.jpg",
             tt: "kafish3"
         }, {
@@ -2069,24 +2055,18 @@
             nick: "Aleks",
             pos: "DF",
             no: 15,
-            goals: 0,
-            apps: 8,
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
             name: "Mandevuu",
             nick: "Mando",
             pos: "MF",
             no: 7,
-            goals: 1,
-            apps: 14,
             photo: "https://i.imgur.com/sample-mf.jpg"
         }, {
             name: "Miguel Fredrick",
             nick: "Miguel",
             pos: "MF",
             no: 8,
-            goals: 4,
-            apps: 13,
             role: 'welfare',
             photo: "https://i.imgur.com/sample-mf2.jpg",
             ig: "miguel8"
@@ -2095,24 +2075,18 @@
             nick: "Manu",
             pos: "MF",
             no: 14,
-            goals: 2,
-            apps: 10,
             photo: "https://i.imgur.com/sample-mf3.jpg"
         }, {
             name: "Hillary",
             nick: "Hills",
             pos: "MF",
             no: 20,
-            goals: 1,
-            apps: 7,
             photo: "https://i.imgur.com/sample-mf4.jpg"
         }, {
             name: "Johnny",
             nick: "John",
             pos: "FW",
             no: 9,
-            goals: 8,
-            apps: 14,
             photo: "https://i.imgur.com/sample-fw.jpg",
             tt: "johnny7"
         }, {
@@ -2120,8 +2094,6 @@
             nick: "Yani",
             pos: "FW",
             no: 11,
-            goals: 11,
-            apps: 14,
             photo: "https://i.imgur.com/sample-fw2.jpg",
             ig: "yanikoo9"
         }, {
@@ -2129,16 +2101,12 @@
             nick: "Top",
             pos: "FW",
             no: 17,
-            goals: 7,
-            apps: 13,
             photo: "https://i.imgur.com/sample-fw3.jpg"
         }, {
             name: "Minnot",
             nick: "Minn",
             pos: "FW",
             no: 19,
-            goals: 3,
-            apps: 8,
             photo: "https://i.imgur.com/sample-fw4.jpg",
             ig: "minnot19"
         }, {
@@ -2146,8 +2114,6 @@
             nick: "Bazenga",
             pos: "DF",
             no: 13,
-            goals: 0,
-            apps: 6,
             role: 'discipline',
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
@@ -2155,8 +2121,6 @@
             nick: "Kipyegon",
             pos: "DF",
             no: 18,
-            goals: 0,
-            apps: 5,
             role: 'discipline',
             photo: "https://i.imgur.com/sample-df3.jpg"
         }, {
@@ -2164,8 +2128,6 @@
             nick: "Outtah",
             pos: "GK",
             no: 24,
-            cleanSheets: 2,
-            apps: 5,
             role: 'gkcoach',
             photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
@@ -2173,8 +2135,6 @@
             nick: "Champez",
             pos: "MF",
             no: 22,
-            goals: 3,
-            apps: 10,
             role: 'spokesman',
             photo: "https://i.imgur.com/sample-mf4.jpg",
             tt: "tinachieng"
@@ -2183,8 +2143,6 @@
             nick: "Kajony",
             pos: "MF",
             no: 23,
-            goals: 1,
-            apps: 8,
             role: 'secretary',
             photo: "https://i.imgur.com/sample-mf.jpg"
         }];
@@ -2217,15 +2175,18 @@
                 seed: "citystars-membership" },
         ];
 
+        // ============================================================
+        // STANDINGS — ALL ZEROS (no matches played yet)
+        // ============================================================
         const STANDINGS_DATA = [
-            { pos: 1, team: "City Stars FC", p: 9, w: 3, d: 1, l: 0, gf: 8, ga: 3, pts: 10 },
-            { pos: 2, team: "philites", pts: 9 },
-            { pos: 3, team: "foxes", pts: 8 },
-            { pos: 4, team: "Blues", pts: 7 },
-            { pos: 5, team: "Nkubu", pts: 6 },
-            { pos: 6, team: "Tharaka", pts: 4 },
-            { pos: 7, team: "Igamba", pts: 2 },
-            { pos: 8, team: "fc", pts: 1 },
+            { pos: 1, team: "City Stars FC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 2, team: "philites", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 3, team: "foxes", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 4, team: "Blues", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 5, team: "Nkubu", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 6, team: "Tharaka", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 7, team: "Igamba", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 8, team: "fc", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         ];
 
         // ============================================================
@@ -2294,7 +2255,7 @@
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
         const upcoming = MATCH_DATA.filter(m => m.us === undefined).sort((a, b) => a.d.localeCompare(b.d));
-        const results = MATCH_DATA.filter(m => m.us !== undefined).sort((a, b) => b.d.localeCompare(a.d));
+        // No results — all matches are upcoming
 
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
             const d = pd(m.d);
@@ -2312,22 +2273,10 @@
                     </div>`;
         }).join('');
 
-        $('#resultsList').innerHTML = results.map(m => {
-            const d = pd(m.d);
-            const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
-            const line = m.h ? `CITY STARS ${m.us}–${m.them} ${m.opp}` : `${m.opp} ${m.them}–${m.us} CITY STARS`;
-            return `<div class="m-row">
-                        <div class="m-date">
-                            <span class="m-dow">${fDow(d)}</span>
-                            <span class="m-day">${fDay(d)}</span>
-                        </div>
-                        <div class="m-body">
-                            <span class="m-tag">${m.h ? 'Home' : 'Away'} · League</span>
-                            <h4>${line}</h4>
-                        </div>
-                        <span class="m-res ${r}">${r.toUpperCase()}</span>
-                    </div>`;
-        }).join('');
+        // Results section — show "No matches played yet" message
+        document.getElementById('resultsList').innerHTML = `
+            <p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet.</p>
+        `;
 
         // Countdown
         function updateCountdown() {
@@ -2355,7 +2304,7 @@
         setInterval(updateCountdown, 1000);
 
         // ============================================================
-        // SQUAD — SORT BY ROLE PRIORITY + RENDER
+        // SQUAD — SORT BY ROLE PRIORITY + RENDER (no goals/apps)
         // ============================================================
         const rolePriority = {
             'captain': 1,
@@ -2391,7 +2340,7 @@
         };
 
         $('#squadGrid').innerHTML = sortedSquad.map(p => {
-            const stat = p.pos === 'GK' ? `${p.cleanSheets ?? 0} CLEAN SHEETS` : `${p.goals ?? 0} GOALS`;
+            const stat = p.pos === 'GK' ? '0 CLEAN SHEETS' : '0 GOALS';
             const imgSrc = p.photo ||
                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460"%3E%3Crect width="400" height="460" fill="%230d1324"/%3E%3Ctext x="200" y="230" font-family="Arial" font-size="20" fill="%2398a2ba" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
             const zoomSrc = p.photo || imgSrc;
@@ -2416,7 +2365,7 @@
                             </div>
                             ${nickDisplay}
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
-                            <div class="player-stats"><span>${stat}</span><span>${p.apps ?? 0} APPS</span></div>
+                            <div class="player-stats"><span>${stat}</span></div>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
                         </div>
                     </article>`;
@@ -2457,12 +2406,12 @@
                             <tr class="${s.team === 'City Stars FC' ? 'highlight' : ''}">
                                 <td class="pos">${s.pos}</td>
                                 <td class="team-name">${s.team}</td>
-                                <td>${s.p || '—'}</td>
-                                <td>${s.w || '—'}</td>
-                                <td>${s.d || '—'}</td>
-                                <td>${s.l || '—'}</td>
-                                <td>${s.gf || '—'}</td>
-                                <td>${s.ga || '—'}</td>
+                                <td>${s.p}</td>
+                                <td>${s.w}</td>
+                                <td>${s.d}</td>
+                                <td>${s.l}</td>
+                                <td>${s.gf}</td>
+                                <td>${s.ga}</td>
                                 <td class="pts">${s.pts}</td>
                             </tr>
                         `).join('')}
