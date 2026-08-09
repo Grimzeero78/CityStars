@@ -1032,7 +1032,7 @@
                     </div>
                     <div class="mcol reveal">
                         <h3>Recent Results</h3>
-                        <div id="resultsList"><p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet.</p></div>
+                        <div id="resultsList"></div>
                     </div>
                 </div>
 
@@ -1240,13 +1240,13 @@
             class: "f3"
         }];
 
-        // 5. MATCH DATA — ONLY UPCOMING FIXTURES (no results)
+        // 5. MATCH DATA — includes both upcoming and played
         const MATCH_DATA = [
-            //upcoming
+            // Upcoming
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
             { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
-            //played
-             { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6}
+            // Played (example)
+            { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
         ];
 
         // 6. SQUAD DATA — GOALS/CLEAN SHEETS SET TO 0 (EASY TO EDIT)
@@ -1542,7 +1542,10 @@
         const fDow = d => d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
+        // Upcoming (no us/them)
         const upcoming = MATCH_DATA.filter(m => m.us === undefined).sort((a, b) => a.d.localeCompare(b.d));
+        // Results (has us and them)
+        const results = MATCH_DATA.filter(m => m.us !== undefined).sort((a, b) => b.d.localeCompare(a.d));
 
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
             const d = pd(m.d);
@@ -1560,10 +1563,29 @@
                     </div>`;
         }).join('');
 
-        // Results section — show "No matches played yet" message
-        document.getElementById('resultsList').innerHTML = `
-            <p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet.</p>
-        `;
+        // Render results dynamically
+        if (results.length) {
+            $('#resultsList').innerHTML = results.map(m => {
+                const d = pd(m.d);
+                const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
+                const line = m.h ? `CITY STARS ${m.us}–${m.them} ${m.opp}` : `${m.opp} ${m.them}–${m.us} CITY STARS`;
+                return `<div class="m-row">
+                            <div class="m-date">
+                                <span class="m-dow">${fDow(d)}</span>
+                                <span class="m-day">${fDay(d)}</span>
+                            </div>
+                            <div class="m-body">
+                                <span class="m-tag">${m.h ? 'Home' : 'Away'} · League</span>
+                                <h4>${line}</h4>
+                            </div>
+                            <span class="m-res ${r}">${r.toUpperCase()}</span>
+                        </div>`;
+            }).join('');
+        } else {
+            $('#resultsList').innerHTML = `
+                <p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet.</p>
+            `;
+        }
 
         // Countdown
         function updateCountdown() {
