@@ -1032,7 +1032,7 @@
             box-shadow: 0 18px 40px rgba(0, 0, 0, .5);
         }
         .staff-card .ph {
-            height: 240px;
+            height: 260px;  /* matched to player-img height */
             overflow: hidden;
             background: #0a0e1a;
             display: flex;
@@ -1086,6 +1086,7 @@
             font-size: .8rem;
             color: var(--muted);
             flex: 1;
+            line-height: 1.5;
         }
         .staff-card .player-soc {
             margin-top: .7rem;
@@ -2322,29 +2323,27 @@
         }];
 
         // -----------------------------------------------------------------
-        //  7.  STAFF DATA
+        //  7.  STAFF DATA — now with inspiring notes like Emmy's
         //      Each staff member: name, nick (optional), role, note, photo,
         //      ig, tt (social handles without @)
         // -----------------------------------------------------------------
         const STAFF_DATA = [
             { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
-                note: "Founding member. Built the Stars from scratch in 2022 and still demands one-touch football.",
+                note: "Founding member. Built the Stars from scratch in 2022 and still demands one-touch football. His philosophy: 'Play with heart, think with the head.'",
                 photo: "" },
             { name: "Emmaculate Mutua", nick: "Emmy Taylor", role: "Assistant Coach",
-                note: "More Than a Team. We Are a Family  
-City stars FC is driven by passion, unity, discipline, and the desire to be better every day. We play together, grow together, and stand together.
-One team. One vision. One dream. 💯",
+                note: "More Than a Team. We Are a Family. City Stars FC is driven by passion, unity, discipline, and the desire to be better every day. We play together, grow together, and stand together. One team. One vision. One dream. 💯",
                 tt: "emmyTaylor", ig: "emmyTaylor", photo: "" },
             { name: "Martin Kimathi", nick: "", role: "Team Manager",
-                note: "Fixtures, registrations, kit logistics — nothing moves without the TM.",
+                note: "Fixtures, registrations, kit logistics — nothing moves without the TM. He ensures every player is registered, every match is scheduled, and every detail is handled so the team can focus on winning.",
                 ig: "nancy_njeri_tm", photo: "" },
             { name: "Kimanzi Musyoka", nick: "", role: "Team CEO",
-                note: "The vision behind the Stars driving the club forward both on and off the pitch.",
+                note: "The vision behind the Stars driving the club forward both on and off the pitch. He builds partnerships, manages the club's growth, and ensures the Stars remain a beacon of excellence at Chuka University.",
                 photo: "" },
         ];
 
         // -----------------------------------------------------------------
-        //  8.  NEWS & BLOG — now with image / video support
+        //  8.  NEWS & BLOG — with image / video support
         //      Each item:
         //        tag:        label (e.g. "Match Report", "Interview")
         //        date:       "YYYY-MM-DD"
@@ -2360,12 +2359,10 @@ One team. One vision. One dream. 💯",
             {
                 tag: "City Stars new kit",
                 date: "2026-08-01",
-                title: "As a team we are planning to buy a new kit for this semister",
-                excerpt: ".",
-                // --- EDIT YOUR IMAGE/VIDEO HERE ---
-                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg", // e.g. "https://example.com/photo.jpg"
-                video: "", // e.g. "https://example.com/highlight.mp4"
-                // --- fallback seed for placeholder ---
+                title: "As a team we are planning to buy a new kit for this semester",
+                excerpt: "We are raising funds to get a fresh new look for the 2026 season. Every contribution counts!",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
+                video: "",
                 seed: ""
             },
             {
