@@ -1051,7 +1051,16 @@
             text-transform: uppercase;
             margin: .35rem 0 .6rem;
         }
-        /* player-stats removed — no longer displayed */
+        .player-stats {
+            display: flex;
+            gap: .9rem;
+            flex-wrap: wrap;
+            font-family: var(--mono);
+            font-size: .64rem;
+            color: var(--gold);
+            letter-spacing: .08em;
+            margin-bottom: .7rem;
+        }
         .player-soc {
             display: flex;
             gap: .5rem;
@@ -1520,7 +1529,7 @@
         }
 
         /* ============================================================
-           NEW: DISCIPLINE / RULES SECTION
+           DISCIPLINE / RULES SECTION
            ============================================================ */
         #discipline {
             background: var(--bg2);
@@ -2434,13 +2443,14 @@
         ];
 
         // -----------------------------------------------------------------
-        //  6.  SQUAD DATA — no goals / cleanSheets displayed anymore
+        //  6.  SQUAD DATA — add goals (outfield) or cleanSheets (GK) to show stats
         // -----------------------------------------------------------------
         const SQUAD_DATA = [{
             name: "Morgan undisputed",
             nick: "Captain Morgan",
             pos: "DF",
             no: 4,
+            goals: 2,
             role: 'captain',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg",
             tt: "undisputed",
@@ -2451,7 +2461,6 @@
             nick: "Evanso",
             pos: "DF",
             no: 3,
-            goals:2,
             role: 'vice-captain',
             photo: "https://i.imgur.com/sample-vice.jpg",
             tt: "evanso4"
@@ -2460,6 +2469,7 @@
             nick: "Alekoo",
             pos: "MF",
             no: 10,
+            goals: 1,
             role: 'third',
             photo: "https://i.imgur.com/sample-mf2.jpg",
             ig: "alexjuma10"
@@ -2468,18 +2478,21 @@
             nick: "",
             pos: "GK",
             no: 1,
+            cleanSheets: 3,
             photo: "https://i.imgur.com/sample-gk.jpg",
         }, {
             name: "Hunter",
             nick: "",
             pos: "GK",
             no: 16,
+            cleanSheets: 1,
             photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
             name: "Davii",
             nick: "",
             pos: "DF",
             no: 2,
+            goals: 1,
             photo: "https://i.imgur.com/sample-df.jpg",
             ig: "davii2"
         }, {
@@ -2487,6 +2500,7 @@
             nick: "Wikii",
             pos: "DF",
             no: 5,
+            goals: 0,
             role: 'treasurer',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/wikii.jpeg",
             ig: "recks347",
@@ -2505,6 +2519,7 @@
             nick: "",
             pos: "MF",
             no: 6,
+            goals: 0,
             photo: "https://i.imgur.com/sample-df3.jpg",
             tt: "kafish3"
         }, {
@@ -2512,12 +2527,14 @@
             nick: "messi",
             pos: "MF",
             no: 15,
+            goals: 0,
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
             name: "Mandevuu",
             nick: "",
             pos: "MF",
             no: 7,
+            goals: 0,
             photo: "https://i.imgur.com/sample-mf.jpg"
         }, {
             name: "Miguel Fredrick",
@@ -2531,18 +2548,21 @@
             nick: "mamu",
             pos: "MF",
             no: 14,
+            goals: 0,
             photo: "https://i.imgur.com/sample-mf3.jpg"
         }, {
             name: "Hillary",
             nick: "",
             pos: "MF",
             no: 20,
+            goals: 0,
             photo: "https://i.imgur.com/sample-mf4.jpg"
         }, {
             name: "Izzo",
             nick: "",
             pos: "MF",
             no: 10,
+            goals: 0,
             photo: "https://i.imgur.com/sample-fw.jpg",
             tt: ""
         }, {
@@ -2550,6 +2570,7 @@
             nick: "foreigner",
             pos: "FW",
             no: 11,
+            goals: 0,
             photo: "https://i.imgur.com/sample-fw2.jpg",
             ig: "yanikoo9"
         }, {
@@ -2557,12 +2578,14 @@
             nick: "",
             pos: "FW",
             no: 17,
+            goals: 0,
             photo: "https://i.imgur.com/sample-fw3.jpg"
         }, {
             name: "Minnot",
             nick: "manotii",
             pos: "FW",
             no: 19,
+            goals: 0,
             photo: "https://i.imgur.com/sample-fw4.jpg",
             ig: "minnot19"
         }, {
@@ -2584,6 +2607,7 @@
             nick: "Outtah",
             pos: "GK",
             no: 24,
+            cleanSheets: 0,
             role: 'gkcoach',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg",
             fb: "https://www.facebook.com/Outtahjr",
@@ -2604,6 +2628,7 @@
             nick: "Kajony",
             pos: "FW",
             no: 7,
+            goals: 0,
             role: 'secretary',
             photo: "https://i.imgur.com/sample-mf.jpg"
         }];
@@ -2834,7 +2859,7 @@
         setInterval(updateCountdown, 1000);
 
         // ================================================================
-        //  SQUAD — sort by role priority, then render (no stats)
+        //  SQUAD — sort by role priority, then render (show stats if defined)
         // ================================================================
         const rolePriority = {
             'captain': 1,
@@ -2888,6 +2913,19 @@
                 `<a class="psoc" target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
             const nickDisplay = p.nick ? `<span class="nickname">“${p.nick}”</span>` : '';
+
+            // Build stats line only if goals or cleanSheets is defined
+            let statsHtml = '';
+            if (p.pos === 'GK') {
+                if (p.cleanSheets !== undefined) {
+                    statsHtml = `<div class="player-stats"><span>${p.cleanSheets} CLEAN SHEETS</span></div>`;
+                }
+            } else {
+                if (p.goals !== undefined) {
+                    statsHtml = `<div class="player-stats"><span>${p.goals} GOALS</span></div>`;
+                }
+            }
+
             return `<article class="player reveal" data-pos="${p.pos}">
                         <div class="player-img">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" data-caption="${caption}" />
@@ -2900,6 +2938,7 @@
                             </div>
                             ${nickDisplay}
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
+                            ${statsHtml}
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
                         </div>
                     </article>`;
