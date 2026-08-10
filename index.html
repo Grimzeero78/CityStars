@@ -872,7 +872,7 @@
         }
         .squad-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 1.2rem;
             margin-top: 2.4rem;
         }
@@ -1035,23 +1035,34 @@
             color: #fff;
         }
 
-        /* overlay badge on photo */
-        .player-badge {
+        /* --- elegant number badge on photo --- */
+        .player-number {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(10, 14, 26, 0.85);
-            border: 1px solid var(--gold);
-            padding: 0.2rem 0.6rem;
+            bottom: 12px;
+            right: 14px;
             font-family: var(--display);
-            font-size: 0.85rem;
-            letter-spacing: 0.06em;
+            font-size: 2.2rem;
+            font-weight: 400;
             color: var(--gold);
-            border-radius: 4px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(10, 14, 26, 0.6);
+            line-height: 1;
             pointer-events: none;
             z-index: 2;
-            line-height: 1.4;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            letter-spacing: 0.02em;
+            background: rgba(10, 14, 26, 0.35);
+            padding: 0.1rem 0.5rem 0.15rem 0.5rem;
+            border-radius: 6px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 196, 46, 0.25);
+        }
+        /* small screens: slightly smaller number */
+        @media(max-width:520px) {
+            .player-number {
+                font-size: 1.7rem;
+                bottom: 8px;
+                right: 10px;
+                padding: 0.05rem 0.4rem 0.1rem 0.4rem;
+            }
         }
 
         .player-meta {
@@ -2600,14 +2611,21 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg",
             tt: "undisputed",
             ig: "undisputed",
-            fb: "morgan ongeko"
+            fb: "morgan ongeko",
+            whatsapp: "254712345678",
+            phone: "+254712345678",
+            email: "morgan@citystars.com"
         }, {
             name: "Evans",
             nick: "Evanso",
             pos: "DF",
             no: 3,
             role: 'vice-captain',
-            photo: "https://i.imgur.com/sample-vice.jpg"
+            photo: "https://i.imgur.com/sample-vice.jpg",
+            tt: "evanso4",
+            whatsapp: "254712345679",
+            phone: "+254712345679",
+            email: "evans@citystars.com"
         }, {
             name: "Alex Juma",
             nick: "Alekoo",
@@ -2616,28 +2634,41 @@
             role: 'third',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/alekoo.jpeg",
             ig: "Alex.Juma16",
-            tt: "its jumah"
+            tt: "its jumah",
+            whatsapp: "254712345680",
+            phone: "+254712345680",
+            email: "alex.juma@citystars.com"
         }, {
             name: "Clemoo",
             nick: "",
             pos: "GK",
             no: 1,
             cleanSheets: 0,
-            photo: "https://i.imgur.com/sample-gk.jpg"
+            photo: "https://i.imgur.com/sample-gk.jpg",
+            whatsapp: "254712345681",
+            phone: "+254712345681",
+            email: "clemoo@citystars.com"
         }, {
             name: "Hunter",
             nick: "",
             pos: "GK",
             no: 16,
             cleanSheets: 1,
-            photo: "https://i.imgur.com/sample-gk2.jpg"
+            photo: "https://i.imgur.com/sample-gk2.jpg",
+            whatsapp: "254712345682",
+            phone: "+254712345682",
+            email: "hunter@citystars.com"
         }, {
             name: "Davii",
             nick: "",
             pos: "DF",
             no: 2,
             goals: 1,
-            photo: "https://i.imgur.com/sample-df.jpg"
+            photo: "https://i.imgur.com/sample-df.jpg",
+            ig: "davii2",
+            whatsapp: "254712345683",
+            phone: "+254712345683",
+            email: "davii@citystars.com"
         }, {
             name: "Wickliff Murimi",
             nick: "Wikii",
@@ -2647,7 +2678,10 @@
             role: 'treasurer',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/wikii.jpeg",
             ig: "recks347",
-            tt: "@reks795"
+            tt: "@reks795",
+            whatsapp: "254712345684",
+            phone: "+254712345684",
+            email: "wikii@citystars.com"
         }, {
             name: "Alex Waweru",
             nick: "topkheed",
@@ -2656,63 +2690,93 @@
             role: 'treasurer',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg",
             ig: "t.o.p.k.e.e.d",
-            tt: "t.o.p.k.e.e.d"
+            tt: "t.o.p.k.e.e.d",
+            whatsapp: "254712345685",
+            phone: "+254712345685",
+            email: "topkheed@citystars.com"
         }, {
             name: "Kafish",
             nick: "",
             pos: "MF",
             no: 6,
             goals: 0,
-            photo: "https://i.imgur.com/sample-df3.jpg"
+            photo: "https://i.imgur.com/sample-df3.jpg",
+            tt: "kafish3",
+            whatsapp: "254712345686",
+            phone: "+254712345686",
+            email: "kafish@citystars.com"
         }, {
             name: "Davii",
             nick: "messi",
             pos: "MF",
             no: 15,
             goals: 0,
-            photo: "https://i.imgur.com/sample-df4.jpg"
+            photo: "https://i.imgur.com/sample-df4.jpg",
+            whatsapp: "254712345687",
+            phone: "+254712345687",
+            email: "davii.messi@citystars.com"
         }, {
             name: "Mandevuu",
             nick: "",
             pos: "MF",
             no: 7,
             goals: 0,
-            photo: "https://i.imgur.com/sample-mf.jpg"
+            photo: "https://i.imgur.com/sample-mf.jpg",
+            whatsapp: "254712345688",
+            phone: "+254712345688",
+            email: "mandevuu@citystars.com"
         }, {
             name: "Miguel Fredrick",
             nick: "Freddie",
             pos: "MF",
             no: 8,
             role: 'tactical-coach',
-            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg"
+            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg",
+            whatsapp: "254712345689",
+            phone: "+254712345689",
+            email: "miguel.freddie@citystars.com"
         }, {
             name: "Manuu",
             nick: "mamu",
             pos: "MF",
             no: 14,
             goals: 0,
-            photo: "https://i.imgur.com/sample-mf3.jpg"
+            photo: "https://i.imgur.com/sample-mf3.jpg",
+            whatsapp: "254712345690",
+            phone: "+254712345690",
+            email: "manuu@citystars.com"
         }, {
             name: "Hillary",
             nick: "",
             pos: "MF",
             no: 20,
             goals: 0,
-            photo: "https://i.imgur.com/sample-mf4.jpg"
+            photo: "https://i.imgur.com/sample-mf4.jpg",
+            whatsapp: "254712345691",
+            phone: "+254712345691",
+            email: "hillary@citystars.com"
         }, {
             name: "Izzo",
             nick: "Virusi",
             pos: "MF",
             no: 10,
             goals: 0,
-            photo: "https://i.imgur.com/sample-fw.jpg"
+            photo: "https://i.imgur.com/sample-fw.jpg",
+            tt: "",
+            whatsapp: "254712345692",
+            phone: "+254712345692",
+            email: "izzo@citystars.com"
         }, {
             name: "Yanikoo",
             nick: "foreigner",
             pos: "FW",
             no: 11,
             goals: 0,
-            photo: "https://i.imgur.com/sample-fw2.jpg"
+            photo: "https://i.imgur.com/sample-fw2.jpg",
+            ig: "yanikoo9",
+            whatsapp: "254712345693",
+            phone: "+254712345693",
+            email: "yanikoo@citystars.com"
         }, {
             name: "david",
             nick: "",
@@ -2720,6 +2784,9 @@
             no: 17,
             goals: 0,
             photo: "https://i.imgur.com/sample-fw3.jpg",
+            whatsapp: "254712345694",
+            phone: "+254712345694",
+            email: "david@citystars.com"
         }, {
             name: "Minnot",
             nick: "manotii",
@@ -2728,6 +2795,9 @@
             goals: 0,
             photo: "https://i.imgur.com/sample-fw4.jpg",
             ig: "minnot19",
+            whatsapp: "254712345695",
+            phone: "+254712345695",
+            email: "minnot@citystars.com"
         }, {
             name: "Isaac",
             nick: "Bazenga",
@@ -2735,16 +2805,19 @@
             no: 78,
             role: 'discipline',
             photo: "https://i.imgur.com/sample-df4.jpg",
-            whatsapp: "254143374333",
-            phone: "+254143374333",
-            email: "injuguna308@gmail.com"
+            whatsapp: "254712345696",
+            phone: "+254712345696",
+            email: "isaac@citystars.com"
         }, {
             name: "Ambrose Ngetich",
             nick: "Grandpa",
             pos: "DF",
             no: 18,
             role: 'discipline',
-            photo: "https://i.imgur.com/sample-df3.jpg"
+            photo: "https://i.imgur.com/sample-df3.jpg",
+            whatsapp: "254712345697",
+            phone: "+254712345697",
+            email: "ambrose@citystars.com"
         }, {
             name: "Outtah Tychicus",
             nick: "Outtah",
@@ -2755,7 +2828,10 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg",
             fb: "Outtahjr",
             tt: "Outtahjr",
-            ig: "outtahjr"
+            ig: "outtahjr",
+            whatsapp: "254712345698",
+            phone: "+254712345698",
+            email: "outtah@citystars.com"
         }, {
             name: "Brian Mishelelei",
             nick: "Champez",
@@ -2765,7 +2841,10 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg",
             tt: "call me sage",
             ig: "call me sage",
-            fb: "sage"
+            fb: "sage",
+            whatsapp: "254712345699",
+            phone: "+254712345699",
+            email: "brian.mishelelei@citystars.com"
         }, {
             name: "Johnson Mwakibua",
             nick: "Mwaki",
@@ -2774,9 +2853,9 @@
             goals: 0,
             role: 'secretary',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
-            whatsapp: "254796497417",
-            phone: "+254796497417",
-            email: "mwachanjejohnson@gmail.com"
+            whatsapp: "254712345700",
+            phone: "+254712345700",
+            email: "johnson.mwakibua@citystars.com"
         }];
 
         // ================================================================
@@ -3047,8 +3126,8 @@
             const zoomSrc = p.photo || imgSrc;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
 
-            // overlay badge: position + number
-            const badge = `<span class="player-badge">${p.pos} · #${p.no}</span>`;
+            // --- clean number badge: just the number, no position label ---
+            const numberBadge = `<span class="player-number">${p.no}</span>`;
 
             // social icons
             let soc = '';
@@ -3087,14 +3166,13 @@
                 }
             }
 
-            // role badge next to name
             const roleText = getRoleTag(p.role);
             const roleBadge = roleText ? `<span class="player-role ${p.role}">${roleText}</span>` : '';
 
             return `<article class="player-card reveal" data-pos="${p.pos}">
                         <div class="ph">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" data-caption="${caption}" />
-                            ${badge}
+                            ${numberBadge}
                         </div>
                         <div class="txt">
                             <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.3rem 0.5rem;margin-bottom:0.1rem;">
