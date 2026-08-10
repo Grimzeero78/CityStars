@@ -1051,16 +1051,7 @@
             text-transform: uppercase;
             margin: .35rem 0 .6rem;
         }
-        .player-stats {
-            display: flex;
-            gap: .9rem;
-            flex-wrap: wrap;
-            font-family: var(--mono);
-            font-size: .64rem;
-            color: var(--gold);
-            letter-spacing: .08em;
-            margin-bottom: .7rem;
-        }
+        /* player-stats removed — no longer displayed */
         .player-soc {
             display: flex;
             gap: .5rem;
@@ -2281,7 +2272,7 @@
             </div>
         </section>
 
-        <!-- ===== NEW: DISCIPLINE & RULES SECTION ===== -->
+        <!-- ===== DISCIPLINE & RULES SECTION ===== -->
         <section id="discipline">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -2294,10 +2285,10 @@
                     <div class="discipline-quote">
                         <span class="quote-mark">“</span>
                         <blockquote>
-                            Discipline is the bridge between goals and accomplishment. At City Stars, we don't just play we represent a standard. Every player must respect the badge, the team, and the journey.
+                            Discipline is the bridge between goals and accomplishment. At City Stars, we don't just play — we represent a standard. Every player must respect the badge, the team, and the journey.
                         </blockquote>
                         <div class="attribution">
-                            — <strong>Isaac and KipYegon</strong> · Head of Discipline
+                            — <strong>Isaac &amp; KipYegon</strong> · Head of Discipline
                         </div>
                     </div>
                     <div class="discipline-cta">
@@ -2383,9 +2374,6 @@
         // -----------------------------------------------------------------
         //  1.  CONTACT & SOCIAL
         // -----------------------------------------------------------------
-        //  WHATSAPP_NUMBER:  country code + number, no "+" or spaces.
-        //  TIKTOK_URL, FACEBOOK_URL:  full URLs to your social pages.
-        // -----------------------------------------------------------------
         const WHATSAPP_NUMBER = "254768737643";
         const TIKTOK_URL = "https://www.tiktok.com/@citystarschuka";
         const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61581415439167";
@@ -2411,14 +2399,13 @@
             chips: [
                 { label: "BEGUN", value: "FEB 2022" },
                 { label: "NICKNAME", value: "THE CELESTIAL" },
-                { label: "HOME", value: "CHUKA UNIVERSITY", link: "https://www.chuka.ac.ke/" },
+                { label: "VISIT", value: "CHUKA UNIVERSITY", link: "https://www.chuka.ac.ke/" },
                 { label: "LEAGUE", value: "CHUKA PREMIER" }
             ]
         };
 
         // -----------------------------------------------------------------
-        //  4.  HERO COLLAGE — three images in the hero area
-        //      Each item: src, zoom (high-res for lightbox), caption, class
+        //  4.  HERO COLLAGE — three images
         // -----------------------------------------------------------------
         const HERO_IMAGES = [{
             src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
@@ -2439,29 +2426,15 @@
 
         // -----------------------------------------------------------------
         //  5.  MATCH DATA
-        //      - Upcoming:    { d: "YYYY-MM-DD", t: "HH:MM", opp: "Team", h: true/false }
-        //      - Played:      { d: "YYYY-MM-DD", opp: "Team", h: true/false, us: 0, them: 0 }
-        //      h = true  => City Stars at home
-        //      h = false => City Stars away
         // -----------------------------------------------------------------
         const MATCH_DATA = [
-            // ----- UPCOMING (no us/them) -----
             { d: "2026-08-09", t: "14:00", opp: "Foxes", h: true },
             { d: "2026-08-22", t: "16:00", opp: "Philites", h: true },
-            // ----- PLAYED (have us and them) -----
             { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 },
         ];
 
         // -----------------------------------------------------------------
-        //  6.  SQUAD DATA
-        //      Each player:
-        //        name, nick (optional), pos ("GK"|"DF"|"MF"|"FW"),
-        //        no (jersey number), goals (for outfield) or cleanSheets (for GK),
-        //        role (optional): captain, vice-captain, third, treasurer,
-        //          welfare, discipline, gkcoach, spokesman, secretary,
-        //          tactical-coach  ← NEW for Miguel
-        //        photo: full image URL (or blank for placeholder)
-        //        ig, tt, fb: social handles (without @)
+        //  6.  SQUAD DATA — no goals / cleanSheets displayed anymore
         // -----------------------------------------------------------------
         const SQUAD_DATA = [{
             name: "Morgan undisputed",
@@ -2494,14 +2467,12 @@
             nick: "",
             pos: "GK",
             no: 1,
-            cleanSheets: 0,
             photo: "https://i.imgur.com/sample-gk.jpg",
         }, {
             name: "Hunter",
             nick: "",
             pos: "GK",
             no: 16,
-            cleanSheets: 0,
             photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
             name: "Davii",
@@ -2540,7 +2511,6 @@
             nick: "messi",
             pos: "MF",
             no: 15,
-            goals: 0,
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
             name: "Mandevuu",
@@ -2549,7 +2519,6 @@
             no: 7,
             photo: "https://i.imgur.com/sample-mf.jpg"
         }, {
-            // ===== MIGUEL — now has role 'tactical-coach' =====
             name: "Miguel Fredrick",
             nick: "",
             pos: "MF",
@@ -2580,7 +2549,6 @@
             nick: "foreigner",
             pos: "FW",
             no: 11,
-            goals: 0,
             photo: "https://i.imgur.com/sample-fw2.jpg",
             ig: "yanikoo9"
         }, {
@@ -2588,14 +2556,12 @@
             nick: "",
             pos: "FW",
             no: 17,
-            goals: 0,
             photo: "https://i.imgur.com/sample-fw3.jpg"
         }, {
             name: "Minnot",
             nick: "manotii",
             pos: "FW",
             no: 19,
-            goals: 0,
             photo: "https://i.imgur.com/sample-fw4.jpg",
             ig: "minnot19"
         }, {
@@ -2603,7 +2569,6 @@
             nick: "Bazenga",
             pos: "FW",
             no: 78,
-            goals: 0,
             role: 'discipline',
             photo: "https://i.imgur.com/sample-df4.jpg"
         }, {
@@ -2618,7 +2583,6 @@
             nick: "Outtah",
             pos: "GK",
             no: 24,
-            cleanSheets: 0,
             role: 'gkcoach',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg",
             fb: "https://www.facebook.com/Outtahjr",
@@ -2639,15 +2603,12 @@
             nick: "Kajony",
             pos: "FW",
             no: 7,
-            goals: 0,
             role: 'secretary',
             photo: "https://i.imgur.com/sample-mf.jpg"
         }];
 
         // -----------------------------------------------------------------
-        //  7.  STAFF DATA — now with inspiring notes like Emmy's
-        //      Each staff member: name, nick (optional), role, note, photo,
-        //      ig, tt (social handles without @)
+        //  7.  STAFF DATA
         // -----------------------------------------------------------------
         const STAFF_DATA = [
             { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
@@ -2665,17 +2626,7 @@
         ];
 
         // -----------------------------------------------------------------
-        //  8.  NEWS & BLOG — with image / video support
-        //      Each item:
-        //        tag:        label (e.g. "Match Report", "Interview")
-        //        date:       "YYYY-MM-DD"
-        //        title:      headline
-        //        excerpt:    short description
-        //        image:      (optional) full URL to an image
-        //        video:      (optional) full URL to a video file (MP4)
-        //        seed:       (fallback) a unique string for placeholder images
-        //      If BOTH image and video are provided, VIDEO takes priority.
-        //      If neither is provided, a placeholder image is generated.
+        //  8.  NEWS & BLOG
         // -----------------------------------------------------------------
         const NEWS_DATA = [
             {
@@ -2717,9 +2668,7 @@
         ];
 
         // -----------------------------------------------------------------
-        //  9.  STANDINGS — league table
-        //      Each row: pos, team, p (played), w, d, l, gf, ga, pts
-        //      City Stars FC is automatically highlighted.
+        //  9.  STANDINGS
         // -----------------------------------------------------------------
         const STANDINGS_DATA = [
             { pos: 1, team: "City Stars FC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
@@ -2733,8 +2682,7 @@
         ];
 
         // -----------------------------------------------------------------
-        //  10. CLUB RULES (for the new discipline section)
-        //      Each rule is a string (plain or with <strong> tags)
+        //  10. CLUB RULES
         // -----------------------------------------------------------------
         const RULES_DATA = [
             "Mandatory registration fee of <strong>350/-</strong> for each player and <strong>100/-</strong> Subscription — failure to pay means you are not a member and not eligible to play.",
@@ -2885,7 +2833,7 @@
         setInterval(updateCountdown, 1000);
 
         // ================================================================
-        //  SQUAD — sort by role priority, then render
+        //  SQUAD — sort by role priority, then render (no stats)
         // ================================================================
         const rolePriority = {
             'captain': 1,
@@ -2927,12 +2875,6 @@
         }
 
         $('#squadGrid').innerHTML = sortedSquad.map(p => {
-            let stat = '';
-            if (p.pos === 'GK') {
-                stat = `${p.cleanSheets !== undefined ? p.cleanSheets : 0} CLEAN SHEETS`;
-            } else {
-                stat = `${p.goals !== undefined ? p.goals : 0} GOALS`;
-            }
             const imgSrc = p.photo ||
                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460"%3E%3Crect width="400" height="460" fill="%230d1324"/%3E%3Ctext x="200" y="230" font-family="Arial" font-size="20" fill="%2398a2ba" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
             const zoomSrc = p.photo || imgSrc;
@@ -2957,7 +2899,6 @@
                             </div>
                             ${nickDisplay}
                             <p class="player-meta">${POS[p.pos]} · #${p.no}</p>
-                            <div class="player-stats"><span>${stat}</span></div>
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
                         </div>
                     </article>`;
@@ -3010,7 +2951,7 @@
             `;
 
         // ================================================================
-        //  NEWS — with image / video support
+        //  NEWS
         // ================================================================
         const [feat, ...rest] = NEWS_DATA;
 
@@ -3101,7 +3042,6 @@
         const openRulesBtn = document.getElementById('openRulesBtn');
         const closeRulesBtn = document.getElementById('rulesModalClose');
 
-        // Populate rules
         rulesList.innerHTML = RULES_DATA.map((rule, idx) => `<li>${idx+1}. ${rule}</li>`).join('');
 
         function openRulesModal() {
