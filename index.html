@@ -1255,6 +1255,29 @@
             background: rgba(255, 196, 46, .08);
             border-left: 3px solid var(--gold);
         }
+        .standings-wrap .pts-input {
+            width: 48px;
+            background: transparent;
+            border: 1px solid var(--line-strong);
+            color: var(--gold);
+            font-family: var(--mono);
+            font-size: .9rem;
+            font-weight: 700;
+            text-align: center;
+            padding: .2rem .2rem;
+            border-radius: 4px;
+            transition: border-color .3s;
+        }
+        .standings-wrap .pts-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(255, 196, 46, .25);
+        }
+        .standings-wrap .pts-input::placeholder {
+            color: var(--muted);
+            opacity: .5;
+            font-weight: 400;
+        }
         @media(max-width:640px) {
             .standings-wrap {
                 font-size: .7rem;
@@ -1267,6 +1290,161 @@
             .standings-wrap .pos {
                 width: 24px;
                 font-size: .85rem;
+            }
+            .standings-wrap .pts-input {
+                width: 38px;
+                font-size: .75rem;
+                padding: .1rem .1rem;
+            }
+        }
+
+        /* ===== FI XTURES MODAL ===== */
+        .fixtures-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10001;
+            background: rgba(0, 0, 0, .88);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .fixtures-modal.open {
+            display: flex;
+        }
+        .fixtures-modal .modal-box {
+            background: var(--bg2);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            max-width: 800px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 2rem 2.2rem;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .7);
+            animation: modalFade .3s ease;
+        }
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: scale(.96) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .fixtures-modal .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: none;
+            border: none;
+            font-size: 2.2rem;
+            color: var(--paper);
+            font-family: var(--display);
+            transition: transform .25s, color .25s;
+            line-height: 1;
+            padding: 0 .2rem;
+        }
+        .fixtures-modal .modal-close:hover {
+            transform: rotate(90deg);
+            color: var(--gold);
+        }
+        .fixtures-modal h2 {
+            font-family: var(--display);
+            font-size: 2rem;
+            letter-spacing: .04em;
+            margin: 0 0 1rem 0;
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: .5rem;
+        }
+        .fixtures-modal .fixture-list {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            margin-top: 1rem;
+        }
+        .fixtures-modal .fixture-item {
+            display: grid;
+            grid-template-columns: 120px 1fr 100px;
+            gap: .8rem;
+            align-items: center;
+            padding: .7rem .8rem;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            border-radius: 6px;
+            transition: border-color .3s, background .3s;
+        }
+        .fixtures-modal .fixture-item:hover {
+            border-color: var(--gold);
+            background: var(--panel2);
+        }
+        .fixtures-modal .fixture-item .fdate {
+            font-family: var(--mono);
+            font-size: .72rem;
+            color: var(--gold);
+            letter-spacing: .06em;
+        }
+        .fixtures-modal .fixture-item .fdate .dow {
+            display: block;
+            font-size: .55rem;
+            letter-spacing: .18em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+        .fixtures-modal .fixture-item .fgame {
+            font-weight: 500;
+            font-size: .95rem;
+        }
+        .fixtures-modal .fixture-item .fgame em {
+            color: var(--gold);
+            font-style: normal;
+        }
+        .fixtures-modal .fixture-item .ftime {
+            font-family: var(--mono);
+            font-size: .68rem;
+            color: var(--muted);
+            letter-spacing: .04em;
+            text-align: right;
+        }
+        .fixtures-modal .fixture-count {
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: var(--muted);
+            letter-spacing: .2em;
+            margin-top: 1rem;
+            text-align: center;
+            border-top: 1px solid var(--line);
+            padding-top: 1rem;
+        }
+        @media(max-width:640px) {
+            .fixtures-modal .modal-box {
+                padding: 1.2rem 1rem;
+                max-height: 90vh;
+            }
+            .fixtures-modal h2 {
+                font-size: 1.4rem;
+            }
+            .fixtures-modal .fixture-item {
+                grid-template-columns: 1fr;
+                gap: .2rem;
+                padding: .6rem .7rem;
+            }
+            .fixtures-modal .fixture-item .fdate {
+                display: flex;
+                gap: .6rem;
+                align-items: baseline;
+                flex-wrap: wrap;
+            }
+            .fixtures-modal .fixture-item .fdate .dow {
+                display: inline;
+            }
+            .fixtures-modal .fixture-item .ftime {
+                text-align: left;
             }
         }
 
@@ -2121,6 +2299,16 @@
         </div>
     </div>
 
+    <!-- FIXTURES MODAL -->
+    <div class="fixtures-modal" id="fixturesModal" role="dialog" aria-modal="true" aria-label="City Stars Fixtures">
+        <div class="modal-box">
+            <button class="modal-close" id="fixturesModalClose" aria-label="Close fixtures">✕</button>
+            <h2>⭐ CITY STARS — ALL FIXTURES</h2>
+            <div class="fixture-list" id="fixtureList"></div>
+            <div class="fixture-count" id="fixtureCount"></div>
+        </div>
+    </div>
+
     <main id="top">
 
         <section class="hero">
@@ -2238,7 +2426,12 @@
                         <p class="kicker">League Table</p>
                         <h2 class="lm"><span>Standings</span></h2>
                     </div>
-                    <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER · 2026</p>
+                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;">
+                        <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER · 2026</p>
+                        <button class="btn" id="openFixturesBtn" style="transform:skewX(0);padding:.5rem 1.2rem;font-size:.75rem;">
+                            <span>📋 City Stars Fixtures</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="standings-wrap reveal" id="standingsWrap"></div>
             </div>
@@ -2694,21 +2887,59 @@
         ];
 
         // -----------------------------------------------------------------
-        //  9.  STANDINGS
+        //  9.  STANDINGS — 14 teams, City Stars at pos 3
         // -----------------------------------------------------------------
         const STANDINGS_DATA = [
-            { pos: 1, team: "City Stars FC", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 2, team: "b", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 3, team: "c", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 4, team: "d", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 5, team: "e", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 6, team: "f", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 7, team: "g", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-            { pos: 8, team: "h", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+            { pos: 1, team: "Vipers" },
+            { pos: 2, team: "Gusii" },
+            { pos: 3, team: "City Stars", isCity: true },
+            { pos: 4, team: "Hitmen" },
+            { pos: 5, team: "Pocusa" },
+            { pos: 6, team: "Felites" },
+            { pos: 7, team: "Venom" },
+            { pos: 8, team: "Meru Boys" },
+            { pos: 9, team: "Thunder Elites" },
+            { pos: 10, team: "Rerina" },
+            { pos: 11, team: "Young Stars" },
+            { pos: 12, team: "Cuksa" },
+            { pos: 13, team: "Qualifier 1" },
+            { pos: 14, team: "Qualifier 2" },
         ];
 
         // -----------------------------------------------------------------
-        //  10. CLUB RULES
+        //  10. CITY STARS FIXTURES — all matches with date, time, opponent
+        // -----------------------------------------------------------------
+        const CITY_STARS_FIXTURES = [
+            { date: "2026-09-17", time: "4:00pm – 5:30pm", opponent: "Cuksa", venue: "Home" },
+            { date: "2026-09-19", time: "2:00pm – 3:30pm", opponent: "Rerina", venue: "Home" },
+            { date: "2026-09-24", time: "2:00pm – 3:30pm", opponent: "Meru Boys", venue: "Home" },
+            { date: "2026-09-26", time: "12:00pm – 1:30pm", opponent: "Phelites", venue: "Home" },
+            { date: "2026-10-01", time: "12:00pm – 1:30pm", opponent: "Hitmen", venue: "Home" },
+            { date: "2026-10-03", time: "8:00am – 9:30am", opponent: "Gusii", venue: "Home" },
+            { date: "2026-10-04", time: "10:00am – 11:30am", opponent: "Qualifier 1", venue: "Home" },
+            { date: "2026-10-08", time: "4:00pm – 5:30pm", opponent: "Young Stars", venue: "Home" },
+            { date: "2026-10-10", time: "10:00am – 11:30am", opponent: "Thunder Elites", venue: "Home" },
+            { date: "2026-10-11", time: "12:00pm – 1:30pm", opponent: "Venom", venue: "Home" },
+            { date: "2026-10-16", time: "10:00am – 11:30am", opponent: "Pocusa", venue: "Home" },
+            { date: "2026-10-17", time: "12:00pm – 1:30pm", opponent: "Vipers", venue: "Home" },
+            { date: "2026-10-21", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", venue: "Home" },
+            { date: "2026-10-29", time: "4:00pm – 5:30pm", opponent: "Cuksa", venue: "Home" },
+            { date: "2026-10-31", time: "2:00pm – 3:30pm", opponent: "Rerina", venue: "Home" },
+            { date: "2026-11-05", time: "2:00pm – 3:30pm", opponent: "Meru Boys", venue: "Home" },
+            { date: "2026-11-07", time: "12:00pm – 1:30pm", opponent: "Phelites", venue: "Home" },
+            { date: "2026-11-12", time: "12:00pm – 1:30pm", opponent: "Hitmen", venue: "Home" },
+            { date: "2026-11-14", time: "8:00am – 9:30am", opponent: "Gusii", venue: "Home" },
+            { date: "2026-11-15", time: "10:00am – 11:30am", opponent: "Qualifier 1", venue: "Home" },
+            { date: "2026-11-19", time: "4:00pm – 5:30pm", opponent: "Young Stars", venue: "Home" },
+            { date: "2026-11-21", time: "10:00am – 11:30am", opponent: "Thunder Elites", venue: "Home" },
+            { date: "2026-11-22", time: "12:00pm – 1:30pm", opponent: "Venom", venue: "Home" },
+            { date: "2026-11-27", time: "10:00am – 11:30am", opponent: "Pocusa", venue: "Home" },
+            { date: "2026-11-28", time: "12:00pm – 1:30pm", opponent: "Vipers", venue: "Home" },
+            { date: "2026-12-03", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", venue: "Home" },
+        ];
+
+        // -----------------------------------------------------------------
+        //  11. CLUB RULES
         // -----------------------------------------------------------------
         const RULES_DATA = [
             "Mandatory registration fee of <strong>350/-</strong> for each player and <strong>100/-</strong> Subscription — failure to pay means you are not a member and not eligible to play.",
@@ -2914,7 +3145,6 @@
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
             const nickDisplay = p.nick ? `<span class="nickname">“${p.nick}”</span>` : '';
 
-            // Build stats line only if goals or cleanSheets is defined
             let statsHtml = '';
             if (p.pos === 'GK') {
                 if (p.cleanSheets !== undefined) {
@@ -2968,27 +3198,84 @@
                     </article>`;
         }).join('');
 
-        // Standings
-        document.getElementById('standingsWrap').innerHTML = `
-                <table>
-                    <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr></thead>
-                    <tbody>
-                        ${STANDINGS_DATA.map(s => `
-                            <tr class="${s.team === 'City Stars FC' ? 'highlight' : ''}">
-                                <td class="pos">${s.pos}</td>
-                                <td class="team-name">${s.team}</td>
-                                <td>${s.p}</td>
-                                <td>${s.w}</td>
-                                <td>${s.d}</td>
-                                <td>${s.l}</td>
-                                <td>${s.gf}</td>
-                                <td>${s.ga}</td>
-                                <td class="pts">${s.pts}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-            `;
+        // ================================================================
+        //  STANDINGS — 14 teams with City Stars editable points
+        // ================================================================
+        function buildStandings() {
+            const rows = STANDINGS_DATA.map(s => {
+                const isCity = s.isCity || false;
+                const ptsInput = isCity ?
+                    `<input class="pts-input" type="number" min="0" placeholder="0" value="" aria-label="City Stars points" />` :
+                    `<span class="pts">—</span>`;
+                return `<tr class="${isCity ? 'highlight' : ''}">
+                            <td class="pos">${s.pos}</td>
+                            <td class="team-name">${s.team}</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>${ptsInput}</td>
+                        </tr>`;
+            }).join('');
+
+            document.getElementById('standingsWrap').innerHTML = `
+                    <table>
+                        <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                `;
+        }
+        buildStandings();
+
+        // ================================================================
+        //  FIXTURES MODAL — show all City Stars matches
+        // ================================================================
+        const fixturesModal = document.getElementById('fixturesModal');
+        const fixtureList = document.getElementById('fixtureList');
+        const fixtureCount = document.getElementById('fixtureCount');
+        const openFixturesBtn = document.getElementById('openFixturesBtn');
+        const closeFixturesBtn = document.getElementById('fixturesModalClose');
+
+        function renderFixtures() {
+            const items = CITY_STARS_FIXTURES.map(f => {
+                const d = pd(f.date);
+                const dow = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
+                const dayStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                return `<div class="fixture-item">
+                            <div class="fdate">
+                                <span>${dayStr}</span>
+                                <span class="dow">${dow}</span>
+                            </div>
+                            <div class="fgame">CITY STARS <em>vs</em> ${f.opp}</div>
+                            <div class="ftime">${f.time}</div>
+                        </div>`;
+            }).join('');
+
+            fixtureList.innerHTML = items;
+            fixtureCount.textContent = `📅 ${CITY_STARS_FIXTURES.length} matches · All times EAT`;
+        }
+        renderFixtures();
+
+        function openFixturesModal() {
+            fixturesModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFixturesModal() {
+            fixturesModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        openFixturesBtn.addEventListener('click', openFixturesModal);
+        closeFixturesBtn.addEventListener('click', closeFixturesModal);
+        fixturesModal.addEventListener('click', (e) => {
+            if (e.target === fixturesModal) closeFixturesModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && fixturesModal.classList.contains('open')) closeFixturesModal();
+        });
 
         // ================================================================
         //  NEWS
