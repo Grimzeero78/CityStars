@@ -915,6 +915,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            position: relative;
         }
         .staff-card .ph img,
         .player-card .ph img {
@@ -959,7 +960,8 @@
         .staff-card h4,
         .player-card h4 {
             font-size: 1.1rem;
-            margin: .35rem 0 .2rem;
+            margin: 0;
+            line-height: 1.2;
         }
         .staff-card .nick,
         .player-card .nick {
@@ -967,7 +969,7 @@
             font-size: .6rem;
             color: var(--gold);
             letter-spacing: .12em;
-            margin-bottom: .3rem;
+            margin: 0.2rem 0 0.3rem;
         }
         .staff-card .note {
             font-size: .8rem;
@@ -987,8 +989,10 @@
             border-radius: 20px;
             text-transform: uppercase;
             line-height: 1.4;
-            margin-top: .2rem;
-            align-self: flex-start;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            flex-shrink: 0;
+            align-self: center;
         }
         .player-role.captain {
             background: var(--gold);
@@ -1029,6 +1033,25 @@
         .player-role.tactical-coach {
             background: #e67e22;
             color: #fff;
+        }
+
+        /* overlay badge on photo */
+        .player-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(10, 14, 26, 0.85);
+            border: 1px solid var(--gold);
+            padding: 0.2rem 0.6rem;
+            font-family: var(--display);
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 2;
+            line-height: 1.4;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
         }
 
         .player-meta {
@@ -1117,6 +1140,11 @@
         .player-contacts .contact-link.phone:hover {
             color: #4ae587;
             border-color: #4ae587;
+        }
+
+        /* Hide class for filtering */
+        .player-card.hide {
+            display: none !important;
         }
 
         /* staff grid (unchanged) */
@@ -2579,8 +2607,7 @@
             pos: "DF",
             no: 3,
             role: 'vice-captain',
-            photo: "https://i.imgur.com/sample-vice.jpg",
-            tt: "evanso4"
+            photo: "https://i.imgur.com/sample-vice.jpg"
         }, {
             name: "Alex Juma",
             nick: "Alekoo",
@@ -2596,28 +2623,21 @@
             pos: "GK",
             no: 1,
             cleanSheets: 0,
-            photo: "https://i.imgur.com/sample-gk.jpg",
-            whatsapp: "254712345681",
-            phone: "+254712345681",
-            email: "clemoo@citystars.com"
+            photo: "https://i.imgur.com/sample-gk.jpg"
         }, {
             name: "Hunter",
             nick: "",
             pos: "GK",
             no: 16,
             cleanSheets: 1,
-            photo: "https://i.imgur.com/sample-gk2.jpg",
-            whatsapp: "254712345682",
-            phone: "+254712345682",
-            email: "hunter@citystars.com"
+            photo: "https://i.imgur.com/sample-gk2.jpg"
         }, {
             name: "Davii",
             nick: "",
             pos: "DF",
             no: 2,
             goals: 1,
-            photo: "https://i.imgur.com/sample-df.jpg",
-            ig: "davii2"
+            photo: "https://i.imgur.com/sample-df.jpg"
         }, {
             name: "Wickliff Murimi",
             nick: "Wikii",
@@ -2643,11 +2663,7 @@
             pos: "MF",
             no: 6,
             goals: 0,
-            photo: "https://i.imgur.com/sample-df3.jpg",
-            tt: "kafish3",
-            whatsapp: "254712345686",
-            phone: "+254712345686",
-            email: "kafish@citystars.com"
+            photo: "https://i.imgur.com/sample-df3.jpg"
         }, {
             name: "Davii",
             nick: "messi",
@@ -2689,23 +2705,21 @@
             pos: "MF",
             no: 10,
             goals: 0,
-            photo: "https://i.imgur.com/sample-fw.jpg",
-            tt: ""
+            photo: "https://i.imgur.com/sample-fw.jpg"
         }, {
             name: "Yanikoo",
             nick: "foreigner",
             pos: "FW",
             no: 11,
             goals: 0,
-            photo: "https://i.imgur.com/sample-fw2.jpg",
-            ig: "yanikoo9"
+            photo: "https://i.imgur.com/sample-fw2.jpg"
         }, {
             name: "david",
             nick: "",
             pos: "FW",
             no: 17,
             goals: 0,
-            photo: "https://i.imgur.com/sample-fw3.jpg"
+            photo: "https://i.imgur.com/sample-fw3.jpg",
         }, {
             name: "Minnot",
             nick: "manotii",
@@ -2713,7 +2727,7 @@
             no: 19,
             goals: 0,
             photo: "https://i.imgur.com/sample-fw4.jpg",
-            ig: "minnot19"
+            ig: "minnot19",
         }, {
             name: "Isaac",
             nick: "Bazenga",
@@ -2721,8 +2735,8 @@
             no: 78,
             role: 'discipline',
             photo: "https://i.imgur.com/sample-df4.jpg",
-            whatsapp: "25414337433",
-            phone: "+25414337433",
+            whatsapp: "254143374333",
+            phone: "+254143374333",
             email: "injuguna308@gmail.com"
         }, {
             name: "Ambrose Ngetich",
@@ -2759,8 +2773,10 @@
             no: 7,
             goals: 0,
             role: 'secretary',
-            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg"
-
+            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
+            whatsapp: "254796497417",
+            phone: "+254796497417",
+            email: "mwachanjejohnson@gmail.com"
         }];
 
         // ================================================================
@@ -3011,16 +3027,16 @@
         function getRoleTag(role) {
             if (!role) return '';
             const map = {
-                'captain': '<span class="player-role captain">★ Captain</span>',
-                'vice-captain': '<span class="player-role vice">✦ Vice-Captain</span>',
-                'third': '<span class="player-role third">✦ 3rd Captain</span>',
-                'treasurer': '<span class="player-role treasurer">💰 Treasurer</span>',
-                'welfare': '<span class="player-role welfare">❤️ Welfare</span>',
-                'discipline': '<span class="player-role discipline">⚔️ Discipline</span>',
-                'gkcoach': '<span class="player-role gkcoach">🧤 GK Coach</span>',
-                'spokesman': '<span class="player-role spokesman">📢 Spokesman & Media</span>',
-                'secretary': '<span class="player-role secretary">📋 Secretary</span>',
-                'tactical-coach': '<span class="player-role tactical-coach">📐 Tactical Coach</span>',
+                'captain': '★ Captain',
+                'vice-captain': '✦ Vice-Captain',
+                'third': '✦ 3rd Captain',
+                'treasurer': '💰 Treasurer',
+                'welfare': '❤️ Welfare',
+                'discipline': '⚔️ Discipline',
+                'gkcoach': '🧤 GK Coach',
+                'spokesman': '📢 Spokesman & Media',
+                'secretary': '📋 Secretary',
+                'tactical-coach': '📐 Tactical Coach',
             };
             return map[role] || '';
         }
@@ -3030,6 +3046,9 @@
                 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460"%3E%3Crect width="400" height="460" fill="%230d1324"/%3E%3Ctext x="200" y="230" font-family="Arial" font-size="20" fill="%2398a2ba" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
             const zoomSrc = p.photo || imgSrc;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
+
+            // overlay badge: position + number
+            const badge = `<span class="player-badge">${p.pos} · #${p.no}</span>`;
 
             // social icons
             let soc = '';
@@ -3068,15 +3087,21 @@
                 }
             }
 
+            // role badge next to name
+            const roleText = getRoleTag(p.role);
+            const roleBadge = roleText ? `<span class="player-role ${p.role}">${roleText}</span>` : '';
+
             return `<article class="player-card reveal" data-pos="${p.pos}">
                         <div class="ph">
                             <img loading="lazy" src="${imgSrc}" alt="${p.name}" data-zoom="${zoomSrc}" data-caption="${caption}" />
+                            ${badge}
                         </div>
                         <div class="txt">
-                            <p class="staff-role">${POS[p.pos]} · #${p.no}</p>
-                            <h4>${p.name}</h4>
+                            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.3rem 0.5rem;margin-bottom:0.1rem;">
+                                <h4>${p.name}</h4>
+                                ${roleBadge}
+                            </div>
                             ${nickDisplay}
-                            ${getRoleTag(p.role)}
                             ${statsHtml}
                             ${contactsHtml}
                             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
@@ -3239,8 +3264,12 @@
                 document.querySelectorAll('.player-card').forEach(c => {
                     const show = p.dataset.pos === 'all' || c.dataset.pos === p.dataset.pos;
                     c.classList.remove('pop');
-                    if (show) { c.classList.remove('hide'); if (!reduced) setTimeout(() => c.classList
-                            .add('pop'), i++ * 40); } else { c.classList.add('hide'); }
+                    if (show) {
+                        c.classList.remove('hide');
+                        if (!reduced) setTimeout(() => c.classList.add('pop'), i++ * 40);
+                    } else {
+                        c.classList.add('hide');
+                    }
                 });
             });
         });
