@@ -1035,33 +1035,38 @@
             color: #fff;
         }
 
-        /* --- elegant number badge on photo --- */
+        /* --- elegant number badge on photo — NO FRAME, just yellow with glow --- */
         .player-number {
             position: absolute;
             bottom: 12px;
             right: 14px;
             font-family: var(--display);
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 400;
             color: var(--gold);
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(10, 14, 26, 0.6);
+            text-shadow:
+                0 0 20px rgba(255, 196, 46, 0.7),
+                0 0 60px rgba(255, 196, 46, 0.3),
+                0 4px 20px rgba(0, 0, 0, 0.9);
             line-height: 1;
             pointer-events: none;
             z-index: 2;
-            letter-spacing: 0.02em;
-            background: rgba(10, 14, 26, 0.35);
-            padding: 0.1rem 0.5rem 0.15rem 0.5rem;
-            border-radius: 6px;
-            backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 196, 46, 0.25);
+            letter-spacing: 0.04em;
+            background: transparent;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            transition: transform .3s ease;
         }
-        /* small screens: slightly smaller number */
+        .player-card:hover .player-number {
+            transform: scale(1.15);
+        }
         @media(max-width:520px) {
             .player-number {
-                font-size: 1.7rem;
+                font-size: 1.8rem;
                 bottom: 8px;
                 right: 10px;
-                padding: 0.05rem 0.4rem 0.1rem 0.4rem;
             }
         }
 
@@ -1084,73 +1089,115 @@
             margin-bottom: .7rem;
         }
 
-        /* Social & contact links inside cards */
-        .player-soc {
+        /* --- BOTTOM ICON ROW — all icons at the bottom, no text for contacts --- */
+        .player-bottom {
+            margin-top: auto;
+            padding-top: .6rem;
+            border-top: 1px solid var(--line);
             display: flex;
-            gap: .5rem;
             flex-wrap: wrap;
             align-items: center;
-            margin-top: .5rem;
+            gap: .3rem .5rem;
         }
-        .player-soc a {
-            display: grid;
-            place-items: center;
-            width: 28px;
-            height: 28px;
-            border: 1px solid var(--line-strong);
+        .player-bottom .soc-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: .2rem;
+            padding: .2rem .45rem .2rem .35rem;
             border-radius: 4px;
+            border: 1px solid transparent;
             transition: all .25s;
+            font-size: .55rem;
+            font-family: var(--mono);
+            color: var(--muted);
+            letter-spacing: .04em;
+            text-decoration: none;
+            background: transparent;
+            line-height: 1.4;
         }
-        .player-soc a svg {
+        .player-bottom .soc-icon svg {
             width: 14px;
             height: 14px;
             fill: var(--muted);
+            flex-shrink: 0;
             transition: fill .25s;
         }
-        .player-soc a:hover {
+        .player-bottom .soc-icon:hover {
             border-color: var(--gold);
-            background: var(--gold);
+            background: rgba(255, 196, 46, .08);
+            color: var(--paper);
+            transform: translateY(-2px);
         }
-        .player-soc a:hover svg {
-            fill: #141414;
+        .player-bottom .soc-icon:hover svg {
+            fill: var(--gold);
         }
-
-        /* Contact row: phone / email / WhatsApp */
-        .player-contacts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem .8rem;
-            margin: .4rem 0 .1rem;
-            font-family: var(--mono);
-            font-size: .62rem;
-            letter-spacing: .04em;
-        }
-        .player-contacts .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            color: var(--muted);
-            transition: color .25s, transform .25s;
-            padding: .15rem .4rem;
-            border-radius: 4px;
-            border: 1px solid transparent;
-        }
-        .player-contacts .contact-link:hover {
-            color: var(--gold);
-            border-color: var(--line-strong);
-            transform: translateY(-1px);
-        }
-        .player-contacts .contact-link.wa:hover {
-            color: var(--wa);
+        .player-bottom .soc-icon.wa:hover {
             border-color: var(--wa);
+            background: rgba(37, 211, 102, .12);
+            color: var(--wa);
         }
-        .player-contacts .contact-link.email:hover {
-            color: #6ab0f7;
+        .player-bottom .soc-icon.wa:hover svg {
+            fill: var(--wa);
+        }
+        .player-bottom .soc-icon.email:hover {
             border-color: #6ab0f7;
+            background: rgba(106, 176, 247, .12);
+            color: #6ab0f7;
         }
-        .player-contacts .contact-link.phone:hover {
-            color: #4ae587;
+        .player-bottom .soc-icon.email:hover svg {
+            fill: #6ab0f7;
+        }
+        .player-bottom .soc-icon.phone:hover {
             border-color: #4ae587;
+            background: rgba(74, 229, 135, .12);
+            color: #4ae587;
+        }
+        .player-bottom .soc-icon.phone:hover svg {
+            fill: #4ae587;
+        }
+        .player-bottom .soc-icon.fb:hover {
+            border-color: var(--fb);
+            background: rgba(24, 119, 242, .12);
+            color: var(--fb);
+        }
+        .player-bottom .soc-icon.fb:hover svg {
+            fill: var(--fb);
+        }
+        .player-bottom .soc-icon.tt:hover {
+            border-color: #000;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+        }
+        .player-bottom .soc-icon.tt:hover svg {
+            fill: #fff;
+        }
+        .player-bottom .soc-icon.ig:hover {
+            border-color: #e4405f;
+            background: rgba(228, 64, 95, .12);
+            color: #e4405f;
+        }
+        .player-bottom .soc-icon.ig:hover svg {
+            fill: #e4405f;
+        }
+        .player-bottom .soc-icon.x:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+        }
+        .player-bottom .soc-icon.x:hover svg {
+            fill: #fff;
+        }
+        /* icon-only contacts — no label */
+        .player-bottom .soc-icon.icon-only {
+            padding: .2rem .35rem;
+            font-size: 0;
+        }
+        .player-bottom .soc-icon.icon-only svg {
+            width: 16px;
+            height: 16px;
+        }
+        .player-bottom .soc-icon.icon-only:hover {
+            transform: translateY(-2px) scale(1.05);
         }
 
         /* Hide class for filtering */
@@ -1240,6 +1287,7 @@
             }
         }
 
+        /* Fixtures modal — moved from standings to matches */
         .fixtures-modal {
             display: none;
             position: fixed;
@@ -2173,6 +2221,8 @@
             <symbol id="tt-logo" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.013 2.61-.018 3.91-.02.063 1.6.569 3.179 1.408 4.53.84 1.35 2.007 2.451 3.375 3.113v3.23a8.143 8.143 0 01-3.399-1.157c-.045-.025-.09-.05-.135-.075v5.473a7.89 7.89 0 01-2.342 5.602 7.892 7.892 0 01-5.602 2.343 7.89 7.89 0 01-5.602-2.343 7.89 7.89 0 010-11.159 7.893 7.893 0 015.602-2.343c.472 0 .94.067 1.394.194v3.4a3.895 3.895 0 00-2.34-.79 3.876 3.876 0 00-2.742 1.135 3.876 3.876 0 00-1.135 2.742 3.876 3.876 0 001.135 2.742 3.877 3.877 0 002.742 1.135 3.877 3.877 0 002.742-1.135 3.877 3.877 0 001.135-2.742v-9.64h.001z"/></symbol>
             <symbol id="ig-logo" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></symbol>
             <symbol id="email-logo" viewBox="0 0 24 24"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></symbol>
+            <symbol id="phone-logo" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+            <symbol id="x-logo" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
         </defs>
     </svg>
 
@@ -2287,7 +2337,12 @@
                         <p class="kicker">01 · Fixtures &amp; Results</p>
                         <h2 class="lm"><span>Our Matches</span></h2>
                     </div>
-                    <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER LEAGUE · 2026 SEASON</p>
+                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;">
+                        <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER LEAGUE · 2026</p>
+                        <button class="btn" id="openFixturesBtn" style="transform:skewX(0);padding:.5rem 1.2rem;font-size:.75rem;">
+                            <span>📋 All City Stars Fixtures</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="matches-grid">
                     <div class="mcol reveal">
@@ -2352,12 +2407,7 @@
                         <p class="kicker">League Table</p>
                         <h2 class="lm"><span>Standings</span></h2>
                     </div>
-                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;">
-                        <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER · 2026</p>
-                        <button class="btn" id="openFixturesBtn" style="transform:skewX(0);padding:.5rem 1.2rem;font-size:.75rem;">
-                            <span>📋 City Stars Fixtures</span>
-                        </button>
-                    </div>
+                    <p class="muted" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.2em">CHUKA PREMIER · 2026</p>
                 </div>
                 <div class="standings-wrap reveal" id="standingsWrap"></div>
             </div>
@@ -2600,7 +2650,7 @@
         ];
 
         // ================================================================
-        //  SQUAD DATA — with contact fields (whatsapp, phone, email)
+        //  SQUAD DATA — with contact fields (whatsapp, phone, email, x)
         //  ================================================================
         const SQUAD_DATA = [{
             name: "Morgan undisputed",
@@ -2611,14 +2661,17 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg",
             tt: "undisputed",
             ig: "undisputed",
-            fb: "morgan ongeko"
+            fb: "morgan ongeko",
+            x: "morgan_ongeko"
         }, {
             name: "Evans",
             nick: "Evanso",
             pos: "DF",
             no: 2,
             role: 'vice-captain',
-            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/evansoo.jpeg"
+            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/evansoo.jpeg",
+            ig: "evanso_254",
+            tt: "evanso"
         }, {
             name: "Alex Juma",
             nick: "Alekoo",
@@ -2627,7 +2680,8 @@
             role: 'third',
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/alekoo.jpeg",
             ig: "Alex.Juma16",
-            tt: "its jumah"
+            tt: "its jumah",
+            x: "alexjuma"
         }, {
             name: "Clemoo",
             nick: "",
@@ -2695,7 +2749,9 @@
             pos: "MF",
             no: 8,
             role: 'tactical-coach',
-            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg"
+            photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg",
+            ig: "miguel_fredrick",
+            tt: "miguel_fred"
         }, {
             name: "Manuu",
             nick: "mamu",
@@ -2747,7 +2803,9 @@
             photo: "https://i.imgur.com/sample-df4.jpg",
             whatsapp: "254143374333",
             phone: "+254143374333",
-            email: "injuguna308@gmail.com"
+            email: "injuguna308@gmail.com",
+            ig: "isaac_bazenga",
+            x: "isaac_bazenga"
         }, {
             name: "Ambrose Ngetich",
             nick: "Grandpa",
@@ -2765,7 +2823,8 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg",
             fb: "Outtahjr",
             tt: "Outtahjr",
-            ig: "outtahjr"
+            ig: "outtahjr",
+            x: "outtahjr"
         }, {
             name: "Brian Mishelelei",
             nick: "Champez",
@@ -2775,7 +2834,8 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg",
             tt: "call me sage",
             ig: "call me sage",
-            fb: "sage"
+            fb: "sage",
+            x: "brian_mishe"
         }, {
             name: "Johnson Mwakibua",
             nick: "Mwaki",
@@ -2786,7 +2846,9 @@
             photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
             whatsapp: "254796497417",
             phone: "+254796497417",
-            email: "mwachanjejohnson@gmail.com"
+            email: "mwachanjejohnson@gmail.com",
+            ig: "johnson_mwaki",
+            tt: "johnson_mwaki"
         }];
 
         // ================================================================
@@ -3012,7 +3074,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // --- SQUAD (now uses .player-card with same frame as staff) ---
+        // --- SQUAD — redesigned with name, nickname (bold), role, then bottom icons ---
         const rolePriority = {
             'captain': 1,
             'vice-captain': 2,
@@ -3056,48 +3118,53 @@
             const zoomSrc = p.photo || imgSrc;
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
 
-            // --- clean number badge: just the number, no position label ---
+            // number badge: no frame, just yellow with glow
             const numberBadge = `<span class="player-number">${p.no}</span>`;
 
-            // social icons
-            let soc = '';
-            if (p.ig) soc +=
-                `<a target="_blank" rel="noopener" href="https://instagram.com/${p.ig}" aria-label="Instagram"><svg><use href="#ig-logo"/></svg></a>`;
-            if (p.tt) soc +=
-                `<a target="_blank" rel="noopener" href="https://tiktok.com/@${p.tt}" aria-label="TikTok"><svg><use href="#tt-logo"/></svg></a>`;
-            if (p.fb) soc +=
-                `<a target="_blank" rel="noopener" href="https://facebook.com/${p.fb}" aria-label="Facebook"><svg><use href="#fb-logo"/></svg></a>`;
+            // --- bottom icon row: all icons with handles for social, icon-only for contacts ---
+            let bottomIcons = '';
 
-            // contacts: WhatsApp, phone, email
-            let contactsHtml = '';
-            if (p.whatsapp || p.phone || p.email) {
-                const items = [];
-                if (p.whatsapp) items.push(
-                    `<a href="https://wa.me/${p.whatsapp}" target="_blank" rel="noopener" class="contact-link wa">💬 WhatsApp</a>`
-                    );
-                if (p.phone) items.push(
-                    `<a href="tel:${p.phone}" class="contact-link phone">📱 ${p.phone}</a>`
-                );
-                if (p.email) items.push(
-                    `<a href="mailto:${p.email}" class="contact-link email">✉ ${p.email}</a>`
-                );
-                if (items.length) contactsHtml = `<div class="player-contacts">${items.join('')}</div>`;
+            // Instagram
+            if (p.ig) {
+                bottomIcons +=
+                    `<a href="https://instagram.com/${p.ig}" target="_blank" rel="noopener" class="soc-icon ig"><svg><use href="#ig-logo"/></svg>${p.ig}</a>`;
             }
-
-            const nickDisplay = p.nick ? `<div class="nick">★ ${p.nick}</div>` : '';
-            let statsHtml = '';
-            if (p.pos === 'GK') {
-                if (p.cleanSheets !== undefined) {
-                    statsHtml = `<div class="player-stats"><span>${p.cleanSheets} CLEAN SHEETS</span></div>`;
-                }
-            } else {
-                if (p.goals !== undefined) {
-                    statsHtml = `<div class="player-stats"><span>${p.goals} GOALS</span></div>`;
-                }
+            // TikTok
+            if (p.tt) {
+                bottomIcons +=
+                    `<a href="https://tiktok.com/@${p.tt}" target="_blank" rel="noopener" class="soc-icon tt"><svg><use href="#tt-logo"/></svg>${p.tt}</a>`;
+            }
+            // Facebook
+            if (p.fb) {
+                bottomIcons +=
+                    `<a href="https://facebook.com/${p.fb}" target="_blank" rel="noopener" class="soc-icon fb"><svg><use href="#fb-logo"/></svg>${p.fb}</a>`;
+            }
+            // X (Twitter)
+            if (p.x) {
+                bottomIcons +=
+                    `<a href="https://x.com/${p.x}" target="_blank" rel="noopener" class="soc-icon x"><svg><use href="#x-logo"/></svg>${p.x}</a>`;
+            }
+            // WhatsApp — icon only, no number
+            if (p.whatsapp) {
+                bottomIcons +=
+                    `<a href="https://wa.me/${p.whatsapp}" target="_blank" rel="noopener" class="soc-icon wa icon-only"><svg><use href="#wa-logo"/></svg></a>`;
+            }
+            // Phone — icon only, no number
+            if (p.phone) {
+                bottomIcons +=
+                    `<a href="tel:${p.phone}" class="soc-icon phone icon-only"><svg><use href="#phone-logo"/></svg></a>`;
+            }
+            // Email — icon only, no address
+            if (p.email) {
+                bottomIcons +=
+                    `<a href="mailto:${p.email}" class="soc-icon email icon-only"><svg><use href="#email-logo"/></svg></a>`;
             }
 
             const roleText = getRoleTag(p.role);
             const roleBadge = roleText ? `<span class="player-role ${p.role}">${roleText}</span>` : '';
+            const nickDisplay = p.nick ? `<div class="nick" style="font-weight:700;font-size:.7rem;color:var(--gold);">★ ${p.nick}</div>` :
+                '';
+            const posLabel = POS[p.pos] || '';
 
             return `<article class="player-card reveal" data-pos="${p.pos}">
                         <div class="ph">
@@ -3105,14 +3172,13 @@
                             ${numberBadge}
                         </div>
                         <div class="txt">
-                            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.3rem 0.5rem;margin-bottom:0.1rem;">
-                                <h4>${p.name}</h4>
+                            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:0.2rem 0.5rem;margin-bottom:0.05rem;">
+                                <h4 style="font-size:1.15rem;">${p.name}</h4>
                                 ${roleBadge}
                             </div>
                             ${nickDisplay}
-                            ${statsHtml}
-                            ${contactsHtml}
-                            ${soc ? `<div class="player-soc">${soc}</div>` : ''}
+                            <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--muted);margin-bottom:0.2rem;">${posLabel}</div>
+                            ${bottomIcons ? `<div class="player-bottom">${bottomIcons}</div>` : ''}
                         </div>
                     </article>`;
         }).join('');
@@ -3171,7 +3237,7 @@
         }
         buildStandings();
 
-        // Fixtures modal
+        // Fixtures modal — now triggered from matches section
         const fixturesModal = document.getElementById('fixturesModal');
         const fixtureList = document.getElementById('fixtureList');
         const fixtureCount = document.getElementById('fixtureCount');
@@ -3263,7 +3329,7 @@
 
         $('#newsGrid').innerHTML = featHtml + `<div class="news-stack">${stackHtml}</div>`;
 
-        // Squad filter (updated selector to .player-card)
+        // Squad filter
         document.querySelectorAll('.pill').forEach(p => {
             p.addEventListener('click', () => {
                 document.querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
