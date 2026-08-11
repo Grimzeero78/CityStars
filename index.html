@@ -806,8 +806,6 @@ section { padding: 100px 0; position: relative; }
     gap: 1.4rem;
     margin-top: 2.6rem;
 }
-@media(max-width:520px) { .squad-grid { grid-template-columns: 1fr 1fr; gap: .9rem; } }
-@media(max-width:380px) { .squad-grid { grid-template-columns: 1fr; } }
 
 /* Unified cards */
 .staff-card, .player-card {
@@ -957,9 +955,6 @@ section { padding: 100px 0; position: relative; }
     text-shadow: 0 0 12px var(--gold);
 }
 .player-card:hover .player-number { transform: scale(1.15) translateY(-4px); color: var(--gold); }
-@media(max-width:520px) {
-    .player-number { font-size: 2.2rem; bottom: 10px; right: 12px; }
-}
 
 .player-meta {
     font-family: var(--mono);
@@ -1024,8 +1019,6 @@ section { padding: 100px 0; position: relative; }
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1.4rem;
 }
-@media(max-width:520px) { .staff-grid { grid-template-columns: 1fr 1fr; gap: .9rem; } }
-@media(max-width:380px) { .staff-grid { grid-template-columns: 1fr; } }
 
 .player-soc {
     display: flex;
@@ -1823,6 +1816,41 @@ footer::before {
     .lightbox .lb-caption { font-size: .68rem; padding: .35rem 1rem; }
 }
 
+/* ============ MOBILE FIXES FOR 2-FRAME LAYOUT ============ */
+@media(max-width:560px) {
+    .squad-grid, .staff-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: .8rem !important; 
+    }
+    .player-card .ph, .staff-card .ph {
+        height: 220px !important;
+    }
+    .player-number { font-size: 2rem; bottom: 8px; right: 8px; }
+    .player-card h4, .staff-card h4 { font-size: 1rem; line-height: 1.1; }
+    .player-card .txt, .staff-card .txt {
+        padding: 1rem .8rem;
+    }
+    .player-bottom .soc-icon { 
+        font-size: 0 !important; 
+        padding: .35rem; 
+    }
+    .player-bottom .soc-icon svg { width: 14px; height: 14px; }
+    .player-bottom .soc-icon.icon-only svg { width: 14px; height: 14px; }
+    .player-role { font-size: .45rem; padding: .15rem .4rem; margin-left: 0; }
+    .nick { font-size: .8rem; }
+    .staff-role { font-size: .5rem; }
+    .player-meta { font-size: .5rem; letter-spacing: .1em; margin: .2rem 0 .4rem; }
+    .note { 
+        font-size: .7rem; 
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .player-soc a { width: 28px; height: 28px; }
+    .player-soc a svg { width: 12px; height: 12px; }
+}
+
 @media(prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: .01ms !important;
@@ -2270,21 +2298,22 @@ const NEWS_DATA = [
     { tag: "Club", date: "2026-07-15", title: "Become a Star: Membership Now Open", excerpt: "One fee, no hidden charges — every shilling goes to the team. Join via WhatsApp.", image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/astar.jpeg" }
 ];
 
+// Edit City Stars stats here: P (Played), W (Wins), D (Draws), L (Losses), GF (Goals For), GA (Goals Against), PTS (Points)
 const STANDINGS_DATA = [
-    { pos: 1, team: "Vipers", pts: 0 },
-    { pos: 2, team: "Gusii", pts: 0 },
-    { pos: 3, team: "City Stars", pts: 0, isCity: true },
-    { pos: 4, team: "Hitmen", pts: 0 },
-    { pos: 5, team: "Pocusa", pts: 0 },
-    { pos: 6, team: "Felites", pts: 0 },
-    { pos: 7, team: "Venom", pts: 0 },
-    { pos: 8, team: "Meru Boys", pts: 0 },
-    { pos: 9, team: "Thunder Elites", pts: 0 },
-    { pos: 10, team: "Rerina", pts: 0 },
-    { pos: 11, team: "Young Stars", pts: 0 },
-    { pos: 12, team: "Cuksa", pts: 0 },
-    { pos: 13, team: "Qualifier 1", pts: 0 },
-    { pos: 14, team: "Qualifier 2", pts: 0 }
+    { pos: 1, team: "Vipers" },
+    { pos: 2, team: "Gusii" },
+    { pos: 3, team: "City Stars", isCity: true, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+    { pos: 4, team: "Hitmen" },
+    { pos: 5, team: "Pocusa" },
+    { pos: 6, team: "Felites" },
+    { pos: 7, team: "Venom" },
+    { pos: 8, team: "Meru Boys" },
+    { pos: 9, team: "Thunder Elites" },
+    { pos: 10, team: "Rerina" },
+    { pos: 11, team: "Young Stars" },
+    { pos: 12, team: "Cuksa" },
+    { pos: 13, team: "Qualifier 1" },
+    { pos: 14, team: "Qualifier 2" }
 ];
 
 const RULES_DATA = [
@@ -2526,18 +2555,27 @@ function buildStandings() {
     const rows = STANDINGS_DATA.map(s => {
         const isCity = s.isCity || false;
         const podiumClass = s.pos <= 3 ? `podium podium-${s.pos}` : '';
-        // Empty form pills for now (5 games, all "n" = not played)
-        const formPills = Array(5).fill('<span class="form-pill n"></span>').join('');
+        
+        // If it's City Stars, use the edited values. Otherwise, show em-dash.
+        const p = isCity ? s.p : '—';
+        const w = isCity ? s.w : '—';
+        const d = isCity ? s.d : '—';
+        const l = isCity ? s.l : '—';
+        const gf = isCity ? s.gf : '—';
+        const ga = isCity ? s.ga : '—';
+        const gd = isCity ? (s.gf - s.ga) : '—';
+        const pts = isCity ? s.pts : '—';
+        
         return `<tr class="${podiumClass} ${isCity ? 'highlight' : ''}">
             <td class="pos">${String(s.pos).padStart(2, '0')}</td>
             <td class="team-name">${s.team}</td>
-            <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            <td><span class="pts">${s.pts !== undefined ? s.pts : '—'}</span></td>
+            <td>${p}</td><td>${w}</td><td>${d}</td><td>${l}</td><td>${gf}</td><td>${ga}</td><td>${gd}</td>
+            <td><span class="pts">${pts}</span></td>
         </tr>`;
     }).join('');
     document.getElementById('standingsWrap').innerHTML = `
         <table>
-            <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>PTS</th></tr></thead>
+            <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
             <tbody>${rows}</tbody>
         </table>`;
 }
