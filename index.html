@@ -1223,6 +1223,37 @@
             }
         }
 
+        /* staff social icons — small, original size */
+        .player-soc {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: .5rem;
+        }
+        .player-soc a {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--line-strong);
+            border-radius: 4px;
+            transition: all .25s;
+        }
+        .player-soc a svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--muted);
+            transition: fill .25s;
+        }
+        .player-soc a:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+        }
+        .player-soc a:hover svg {
+            fill: #141414;
+        }
+
         .standings-wrap {
             background: var(--panel2);
             border: 1px solid var(--line);
@@ -1287,7 +1318,7 @@
             }
         }
 
-        /* Fixtures modal — moved from standings to matches */
+        /* Fixtures modal — now triggered from matches section */
         .fixtures-modal {
             display: none;
             position: fixed;
@@ -3183,7 +3214,7 @@
                     </article>`;
         }).join('');
 
-        // --- STAFF (unchanged, uses .staff-card) ---
+        // --- STAFF — EXACTLY AS ORIGINAL, UNTOUCHED ---
         const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
         $('#staffGrid').innerHTML = STAFF_DATA.map(s => {
             const img = s.photo || `https://picsum.photos/seed/${seedOf(s.name)}/400/400`;
