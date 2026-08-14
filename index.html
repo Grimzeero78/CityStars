@@ -104,6 +104,9 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
+/* Native zoom cursor instead of annoying tooltip */
+img[data-zoom] { cursor: zoom-in; }
+
 .wrap { width: min(1280px, 92%); margin: 0 auto; }
 
 h1, h2, h3, h4, .display {
@@ -1140,7 +1143,7 @@ section { padding: 100px 0; position: relative; }
     .standings-wrap .form-pill { width: 12px; height: 12px; font-size: .45rem; }
 }
 
-/* ============ FIXTURES MODAL ============ */
+/* ============ FIXTURES & RESULTS MODAL ============ */
 .fixtures-modal, .rules-modal {
     display: none;
     position: fixed;
@@ -1827,27 +1830,6 @@ footer::before {
     .lightbox .lb-caption { font-size: .68rem; padding: .35rem 1rem; }
 }
 
-/* Zoom Cursor Tooltip */
-#zoomCursor {
-    position: fixed;
-    pointer-events: none;
-    background: rgba(7, 9, 26, 0.9);
-    color: var(--gold);
-    padding: .5rem 1rem;
-    font-family: var(--mono);
-    font-size: .7rem;
-    border-radius: 4px;
-    border: 1px solid var(--gold);
-    z-index: 10000;
-    opacity: 0;
-    transition: opacity .2s;
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
 /* ============ MOBILE FIXES FOR 2-FRAME LAYOUT ============ */
 @media(max-width:560px) {
     .squad-grid, .staff-grid { 
@@ -1901,7 +1883,6 @@ footer::before {
 <body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
-<div id="zoomCursor">🔍 Click to Zoom</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
@@ -1979,6 +1960,14 @@ footer::before {
     </div>
 </div>
 
+<div class="fixtures-modal" id="resultsModal" role="dialog" aria-modal="true" aria-label="City Stars Results Archive">
+    <div class="modal-box">
+        <button class="modal-close" id="resultsModalClose" aria-label="Close results">✕</button>
+        <h2>Matches Played Archive</h2>
+        <div class="fixture-list" id="fullResultsList"></div>
+    </div>
+</div>
+
 <main id="top">
 
     <section class="hero">
@@ -2025,8 +2014,11 @@ footer::before {
                 </div>
                 <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;">
                     <p class="muted" style="font-family:var(--mono);font-size:.66rem;letter-spacing:.22em">CPL · 2026 SEASON</p>
+                    <button class="btn btn-line" id="openResultsBtn" style="padding:.65rem 1.3rem;font-size:.72rem;">
+                        <span>📊 View Played Games</span>
+                    </button>
                     <button class="btn btn-line" id="openFixturesBtn" style="padding:.65rem 1.3rem;font-size:.72rem;">
-                        <span>📋 Click to View All Fixtures</span>
+                        <span>📋 View All Fixtures</span>
                     </button>
                 </div>
             </div>
@@ -2288,6 +2280,8 @@ const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.da
 const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
 const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({ d: f.date, t: f.time.split(' – ')[0], opp: f.opponent, h: true }));
 
+// EDITABLE SECTION: Add all games played and results here
+// d: Date (YYYY-MM-DD), opp: Opponent, h: true if Home/false if Away, us: Our goals, them: Their goals
 const RESULTS_MATCHES = [
     { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
 ];
@@ -2613,6 +2607,7 @@ buildStandings();
 
 // Fixtures modal with auto-cancel past matches
 const fixturesModal = $('#fixturesModal');
+const resultsModal = $('#resultsModal');
 const todayFixtures = new Date();
 todayFixtures.setHours(0, 0, 0, 0);
 
@@ -2639,6 +2634,25 @@ const upcomingFixturesList = CITY_STARS_FIXTURES.filter(f => {
  $('#openFixturesBtn').addEventListener('click', () => { fixturesModal.classList.add('open'); document.body.style.overflow = 'hidden'; });
  $('#fixturesModalClose').addEventListener('click', () => { fixturesModal.classList.remove('open'); document.body.style.overflow = ''; });
 fixturesModal.addEventListener('click', e => { if (e.target === fixturesModal) { fixturesModal.classList.remove('open'); document.body.style.overflow = ''; } });
+
+// Full Results Archive Modal
+const fullResultsList = $('#fullResultsList');
+fullResultsList.innerHTML = RESULTS_MATCHES.length ? RESULTS_MATCHES.map(m => {
+    const d = pd(m.d);
+    const dow = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
+    const dayStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const r = m.us > m.them ? 'W' : m.us < m.them ? 'L' : 'D';
+    const resColor = m.us > m.them ? 'var(--green)' : m.us < m.them ? 'var(--red)' : 'var(--draw)';
+    return `<div class="fixture-item">
+        <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
+        <div class="fgame" style="color:${resColor}; font-weight:700;">${m.h ? 'CITY STARS ' + m.us + ' - ' + m.them + ' ' + m.opp : m.opp + ' ' + m.them + ' - ' + m.us + ' CITY STARS'} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span></div>
+        <div class="ftime">${m.h ? 'Home' : 'Away'}</div>
+    </div>`;
+}).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
+
+ $('#openResultsBtn').addEventListener('click', () => { resultsModal.classList.add('open'); document.body.style.overflow = 'hidden'; });
+ $('#resultsModalClose').addEventListener('click', () => { resultsModal.classList.remove('open'); document.body.style.overflow = ''; });
+resultsModal.addEventListener('click', e => { if (e.target === resultsModal) { resultsModal.classList.remove('open'); document.body.style.overflow = ''; } });
 
 // News
 const [feat, ...restNews] = NEWS_DATA;
@@ -2698,6 +2712,7 @@ rulesModal.addEventListener('click', e => { if (e.target === rulesModal) { rules
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         if (fixturesModal.classList.contains('open')) { fixturesModal.classList.remove('open'); document.body.style.overflow = ''; }
+        if (resultsModal.classList.contains('open')) { resultsModal.classList.remove('open'); document.body.style.overflow = ''; }
         if (rulesModal.classList.contains('open')) { rulesModal.classList.remove('open'); document.body.style.overflow = ''; }
         if (lightbox.classList.contains('open')) closeLightbox();
     }
@@ -2788,22 +2803,6 @@ document.addEventListener('keydown', e => {
 lightboxPrev.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
 lightboxNext.addEventListener('click', e => { e.stopPropagation(); showNext(); });
 
-// Hover Cursor for Zooming Images
-const zoomCursor = document.getElementById('zoomCursor');
-document.querySelectorAll('img[data-zoom]').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('mouseenter', () => zoomCursor.style.opacity = '1');
-    img.addEventListener('mouseleave', () => zoomCursor.style.opacity = '0');
-    img.addEventListener('mousemove', e => {
-        let x = e.clientX + 20;
-        let y = e.clientY + 20;
-        // Keep tooltip on screen
-        if (x + 150 > window.innerWidth) x = e.clientX - 140;
-        zoomCursor.style.left = x + 'px';
-        zoomCursor.style.top = y + 'px';
-    });
-});
-
 // ============ TACTICS BOARD CANVAS ============
 (function tacticsBoard() {
     if (reduced) return;
@@ -2823,38 +2822,58 @@ document.querySelectorAll('img[data-zoom]').forEach(img => {
     let ball = { x: 0, y: 0, tx: 0, ty: 0, speed: 4 };
     let passIndex = 0;
     
-    // Extract 11 names from SQUAD_DATA
-    const playerNames = SQUAD_DATA.slice(0, 11).map(p => p.name.split(' ')[0]);
+    // Extract real players based on positions, prioritizing Outtah as GK
+    function getStartingXI() {
+        const gks = SQUAD_DATA.filter(p => p.pos === 'GK');
+        const dfs = SQUAD_DATA.filter(p => p.pos === 'DF');
+        const mfs = SQUAD_DATA.filter(p => p.pos === 'MF');
+        const fws = SQUAD_DATA.filter(p => p.pos === 'FW');
+        
+        const xi = [];
+        const outtah = gks.find(p => p.name.includes("Outtah"));
+        if (outtah) xi.push(outtah);
+        else if (gks.length > 0) xi.push(gks[0]);
+        
+        for(let i=0; i<4 && i<dfs.length; i++) xi.push(dfs[i]);
+        for(let i=0; i<3 && i<mfs.length; i++) xi.push(mfs[i]);
+        for(let i=0; i<3 && i<fws.length; i++) xi.push(fws[i]);
+        
+        return xi;
+    }
     
     function initTactics() {
+        const startingXI = getStartingXI();
+        const playerNames = startingXI.map(p => p.name.split(' ')[0]);
+        const keeperName = startingXI[0] ? startingXI[0].name.split(' ')[0] : 'Keeper';
+        
         // Team (Yellow) - 11 players - 4-3-3
         team = [
-            { x: w * 0.1, y: h * 0.5, tx: w * 0.1, ty: h * 0.5, name: playerNames[0] }, // GK
-            { x: w * 0.25, y: h * 0.2, tx: w * 0.25, ty: h * 0.2, name: playerNames[1] },
-            { x: w * 0.25, y: h * 0.4, tx: w * 0.25, ty: h * 0.4, name: playerNames[2] },
-            { x: w * 0.25, y: h * 0.6, tx: w * 0.25, ty: h * 0.6, name: playerNames[3] },
-            { x: w * 0.25, y: h * 0.8, tx: w * 0.25, ty: h * 0.8, name: playerNames[4] },
-            { x: w * 0.45, y: h * 0.3, tx: w * 0.45, ty: h * 0.3, name: playerNames[5] },
-            { x: w * 0.45, y: h * 0.5, tx: w * 0.45, ty: h * 0.5, name: playerNames[6] },
-            { x: w * 0.45, y: h * 0.7, tx: w * 0.45, ty: h * 0.7, name: playerNames[7] },
-            { x: w * 0.65, y: h * 0.3, tx: w * 0.65, ty: h * 0.3, name: playerNames[8] },
-            { x: w * 0.65, y: h * 0.5, tx: w * 0.65, ty: h * 0.5, name: playerNames[9] },
-            { x: w * 0.65, y: h * 0.7, tx: w * 0.65, ty: h * 0.7, name: playerNames[10] }
+            { x: w * 0.08, y: h * 0.5, tx: w * 0.08, ty: h * 0.5, name: keeperName, isGK: true },
+            { x: w * 0.22, y: h * 0.2, tx: w * 0.22, ty: h * 0.2, name: playerNames[1] || 'DF' },
+            { x: w * 0.22, y: h * 0.4, tx: w * 0.22, ty: h * 0.4, name: playerNames[2] || 'DF' },
+            { x: w * 0.22, y: h * 0.6, tx: w * 0.22, ty: h * 0.6, name: playerNames[3] || 'DF' },
+            { x: w * 0.22, y: h * 0.8, tx: w * 0.22, ty: h * 0.8, name: playerNames[4] || 'DF' },
+            { x: w * 0.42, y: h * 0.3, tx: w * 0.42, ty: h * 0.3, name: playerNames[5] || 'MF' },
+            { x: w * 0.42, y: h * 0.5, tx: w * 0.42, ty: h * 0.5, name: playerNames[6] || 'MF' },
+            { x: w * 0.42, y: h * 0.7, tx: w * 0.42, ty: h * 0.7, name: playerNames[7] || 'MF' },
+            { x: w * 0.62, y: h * 0.3, tx: w * 0.62, ty: h * 0.3, name: playerNames[8] || 'FW' },
+            { x: w * 0.62, y: h * 0.5, tx: w * 0.62, ty: h * 0.5, name: playerNames[9] || 'FW' },
+            { x: w * 0.62, y: h * 0.7, tx: w * 0.62, ty: h * 0.7, name: playerNames[10] || 'FW' }
         ];
         
         // Opponents (Blue) - 11 players - 4-4-2
         opp = [
-            { x: w * 0.9, y: h * 0.5, tx: w * 0.9, ty: h * 0.5 },
-            { x: w * 0.75, y: h * 0.2, tx: w * 0.75, ty: h * 0.2 },
-            { x: w * 0.75, y: h * 0.4, tx: w * 0.75, ty: h * 0.4 },
-            { x: w * 0.75, y: h * 0.6, tx: w * 0.75, ty: h * 0.6 },
-            { x: w * 0.75, y: h * 0.8, tx: w * 0.75, ty: h * 0.8 },
-            { x: w * 0.55, y: h * 0.25, tx: w * 0.55, ty: h * 0.25 },
-            { x: w * 0.55, y: h * 0.45, tx: w * 0.55, ty: h * 0.45 },
-            { x: w * 0.55, y: h * 0.55, tx: w * 0.55, ty: h * 0.55 },
-            { x: w * 0.55, y: h * 0.75, tx: w * 0.55, ty: h * 0.75 },
-            { x: w * 0.35, y: h * 0.4, tx: w * 0.35, ty: h * 0.4 },
-            { x: w * 0.35, y: h * 0.6, tx: w * 0.35, ty: h * 0.6 }
+            { x: w * 0.92, y: h * 0.5, tx: w * 0.92, ty: h * 0.5 },
+            { x: w * 0.78, y: h * 0.2, tx: w * 0.78, ty: h * 0.2 },
+            { x: w * 0.78, y: h * 0.4, tx: w * 0.78, ty: h * 0.4 },
+            { x: w * 0.78, y: h * 0.6, tx: w * 0.78, ty: h * 0.6 },
+            { x: w * 0.78, y: h * 0.8, tx: w * 0.78, ty: h * 0.8 },
+            { x: w * 0.58, y: h * 0.25, tx: w * 0.58, ty: h * 0.25 },
+            { x: w * 0.58, y: h * 0.45, tx: w * 0.58, ty: h * 0.45 },
+            { x: w * 0.58, y: h * 0.55, tx: w * 0.58, ty: h * 0.55 },
+            { x: w * 0.58, y: h * 0.75, tx: w * 0.58, ty: h * 0.75 },
+            { x: w * 0.38, y: h * 0.4, tx: w * 0.38, ty: h * 0.4 },
+            { x: w * 0.38, y: h * 0.6, tx: w * 0.38, ty: h * 0.6 }
         ];
         
         ball.x = team[0].x;
@@ -2877,6 +2896,27 @@ document.querySelectorAll('img[data-zoom]').forEach(img => {
         ctx.stroke();
         ctx.strokeRect(w * 0.05, h * 0.3, w * 0.1, h * 0.4);
         ctx.strokeRect(w * 0.85, h * 0.3, w * 0.1, h * 0.4);
+        
+        // Goals
+        ctx.strokeStyle = 'rgba(255, 196, 46, 0.4)';
+        ctx.lineWidth = 4;
+        // Left goal
+        ctx.beginPath();
+        ctx.moveTo(w * 0.05, h * 0.4);
+        ctx.lineTo(w * 0.02, h * 0.4);
+        ctx.lineTo(w * 0.02, h * 0.6);
+        ctx.lineTo(w * 0.05, h * 0.6);
+        ctx.stroke();
+        // Right goal
+        ctx.beginPath();
+        ctx.moveTo(w * 0.95, h * 0.4);
+        ctx.lineTo(w * 0.98, h * 0.4);
+        ctx.lineTo(w * 0.98, h * 0.6);
+        ctx.lineTo(w * 0.95, h * 0.6);
+        ctx.stroke();
+        
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(244, 241, 232, 0.06)';
     }
     
     function drawSoccerBall(x, y) {
@@ -2977,13 +3017,13 @@ document.querySelectorAll('img[data-zoom]').forEach(img => {
         team.forEach(p => {
             ctx.beginPath();
             ctx.arc(p.x, p.y, 7, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 196, 46, 0.8)';
+            ctx.fillStyle = p.isGK ? 'rgba(60, 224, 141, 0.9)' : 'rgba(255, 196, 46, 0.8)';
             ctx.fill();
             ctx.strokeStyle = 'rgba(255,255,255,0.4)';
             ctx.stroke();
             
             // Draw name above dot
-            ctx.fillStyle = 'rgba(255, 196, 46, 0.9)';
+            ctx.fillStyle = p.isGK ? 'rgba(60, 224, 141, 1)' : 'rgba(255, 196, 46, 0.9)';
             ctx.font = 'bold 10px Space Mono';
             ctx.textAlign = 'center';
             ctx.fillText(p.name, p.x, p.y - 12);
