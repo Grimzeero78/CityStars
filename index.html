@@ -2283,7 +2283,10 @@ const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({ d: f.date, t: f.
 // EDITABLE SECTION: Add all games played and results here
 // d: Date (YYYY-MM-DD), opp: Opponent, h: true if Home/false if Away, us: Our goals, them: Their goals
 const RESULTS_MATCHES = [
-    { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
+    { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 },
+     { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 },
+     { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 },
+     { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
 ];
 
 // Squad Array ordered: Titles first, then Alphabetically by name
@@ -2435,8 +2438,9 @@ const upcoming = UPCOMING_MATCHES.filter(m => m.us === undefined);
     </div>`;
 }).join('') || `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No upcoming matches scheduled.</p>`;
 
-// Results
-const results = RESULTS_MATCHES.filter(m => m.us !== undefined);
+// Results — Recent Results shows ONLY the 3 most recent games (different from the "View Played Games" modal which shows ALL)
+const allResults = RESULTS_MATCHES.filter(m => m.us !== undefined);
+const results = allResults.slice(-3).reverse(); // last 3 games, most recent first
  $('#resultsList').innerHTML = results.length ? results.map(m => {
     const d = pd(m.d);
     const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
@@ -2550,8 +2554,7 @@ function fallbackAvatar(name, no) {
             <div class="player-meta">${posLabel}</div>
             ${bottomIcons ? `<div class="player-bottom">${bottomIcons}</div>` : ''}
         </div>
-    </article>`;
-}).join('');
+    </article>`;}).join('');
 
 // Staff
 const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
@@ -2572,8 +2575,7 @@ const seedOf = n => 'citystars-' + n.toLowerCase().replace(/[^a-z]+/g, '-');
             <p class="note">${s.note}</p>
             ${soc ? `<div class="player-soc">${soc}</div>` : ''}
         </div>
-    </article>`;
-}).join('');
+    </article>`;}).join('');
 
 // Standings
 function buildStandings() {
@@ -2648,8 +2650,7 @@ fullResultsList.innerHTML = RESULTS_MATCHES.length ? RESULTS_MATCHES.map(m => {
         <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
         <div class="fgame" style="color:${resColor}; font-weight:700;">${m.h ? 'CITY STARS ' + m.us + ' - ' + m.them + ' ' + m.opp : m.opp + ' ' + m.them + ' - ' + m.us + ' CITY STARS'} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span></div>
         <div class="ftime">${m.h ? 'Home' : 'Away'}</div>
-    </div>`;
-}).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
+    </div>`;}).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
 
  $('#openResultsBtn').addEventListener('click', () => { resultsModal.classList.add('open'); document.body.style.overflow = 'hidden'; });
  $('#resultsModalClose').addEventListener('click', () => { resultsModal.classList.remove('open'); document.body.style.overflow = ''; });
@@ -2844,8 +2845,9 @@ lightboxNext.addEventListener('click', e => { e.stopPropagation(); showNext(); }
     
     function initTactics() {
         const startingXI = getStartingXI();
-        const playerNames = startingXI.map(p => p.name.split(' ')[0]);
-        const keeperName = startingXI[0] ? startingXI[0].name.split(' ')[0] : 'Keeper';
+        // Use nicknames (fall back to first name if no nickname)
+        const playerNames = startingXI.map(p => p.nick || p.name.split(' ')[0]);
+        const keeperName = startingXI[0] ? (startingXI[0].nick || startingXI[0].name.split(' ')[0]) : 'Keeper';
         
         // Team (Yellow) - 11 players - 4-3-3
         team = [
