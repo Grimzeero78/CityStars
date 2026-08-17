@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>City Stars Chuka — FC | The Celestial</title>
+    <title>City Stars Chuka FC | The Celestial</title>
     <meta name="description" content="City Stars Chuka FC — Chuka University's football family. The Celestial. Chuka Premier League." />
     <meta name="msvalidate.01" content="4A73E3689B8498CF8E174F7D00C55A15" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2960,7 +2960,7 @@
                             <span>📊 Played Games</span>
                         </button>
                         <button class="btn btn-line btn-sm" id="openFixturesBtn">
-                            <span>📋 All Fixtures</span>
+                            <span>📋 View All Fixtures</span>
                         </button>
                     </div>
                 </div>
@@ -3161,7 +3161,7 @@
 
     <script>
         // ============================================================
-        //  EDITABLE SECTION
+        //  EDITABLE SECTION (change data here)
         // ============================================================
         const WHATSAPP_NUMBER = "254768737643";
         const TIKTOK_URL = "https://www.tiktok.com/@citystarschuka";
@@ -3232,13 +3232,11 @@
         const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({ d: f.date, t: f.time.split(' – ')[0], opp: f
                 .opponent, h: true }));
 
-        // EDITABLE: All games played and results
         const RESULTS_MATCHES = [
             { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
         ];
 
         // Squad: titles first, then alphabetically
-        // FIXED: Removed duplicate whatsapp keys
         const SQUAD_DATA = [
             // Titles
             { name: "Morgan undisputed", nick: "Captain Morgan", pos: "DF", no: 4, role: 'captain',
@@ -3268,7 +3266,6 @@
             { name: "Brian Mishelelei", nick: "Champez", pos: "MF", no: 8, role: 'spokesman', whatsapp: "254768737643",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg", tt: "call me sage",
                 ig: "call me sage", fb: "sage" },
-            // FIXED: Removed duplicate whatsapp key
             { name: "Johnson Mwakibua", nick: "Mwaki", pos: "FW", no: 7, goals: 0, role: 'secretary',
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
                 whatsapp: "254796497417", phone: "+254796497417", email: "mwachanjejohnson@gmail.com",
@@ -3288,7 +3285,6 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hillary.jpeg" },
             { name: "Godfrey Isaiah", nick: "Minnot", pos: "FW", no: 19, goals: 0, whatsapp: "254117979667",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg" },
-            // FIXED: Removed duplicate whatsapp key
             { name: "Okinyi stefen", nick: "Hunter", pos: "GK", no: 13, ig: "stefen 254",
                 fb: "Stefen ke", whatsapp: "254759874092", cleanSheets: 0,
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hunter4.jpeg" }
@@ -3312,7 +3308,6 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg" }
         ];
 
-        // Full news content for modals
         const NEWS_DATA = [{
             tag: "New Kit",
             date: "2026-08-01",
@@ -3343,22 +3338,25 @@
             full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 350, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars."
         }];
 
-        // Standings base data (will be merged with computed City Stars stats)
-        const STANDINGS_BASE = [
-            { pos: 1, team: "Vipers" },
-            { pos: 2, team: "Gusii" },
-            { pos: 3, team: "City Stars", isCity: true },
-            { pos: 4, team: "Hitmen" },
-            { pos: 5, team: "Pocusa" },
-            { pos: 6, team: "Felites" },
-            { pos: 7, team: "Venom" },
-            { pos: 8, team: "Meru Boys" },
-            { pos: 9, team: "Thunder Elites" },
-            { pos: 10, team: "Rerina" },
-            { pos: 11, team: "Young Stars" },
-            { pos: 12, team: "Cuksa" },
-            { pos: 13, team: "Qualifier 1" },
-            { pos: 14, team: "Qualifier 2" }
+        // ─── STANDINGS DATA ───
+        // Edit this array to update the league table.
+        // Each object: { pos, team, p, w, d, l, gf, ga, gd, pts, isCity? }
+        // 'isCity' highlights the City Stars row (set to true for that team).
+        const STANDINGS_DATA = [
+            { pos: 1, team: "Vipers", p: 2, w: 2, d: 0, l: 0, gf: 6, ga: 1, gd: 5, pts: 6 },
+            { pos: 2, team: "Gusii", p: 2, w: 1, d: 1, l: 0, gf: 4, ga: 2, gd: 2, pts: 4 },
+            { pos: 3, team: "City Stars", p: 1, w: 0, d: 0, l: 1, gf: 1, ga: 6, gd: -5, pts: 0, isCity: true },
+            { pos: 4, team: "Hitmen", p: 1, w: 0, d: 1, l: 0, gf: 2, ga: 2, gd: 0, pts: 1 },
+            { pos: 5, team: "Pocusa", p: 1, w: 0, d: 1, l: 0, gf: 1, ga: 1, gd: 0, pts: 1 },
+            { pos: 6, team: "Felites", p: 1, w: 0, d: 0, l: 1, gf: 0, ga: 2, gd: -2, pts: 0 },
+            { pos: 7, team: "Venom", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 8, team: "Meru Boys", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 9, team: "Thunder Elites", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 10, team: "Rerina", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 11, team: "Young Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 12, team: "Cuksa", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 13, team: "Qualifier 1", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+            { pos: 14, team: "Qualifier 2", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 }
         ];
 
         const RULES_DATA = [
@@ -3619,7 +3617,6 @@
         }).join('');
 
         // ─── Staff ───
-        // FIXED: Use fallbackAvatar for staff when no photo provided
         $('#staffGrid').innerHTML = STAFF_DATA.map(s => {
             const img = s.photo || fallbackAvatar(s.name, 'S' + Math.floor(Math.random() * 100));
             let soc = '';
@@ -3646,47 +3643,21 @@
                 </article>`;
         }).join('');
 
-        // ─── Dynamic Standings ───
-        function computeCityStats() {
-            let p = 0,
-                w = 0,
-                d = 0,
-                l = 0,
-                gf = 0,
-                ga = 0;
-            allResults.forEach(m => {
-                p++;
-                gf += m.us;
-                ga += m.them;
-                if (m.us > m.them) w++;
-                else if (m.us < m.them) l++;
-                else d++;
-            });
-            const pts = w * 3 + d;
-            return { p, w, d, l, gf, ga, pts };
-        }
-
-        function buildStandings() {
-            const cityStats = computeCityStats();
-            const rows = STANDINGS_BASE.map(s => {
-                const isCity = s.isCity || false;
+        // ─── Standings from editable data ───
+        function buildStandingsFromData() {
+            const rows = STANDINGS_DATA.map(s => {
                 const podiumClass = s.pos <= 3 ? `podium podium-${s.pos}` : '';
-                const p = isCity ? cityStats.p : '—';
-                const w = isCity ? cityStats.w : '—';
-                const d = isCity ? cityStats.d : '—';
-                const l = isCity ? cityStats.l : '—';
-                const gf = isCity ? cityStats.gf : '—';
-                const ga = isCity ? cityStats.ga : '—';
-                const gd = isCity ? (cityStats.gf - cityStats.ga) : '—';
-                const pts = isCity ? cityStats.pts : '—';
-                return `<tr class="${podiumClass} ${isCity ? 'highlight' : ''}">
+                const cityClass = s.isCity ? 'highlight' : '';
+                return `<tr class="${podiumClass} ${cityClass}">
                         <td class="pos">${String(s.pos).padStart(2, '0')}</td>
                         <td class="team-name">${s.team}</td>
-                        <td>${p}</td><td>${w}</td><td>${d}</td><td>${l}</td><td>${gf}</td><td>${ga}</td><td>${gd}</td>
-                        <td><span class="pts">${pts}</span></td>
+                        <td>${s.p}</td><td>${s.w}</td><td>${s.d}</td><td>${s.l}</td>
+                        <td>${s.gf}</td><td>${s.ga}</td><td>${s.gd}</td>
+                        <td><span class="pts">${s.pts}</span></td>
                     </tr>`;
             }).join('');
-            const hasGames = allResults.length > 0;
+
+            const hasGames = STANDINGS_DATA.some(s => s.p > 0);
             document.getElementById('standingsWrap').innerHTML = hasGames ? `
                     <table>
                         <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
@@ -3694,7 +3665,7 @@
                     </table>` :
                 `<div class="standings-empty">🏆 <strong>Season starts soon!</strong> Standings will appear once matches are played.</div>`;
         }
-        buildStandings();
+        buildStandingsFromData();
 
         // ─── Fixtures modal ───
         const fixturesModal = $('#fixturesModal');
@@ -3759,7 +3730,6 @@
             openModal(newsModal);
         }
 
-        // Render news
         const [feat, ...restNews] = NEWS_DATA;
 
         function renderNewsMedia(item, isFeature) {
@@ -4015,14 +3985,13 @@
                 alert('Please enter your full name.');
                 return;
             }
-            let msg = `Hello City Stars! ⭐ I want to BECOME A STAR (KSH 350).`;
-            msg += `\n\nMy name: ${name}`;
-            if (reg) msg += `\nReg number: ${reg}`;
-            msg += `\n\nPlease register me.`;
+            let msg = `I want to join. My name: ${name}`;
+            if (reg) msg += `, Reg: ${reg}`;
+            msg += ` ⭐`;
             window.open(wa(msg), '_blank');
         });
 
-        // ─── Tactics Board Canvas ───
+        // ─── Tactics Board Canvas with realistic ball (smaller) ───
         (function tacticsBoard() {
             if (reduced) return;
             const canvas = document.getElementById('tacticsBoard');
@@ -4034,7 +4003,6 @@
                 const hero = document.querySelector('.hero');
                 w = canvas.width = hero.offsetWidth;
                 h = canvas.height = hero.offsetHeight;
-                // Clamp minimum size to avoid extreme distortion on mobile
                 if (w < 320) w = 320;
                 if (h < 200) h = 200;
             }
@@ -4062,7 +4030,6 @@
                 const startingXI = getStartingXI();
                 const playerNames = startingXI.map(p => p.nick || p.name.split(' ')[0]);
                 const keeperName = startingXI[0] ? (startingXI[0].nick || startingXI[0].name.split(' ')[0]) : 'Keeper';
-                // Use relative positions that adapt to canvas size
                 team = [
                     { x: w * 0.10, y: h * 0.50, tx: w * 0.10, ty: h * 0.50, name: keeperName, isGK: true },
                     { x: w * 0.22, y: h * 0.20, tx: w * 0.22, ty: h * 0.20, name: playerNames[1] || 'DF' },
@@ -4114,7 +4081,6 @@
                     boxH = h * 0.35;
                 ctx.strokeRect(pad, h * 0.5 - boxH / 2, boxW, boxH);
                 ctx.strokeRect(w - pad - boxW, h * 0.5 - boxH / 2, boxW, boxH);
-                // Goals
                 ctx.strokeStyle = 'rgba(255, 196, 46, 0.4)';
                 ctx.lineWidth = Math.max(3, w * 0.004);
                 const goalW = w * 0.025;
@@ -4135,28 +4101,96 @@
                 ctx.strokeStyle = 'rgba(244, 241, 232, 0.06)';
             }
 
+            // ─── REALISTIC SOCCER BALL (smaller) ───
             function drawSoccerBall(x, y) {
-                const r = Math.max(4, Math.min(8, w * 0.012));
+                const r = Math.max(4, Math.min(8, w * 0.012)); // smaller radius
                 ctx.save();
                 ctx.translate(x, y);
+
+                // Glow
+                const grad = ctx.createRadialGradient(0, 0, r * 0.2, 0, 0, r * 2.2);
+                grad.addColorStop(0, 'rgba(255,255,255,0.06)');
+                grad.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(0, 0, r * 2.2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Shadow
+                ctx.shadowColor = 'rgba(0,0,0,0.4)';
+                ctx.shadowBlur = r * 1.2;
+                ctx.shadowOffsetX = r * 0.2;
+                ctx.shadowOffsetY = r * 0.3;
+
+                // Main body
+                const bodyGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.3, r * 0.1, 0, 0, r);
+                bodyGrad.addColorStop(0, '#f0f0f0');
+                bodyGrad.addColorStop(0.6, '#e8e8e8');
+                bodyGrad.addColorStop(1, '#c8c8c8');
                 ctx.beginPath();
                 ctx.arc(0, 0, r, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
+                ctx.fillStyle = bodyGrad;
                 ctx.fill();
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 0.8;
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+
+                // Outline
+                ctx.strokeStyle = 'rgba(80,80,80,0.3)';
+                ctx.lineWidth = 0.6;
                 ctx.stroke();
+
+                // Pentagon panels
+                const panels = [
+                    { angle: -Math.PI / 2, scale: 1 },
+                    { angle: -Math.PI / 2 + 2 * Math.PI / 5, scale: 0.92 },
+                    { angle: -Math.PI / 2 + 4 * Math.PI / 5, scale: 0.92 },
+                    { angle: -Math.PI / 2 + 6 * Math.PI / 5, scale: 0.92 },
+                    { angle: -Math.PI / 2 + 8 * Math.PI / 5, scale: 0.92 }
+                ];
+                panels.forEach((p) => {
+                    const cx = Math.cos(p.angle) * r * 0.42;
+                    const cy = Math.sin(p.angle) * r * 0.42;
+                    const s = r * 0.28 * p.scale;
+                    ctx.beginPath();
+                    for (let j = 0; j < 5; j++) {
+                        const a = (j / 5) * Math.PI * 2 - Math.PI / 2;
+                        const px = cx + Math.cos(a) * s;
+                        const py = cy + Math.sin(a) * s;
+                        if (j === 0) ctx.moveTo(px, py);
+                        else ctx.lineTo(px, py);
+                    }
+                    ctx.closePath();
+                    ctx.fillStyle = '#1a1a1a';
+                    ctx.fill();
+                    ctx.strokeStyle = 'rgba(60,60,60,0.3)';
+                    ctx.lineWidth = 0.3;
+                    ctx.stroke();
+                });
+
+                // Highlight
+                const hl = ctx.createRadialGradient(-r * 0.3, -r * 0.4, r * 0.05, -r * 0.2, -r * 0.2, r * 0.6);
+                hl.addColorStop(0, 'rgba(255,255,255,0.5)');
+                hl.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = hl;
                 ctx.beginPath();
-                for (let i = 0; i < 5; i++) {
-                    const angle = (Math.PI * 2 / 5) * i - Math.PI / 2;
-                    const px = Math.cos(angle) * (r * 0.4);
-                    const py = Math.sin(angle) * (r * 0.4);
-                    if (i === 0) ctx.moveTo(px, py);
+                ctx.arc(0, 0, r, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Center pentagon
+                ctx.beginPath();
+                for (let j = 0; j < 5; j++) {
+                    const a = (j / 5) * Math.PI * 2 - Math.PI / 2;
+                    const px = Math.cos(a) * r * 0.15;
+                    const py = Math.sin(a) * r * 0.15;
+                    if (j === 0) ctx.moveTo(px, py);
                     else ctx.lineTo(px, py);
                 }
                 ctx.closePath();
-                ctx.fillStyle = '#000';
+                ctx.fillStyle = 'rgba(26,26,26,0.5)';
                 ctx.fill();
+
                 ctx.restore();
             }
 
@@ -4249,7 +4283,6 @@
                 initTactics();
                 draw();
             });
-            // Also re-init on orientation change
             window.addEventListener('orientationchange', () => {
                 setTimeout(() => {
                     cancelAnimationFrame(raf);
