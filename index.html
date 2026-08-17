@@ -2916,11 +2916,17 @@
             <canvas id="tacticsBoard"></canvas>
             <div class="wrap hero-grid">
                 <div>
+                    <!-- ============================================================
+                    HYPE KICKER — Edit this text in HERO_CONFIG.kicker
+                    ============================================================ -->
                     <p class="kicker" id="heroKicker">Chuka Premier League</p>
                     <h1>
                         <span class="line"><span data-text="CITY">CITY</span></span>
                         <span class="line"><span class="gold" data-text="STARS">STARS</span></span>
                     </h1>
+                    <!-- ============================================================
+                    HYPE CELESTIAL TAGLINE — Edit this text directly in the HTML
+                    ============================================================ -->
                     <p class="hero-celestial">"The Celestial"</p>
                     <p class="hero-sub" id="heroSub">
                         Welcome to the official website of <strong>City Stars Chuka FC</strong>. We are a family of passionate university students who balance books and boots. We are More than a team, a brotherhood that pushes each other to win on the pitch and in life.
@@ -3175,8 +3181,11 @@
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
 
+        // ============================================================
+        //  HYPE CONFIG — Edit the kicker text below
+        // ============================================================
         const HERO_CONFIG = {
-            kicker: "Chuka Premier League",
+            kicker: "Chuka Premier League", // ← EDIT THIS to change the kicker text
             chips: [
                 { label: "NICKNAME", value: "THE CELESTIAL" },
                 { label: "HOME", value: "CLICK TO VISIT CHUKA UNI", link: "https://www.chuka.ac.ke/" },
@@ -3236,7 +3245,12 @@
             { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
         ];
 
-        // Squad: titles first, then alphabetically
+        // ============================================================
+        //  SQUAD DATA — Examples for editing stats:
+        //  - Midfielder: Alex Juma (assists: 0)
+        //  - Striker: Johnson Mwakibua (goals: 0)
+        //  - Keeper: Outtah Tychicus (cleanSheets: 0)
+        // ============================================================
         const SQUAD_DATA = [
             // Titles
             { name: "Morgan undisputed", nick: "Captain Morgan", pos: "DF", no: 4, role: 'captain',
@@ -3244,33 +3258,36 @@
                 tt: "undisputed", ig: "undisputed", fb: "morgan ongeko" },
             { name: "Evans", nick: "Evanso", pos: "DF", no: 2, role: 'vice-captain',
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/evansoo.jpeg" },
-            { name: "Alex Juma", nick: "Alekoo", pos: "MF", no: 5, role: 'third',
+            { name: "Alex Juma", nick: "Alekoo", pos: "MF", no: 5, role: 'third', assists: 0, // <--- EDIT ASSISTS HERE (EXAMPLE)
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/alekoo.jpeg", ig: "Alex.Juma16",
                 tt: "its jumah" },
-            { name: "Wickliff Murimi", nick: "Wikii", pos: "DF", no: 5, goals: 0, role: 'treasurer',
+            { name: "Wickliff Murimi", nick: "Wikii", pos: "DF", no: 5, role: 'treasurer',
                 whatsapp: "254790111467",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/wikii.jpeg", ig: "recks347",
                 tt: "@reks795" },
             { name: "Alex Waweru", nick: "topkheed", pos: "DF", no: 3, role: 'treasurer', whatsapp: "254797985875",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg", ig: "t.o.p.k.e.e.d",
                 tt: "t.o.p.k.e.e.d" },
-            { name: "Isaac", nick: "Bazenga", pos: "MF", no: 78, role: 'discipline', photo: "",
+            { name: "Isaac", nick: "Bazenga", pos: "MF", no: 78, role: 'discipline', assists: 0, photo: "",
                 whatsapp: "254143374333", phone: "+254143374333", email: "injuguna308@gmail.com" },
             { name: "Ambrose Ngetich", nick: "Grandpa", pos: "DF", no: 66, role: 'discipline', whatsapp: "254769271686",
                 tt: "Dakareems", ig: "Dr Goodluck",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kipyegon.jpeg" },
-            { name: "Outtah Tychicus", nick: "Outtah", pos: "GK", no: 24, cleanSheets: 0, role: 'gkcoach',
+            { name: "Outtah Tychicus", nick: "Outtah", pos: "GK", no: 24, cleanSheets: 0, // <--- EDIT CLEAN SHEETS HERE (EXAMPLE)
+                role: 'gkcoach',
                 whatsapp: "254114498094",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg", fb: "Outtahjr",
                 tt: "Outtahjr", ig: "outtahjr" },
-            { name: "Brian Mishelelei", nick: "Champez", pos: "MF", no: 8, role: 'spokesman', whatsapp: "254768737643",
+            { name: "Brian Mishelelei", nick: "Champez", pos: "MF", no: 8, role: 'spokesman', assists: 0,
+                whatsapp: "254768737643",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg", tt: "call me sage",
                 ig: "call me sage", fb: "sage" },
-            { name: "Johnson Mwakibua", nick: "Mwaki", pos: "FW", no: 7, goals: 0, role: 'secretary',
+            { name: "Johnson Mwakibua", nick: "Mwaki", pos: "FW", no: 7, goals: 0, // <--- EDIT GOALS HERE (EXAMPLE)
+                role: 'secretary',
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
                 whatsapp: "254796497417", phone: "+254796497417", email: "mwachanjejohnson@gmail.com",
                 ig: "johnson_mwaki", tt: "johnson_mwaki" },
-            { name: "Miguel Fredrick", nick: "Freddie", pos: "MF", no: 8, role: 'tactical-coach',
+            { name: "Miguel Fredrick", nick: "Freddie", pos: "MF", no: 8, role: 'tactical-coach', assists: 0,
                 whatsapp: "254710467944",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg" },
             // Alphabetical
@@ -3278,15 +3295,15 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/clemoo.jpeg" },
             { name: "David Munyao", nick: "Finest", pos: "DF", no: 2, ig: "AT_F.I.N.E.S.T_", whatsapp: "254110001330",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/davii1.jpeg" },
-            { name: "Emmanuel Muku", nick: "Manuu", pos: "MF", no: 10, ig: "_major_mk", whatsapp: "254796170120",
+            { name: "Emmanuel Muku", nick: "Manuu", pos: "MF", no: 10, assists: 0, ig: "_major_mk", whatsapp: "254796170120",
                 fb: "Manu mk", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/manuu.jpeg" },
-            { name: "Hillary Lemuya", nick: "Malebo", pos: "FW", no: 9, tt: ";Lemuya ", ig: "Lemuya",
-                fb: "Hillary Lemuya", goals: 0,
+            { name: "Hillary Lemuya", nick: "Malebo", pos: "FW", no: 9, goals: 0, tt: ";Lemuya ", ig: "Lemuya",
+                fb: "Hillary Lemuya",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hillary.jpeg" },
             { name: "Godfrey Isaiah", nick: "Minnot", pos: "FW", no: 19, goals: 0, whatsapp: "254117979667",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg" },
-            { name: "Okinyi stefen", nick: "Hunter", pos: "GK", no: 13, ig: "stefen 254",
-                fb: "Stefen ke", whatsapp: "254759874092", cleanSheets: 0,
+            { name: "Okinyi stefen", nick: "Hunter", pos: "GK", no: 13, cleanSheets: 0, ig: "stefen 254",
+                fb: "Stefen ke", whatsapp: "254759874092",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hunter4.jpeg" }
         ];
 
@@ -3338,25 +3355,27 @@
             full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 350, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars."
         }];
 
-        // ─── STANDINGS DATA ───
-        // Edit this array to update the league table.
-        // Each object: { pos, team, p, w, d, l, gf, ga, gd, pts, isCity? }
-        // 'isCity' highlights the City Stars row (set to true for that team).
+        // ============================================================
+        //  STANDINGS — City Stars is fully editable; others show dashes.
+        //  League hasn't started, so City Stars stats are set to 0.
+        // ============================================================
         const STANDINGS_DATA = [
-            { pos: 1, team: "Vipers", p: 2, w: 2, d: 0, l: 0, gf: 6, ga: 1, gd: 5, pts: 6 },
-            { pos: 2, team: "Gusii", p: 2, w: 1, d: 1, l: 0, gf: 4, ga: 2, gd: 2, pts: 4 },
-            { pos: 3, team: "City Stars", p: 1, w: 0, d: 0, l: 1, gf: 1, ga: 6, gd: -5, pts: 0, isCity: true },
-            { pos: 4, team: "Hitmen", p: 1, w: 0, d: 1, l: 0, gf: 2, ga: 2, gd: 0, pts: 1 },
-            { pos: 5, team: "Pocusa", p: 1, w: 0, d: 1, l: 0, gf: 1, ga: 1, gd: 0, pts: 1 },
-            { pos: 6, team: "Felites", p: 1, w: 0, d: 0, l: 1, gf: 0, ga: 2, gd: -2, pts: 0 },
-            { pos: 7, team: "Venom", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 8, team: "Meru Boys", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 9, team: "Thunder Elites", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 10, team: "Rerina", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 11, team: "Young Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 12, team: "Cuksa", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 13, team: "Qualifier 1", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-            { pos: 14, team: "Qualifier 2", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 }
+            // Non-City Stars: only pos, team, pts matter; stats show dashes.
+            { pos: 1, team: "Vipers", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 2, team: "Gusii", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            // ⬇️ CITY STARS — EDIT THESE STATS (p, w, d, l, gf, ga, gd, pts)
+            { pos: 3, team: "City Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, isCity: true },
+            { pos: 4, team: "Hitmen", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 5, team: "Pocusa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 6, team: "Felites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 7, team: "Venom", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 8, team: "Meru Boys", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 9, team: "Thunder Elites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 10, team: "Rerina", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 11, team: "Young Stars", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 12, team: "Cuksa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 13, team: "Qualifier 1", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 14, team: "Qualifier 2", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 }
         ];
 
         const RULES_DATA = [
@@ -3593,11 +3612,16 @@
             const roleBadge = roleText ? `<span class="player-role ${p.role}">${roleText}</span>` : '';
             const nickDisplay = p.nick ? `<div class="nick">★ ${p.nick}</div>` : '';
             const posLabel = POS[p.pos] || '';
-            const stats = [];
-            if (p.goals !== undefined && p.goals !== null) stats.push(`⚽ <b>${p.goals}</b> goals`);
-            if (p.cleanSheets !== undefined && p.cleanSheets !== null) stats.push(`🧤 <b>${p.cleanSheets}</b> CS`);
-            const statsHTML = stats.length ? `<div class="player-stats">${stats.map(s => `<span>${s}</span>`).join('')}</div>` :
-                '';
+            // Stats: show only relevant stat based on position
+            let statText = '';
+            if (p.pos === 'FW' && p.goals !== undefined && p.goals !== null) {
+                statText = `Goals: ${p.goals}`;
+            } else if (p.pos === 'MF' && p.assists !== undefined && p.assists !== null) {
+                statText = `Assists: ${p.assists}`;
+            } else if (p.pos === 'GK' && p.cleanSheets !== undefined && p.cleanSheets !== null) {
+                statText = `Clean Sheets: ${p.cleanSheets}`;
+            }
+            const statsHTML = statText ? `<div class="player-stats"><span><b>${statText}</b></span></div>` : '';
 
             return `<article class="player-card reveal" data-pos="${p.pos}">
                     <div class="ph">
@@ -3648,16 +3672,26 @@
             const rows = STANDINGS_DATA.map(s => {
                 const podiumClass = s.pos <= 3 ? `podium podium-${s.pos}` : '';
                 const cityClass = s.isCity ? 'highlight' : '';
+                const isCity = s.isCity === true;
+                const pVal = isCity ? s.p : '–';
+                const wVal = isCity ? s.w : '–';
+                const dVal = isCity ? s.d : '–';
+                const lVal = isCity ? s.l : '–';
+                const gfVal = isCity ? s.gf : '–';
+                const gaVal = isCity ? s.ga : '–';
+                const gdVal = isCity ? s.gd : '–';
+                const ptsVal = s.pts;
+
                 return `<tr class="${podiumClass} ${cityClass}">
                         <td class="pos">${String(s.pos).padStart(2, '0')}</td>
                         <td class="team-name">${s.team}</td>
-                        <td>${s.p}</td><td>${s.w}</td><td>${s.d}</td><td>${s.l}</td>
-                        <td>${s.gf}</td><td>${s.ga}</td><td>${s.gd}</td>
-                        <td><span class="pts">${s.pts}</span></td>
+                        <td>${pVal}</td><td>${wVal}</td><td>${dVal}</td><td>${lVal}</td>
+                        <td>${gfVal}</td><td>${gaVal}</td><td>${gdVal}</td>
+                        <td><span class="pts">${ptsVal}</span></td>
                     </tr>`;
             }).join('');
 
-            const hasGames = STANDINGS_DATA.some(s => s.p > 0);
+            const hasGames = STANDINGS_DATA.some(s => s.isCity === true || (typeof s.p === 'number' && s.p > 0));
             document.getElementById('standingsWrap').innerHTML = hasGames ? `
                     <table>
                         <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
@@ -3991,7 +4025,7 @@
             window.open(wa(msg), '_blank');
         });
 
-        // ─── Tactics Board Canvas with realistic ball (smaller) ───
+        // ─── Tactics Board with REALISTIC (smaller) SOCCER BALL ───
         (function tacticsBoard() {
             if (reduced) return;
             const canvas = document.getElementById('tacticsBoard');
@@ -4101,17 +4135,18 @@
                 ctx.strokeStyle = 'rgba(244, 241, 232, 0.06)';
             }
 
-            // ─── REALISTIC SOCCER BALL (smaller) ───
+            // ─── REALISTIC SOCCER BALL (smaller than dots, pentagons touch edges) ───
             function drawSoccerBall(x, y) {
-                const r = Math.max(4, Math.min(8, w * 0.012)); // smaller radius
+                // Ball radius: strictly smaller than player dots (dotR = max(5, min(8, w*0.014)))
+                const r = Math.max(3, Math.min(7, w * 0.012));
                 ctx.save();
                 ctx.translate(x, y);
 
                 // Glow
-                const grad = ctx.createRadialGradient(0, 0, r * 0.2, 0, 0, r * 2.2);
-                grad.addColorStop(0, 'rgba(255,255,255,0.06)');
-                grad.addColorStop(1, 'rgba(255,255,255,0)');
-                ctx.fillStyle = grad;
+                const glow = ctx.createRadialGradient(0, 0, r * 0.1, 0, 0, r * 2.2);
+                glow.addColorStop(0, 'rgba(255,255,255,0.08)');
+                glow.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = glow;
                 ctx.beginPath();
                 ctx.arc(0, 0, r * 2.2, 0, Math.PI * 2);
                 ctx.fill();
@@ -4124,8 +4159,8 @@
 
                 // Main body
                 const bodyGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.3, r * 0.1, 0, 0, r);
-                bodyGrad.addColorStop(0, '#f0f0f0');
-                bodyGrad.addColorStop(0.6, '#e8e8e8');
+                bodyGrad.addColorStop(0, '#f8f8f8');
+                bodyGrad.addColorStop(0.5, '#e8e8e8');
                 bodyGrad.addColorStop(1, '#c8c8c8');
                 ctx.beginPath();
                 ctx.arc(0, 0, r, 0, Math.PI * 2);
@@ -4138,57 +4173,58 @@
 
                 // Outline
                 ctx.strokeStyle = 'rgba(80,80,80,0.3)';
-                ctx.lineWidth = 0.6;
+                ctx.lineWidth = 0.5;
                 ctx.stroke();
 
-                // Pentagon panels
-                const panels = [
-                    { angle: -Math.PI / 2, scale: 1 },
-                    { angle: -Math.PI / 2 + 2 * Math.PI / 5, scale: 0.92 },
-                    { angle: -Math.PI / 2 + 4 * Math.PI / 5, scale: 0.92 },
-                    { angle: -Math.PI / 2 + 6 * Math.PI / 5, scale: 0.92 },
-                    { angle: -Math.PI / 2 + 8 * Math.PI / 5, scale: 0.92 }
-                ];
-                panels.forEach((p) => {
-                    const cx = Math.cos(p.angle) * r * 0.42;
-                    const cy = Math.sin(p.angle) * r * 0.42;
-                    const s = r * 0.28 * p.scale;
+                // Pentagons — positioned to touch the edge of the circle
+                const angles = [0, 72, 144, 216, 288].map(deg => deg * Math.PI / 180);
+                const panelDist = r * 0.7; // distance from center
+                const panelSize = r * 0.32; // size of each pentagon
+                angles.forEach((angle) => {
+                    const cx = Math.cos(angle) * panelDist;
+                    const cy = Math.sin(angle) * panelDist;
+                    ctx.save();
+                    ctx.translate(cx, cy);
+                    ctx.rotate(angle);
                     ctx.beginPath();
                     for (let j = 0; j < 5; j++) {
                         const a = (j / 5) * Math.PI * 2 - Math.PI / 2;
-                        const px = cx + Math.cos(a) * s;
-                        const py = cy + Math.sin(a) * s;
+                        const px = Math.cos(a) * panelSize;
+                        const py = Math.sin(a) * panelSize;
                         if (j === 0) ctx.moveTo(px, py);
                         else ctx.lineTo(px, py);
                     }
                     ctx.closePath();
                     ctx.fillStyle = '#1a1a1a';
                     ctx.fill();
-                    ctx.strokeStyle = 'rgba(60,60,60,0.3)';
-                    ctx.lineWidth = 0.3;
+                    ctx.strokeStyle = 'rgba(60,60,60,0.4)';
+                    ctx.lineWidth = 0.5;
                     ctx.stroke();
+                    ctx.restore();
                 });
 
-                // Highlight
-                const hl = ctx.createRadialGradient(-r * 0.3, -r * 0.4, r * 0.05, -r * 0.2, -r * 0.2, r * 0.6);
-                hl.addColorStop(0, 'rgba(255,255,255,0.5)');
-                hl.addColorStop(1, 'rgba(255,255,255,0)');
-                ctx.fillStyle = hl;
-                ctx.beginPath();
-                ctx.arc(0, 0, r, 0, Math.PI * 2);
-                ctx.fill();
-
                 // Center pentagon
+                ctx.save();
                 ctx.beginPath();
                 for (let j = 0; j < 5; j++) {
                     const a = (j / 5) * Math.PI * 2 - Math.PI / 2;
-                    const px = Math.cos(a) * r * 0.15;
-                    const py = Math.sin(a) * r * 0.15;
+                    const px = Math.cos(a) * r * 0.18;
+                    const py = Math.sin(a) * r * 0.18;
                     if (j === 0) ctx.moveTo(px, py);
                     else ctx.lineTo(px, py);
                 }
                 ctx.closePath();
-                ctx.fillStyle = 'rgba(26,26,26,0.5)';
+                ctx.fillStyle = 'rgba(26,26,26,0.6)';
+                ctx.fill();
+                ctx.restore();
+
+                // Highlight
+                const hl = ctx.createRadialGradient(-r * 0.3, -r * 0.4, r * 0.05, -r * 0.2, -r * 0.2, r * 0.6);
+                hl.addColorStop(0, 'rgba(255,255,255,0.6)');
+                hl.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = hl;
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, Math.PI * 2);
                 ctx.fill();
 
                 ctx.restore();
