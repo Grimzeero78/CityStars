@@ -1282,7 +1282,8 @@
             color: var(--ink);
             box-shadow: 0 0 14px var(--gold-glow);
         }
-        .player-role.vice {
+        /* FIX: Vice-Captain badge now styled correctly */
+        .player-role.vice-captain {
             background: #a0aec0;
             color: var(--ink);
         }
@@ -3202,44 +3203,52 @@
                 class: "f3" }
         ];
 
+        // ─── FIXTURES now include a 'home' flag for home/away ───
         const CITY_STARS_FIXTURES = [
-            { date: "2026-09-17", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "First Leg" },
-            { date: "2026-09-19", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg" },
-            { date: "2026-09-24", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg" },
-            { date: "2026-09-26", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg" },
-            { date: "2026-10-01", time: "12:00pm – 1:30pm", opponent: "Hitmen", leg: "First Leg" },
-            { date: "2026-10-03", time: "8:00am – 9:30am", opponent: "Gusii", leg: "First Leg" },
-            { date: "2026-10-04", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "First Leg" },
-            { date: "2026-10-08", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg" },
-            { date: "2026-10-10", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg" },
-            { date: "2026-10-11", time: "12:00pm – 1:30pm", opponent: "Venom", leg: "First Leg" },
-            { date: "2026-10-16", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "First Leg" },
-            { date: "2026-10-17", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "First Leg" },
-            { date: "2026-10-21", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "First Leg" },
-            { date: "2026-10-29", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "Second Leg" },
-            { date: "2026-10-31", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "Second Leg" },
-            { date: "2026-11-05", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "Second Leg" },
-            { date: "2026-11-07", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "Second Leg" },
-            { date: "2026-11-12", time: "12:00pm – 1:30pm", opponent: "Hitmen", leg: "Second Leg" },
-            { date: "2026-11-14", time: "8:00am – 9:30am", opponent: "Gusii", leg: "Second Leg" },
-            { date: "2026-11-15", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "Second Leg" },
-            { date: "2026-11-19", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "Second Leg" },
-            { date: "2026-11-21", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "Second Leg" },
-            { date: "2026-11-22", time: "12:00pm – 1:30pm", opponent: "Venom", leg: "Second Leg" },
-            { date: "2026-11-27", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "Second Leg" },
-            { date: "2026-11-28", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "Second Leg" },
-            { date: "2026-12-03", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "Second Leg" },
-            { date: "2026-10-23", time: "8:00am – 6:00pm", opponent: "Knockouts", leg: "CPL Cup" },
-            { date: "2026-10-24", time: "8:00am – 6:00pm", opponent: "Round of 16", leg: "CPL Cup" },
-            { date: "2026-10-25", time: "8:00am – 6:00pm", opponent: "QF / SF", leg: "CPL Cup" },
+            // Set h: true for home games, false for away games.
+            // Edit these values as needed for each fixture.
+            { date: "2026-09-17", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "First Leg", h: true },
+            { date: "2026-09-19", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg", h: true },
+            { date: "2026-09-24", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
+            { date: "2026-09-26", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
+            { date: "2026-10-01", time: "12:00pm – 1:30pm", opponent: "Hitmen", leg: "First Leg", h: true },
+            { date: "2026-10-03", time: "8:00am – 9:30am", opponent: "Gusii", leg: "First Leg", h: true },
+            { date: "2026-10-04", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "First Leg", h: true },
+            { date: "2026-10-08", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg", h: true },
+            { date: "2026-10-10", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg", h: true },
+            { date: "2026-10-11", time: "12:00pm – 1:30pm", opponent: "Venom", leg: "First Leg", h: true },
+            { date: "2026-10-16", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "First Leg", h: true },
+            { date: "2026-10-17", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "First Leg", h: true },
+            { date: "2026-10-21", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "First Leg", h: true },
+            { date: "2026-10-29", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "Second Leg", h: true },
+            { date: "2026-10-31", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "Second Leg", h: true },
+            { date: "2026-11-05", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "Second Leg", h: true },
+            { date: "2026-11-07", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "Second Leg", h: true },
+            { date: "2026-11-12", time: "12:00pm – 1:30pm", opponent: "Hitmen", leg: "Second Leg", h: true },
+            { date: "2026-11-14", time: "8:00am – 9:30am", opponent: "Gusii", leg: "Second Leg", h: true },
+            { date: "2026-11-15", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "Second Leg", h: true },
+            { date: "2026-11-19", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "Second Leg", h: true },
+            { date: "2026-11-21", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "Second Leg", h: true },
+            { date: "2026-11-22", time: "12:00pm – 1:30pm", opponent: "Venom", leg: "Second Leg", h: true },
+            { date: "2026-11-27", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "Second Leg", h: true },
+            { date: "2026-11-28", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "Second Leg", h: true },
+            { date: "2026-12-03", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "Second Leg", h: true },
+            { date: "2026-10-23", time: "8:00am – 6:00pm", opponent: "Knockouts", leg: "CPL Cup", h: true },
+            { date: "2026-10-24", time: "8:00am – 6:00pm", opponent: "Round of 16", leg: "CPL Cup", h: true },
+            { date: "2026-10-25", time: "8:00am – 6:00pm", opponent: "QF / SF", leg: "CPL Cup", h: true },
         ];
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.date + 'T00:00:00') }));
         const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
-        const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({ d: f.date, t: f.time.split(' – ')[0], opp: f
-                .opponent, h: true }));
+        // ─── NOW using the 'h' flag from each fixture ───
+        const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({
+            d: f.date,
+            t: f.time.split(' – ')[0],
+            opp: f.opponent,
+            h: f.h // read the home/away flag from the fixture data
+        }));
 
         const RESULTS_MATCHES = [
             { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
