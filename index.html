@@ -176,7 +176,7 @@
                             <span>📊 Played Games</span>
                         </button>
                         <button class="btn btn-line btn-sm" id="openFixturesBtn">
-                            <span>📋Click to View All Fixtures</span>
+                            <span>📋 Click to View All Fixtures</span>
                         </button>
                     </div>
                 </div>
@@ -377,10 +377,8 @@
 
     <script>
         // ============================================================
-        //  EDITABLE SECTION
-        //  - Players & Staff: multi‑line for easy editing
-        //  - Standings: compact (reverted to original style)
-        //  - Staff notes: short summaries for mobile readability
+        //  UPDATED FIXTURES – LEAGUE B FIRST LEG (2026-09-10 to 2026-10-14)
+        //  All 13 City Stars matches from the official draft.
         // ============================================================
 
         const WHATSAPP_NUMBER = "254768737643";
@@ -390,7 +388,7 @@
         const TICKER_MESSAGES = [
             "★ WELCOME TO CITY STARS CHUKA THE CELESTIAL",
             "★ BEGUN FEBRUARY 2022 · CHUKA UNIVERSITY",
-            "★ NEXT: CITY STARS v CUKSA",
+            "★ NEXT: CITY STARS v CUKSA (10 SEP)",
             "★ BECOME A STAR FOR KSH 350 — TAP 'JOIN'",
             "★ FOLLOW US ON TIKTOK & FACEBOOK",
         ];
@@ -398,514 +396,123 @@
         const HERO_CONFIG = {
             kicker: "Chuka Premier League",
             chips: [
-                {
-                    label: "NICKNAME",
-                    value: "THE CELESTIAL"
-                },
-                {
-                    label: "HOME",
-                    value: "CLICK TO VISIT CHUKA UNI",
-                    link: "https://www.chuka.ac.ke/"
-                },
-                {
-                    label: "LEAGUE",
-                    value: "CHUKA PREMIER"
-                }
+                { label: "NICKNAME", value: "THE CELESTIAL" },
+                { label: "HOME", value: "CLICK TO VISIT CHUKA UNI", link: "https://www.chuka.ac.ke/" },
+                { label: "LEAGUE", value: "CHUKA PREMIER" }
             ]
         };
 
         const HERO_IMAGES = [
-            {
-                src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
-                caption: "★ New Kit",
-                class: "f1"
-            },
-            {
-                src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/3rd.jpeg",
-                caption: "★ Home Kit",
-                class: "f2"
-            },
-            {
-                src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
-                caption: "★ The Family",
-                class: "f3"
-            }
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newb.jpeg", caption: "★ New Kit",
+                class: "f1" },
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/3rd.jpeg", caption: "★ Home Kit",
+                class: "f2" },
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg", caption: "★ The Family",
+                class: "f3" }
         ];
 
+        // ─── UPDATED FIXTURES ──────────────────────────────────────────
         const CITY_STARS_FIXTURES = [
-            {
-                date: "2026-09-17",
-                time: "4:00pm – 5:30pm",
-                opponent: "Cuksa",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-09-19",
-                time: "2:00pm – 3:30pm",
-                opponent: "Rerina",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-09-24",
-                time: "2:00pm – 3:30pm",
-                opponent: "Meru Boys",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-09-26",
-                time: "12:00pm – 1:30pm",
-                opponent: "Phelites",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-01",
-                time: "12:00pm – 1:30pm",
-                opponent: "Hitmen",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-03",
-                time: "8:00am – 9:30am",
-                opponent: "Gusii",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-04",
-                time: "10:00am – 11:30am",
-                opponent: "Qualifier 1",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-08",
-                time: "4:00pm – 5:30pm",
-                opponent: "Young Stars",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-10",
-                time: "10:00am – 11:30am",
-                opponent: "Thunder Elites",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-11",
-                time: "12:00pm – 1:30pm",
-                opponent: "Venom",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-16",
-                time: "10:00am – 11:30am",
-                opponent: "Pocusa",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-17",
-                time: "12:00pm – 1:30pm",
-                opponent: "Vipers",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-21",
-                time: "12:00pm – 1:30pm",
-                opponent: "Qualifier 2",
-                leg: "First Leg",
-                h: true
-            },
-            {
-                date: "2026-10-29",
-                time: "4:00pm – 5:30pm",
-                opponent: "Cuksa",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-10-31",
-                time: "2:00pm – 3:30pm",
-                opponent: "Rerina",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-05",
-                time: "2:00pm – 3:30pm",
-                opponent: "Meru Boys",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-07",
-                time: "12:00pm – 1:30pm",
-                opponent: "Phelites",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-12",
-                time: "12:00pm – 1:30pm",
-                opponent: "Hitmen",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-14",
-                time: "8:00am – 9:30am",
-                opponent: "Gusii",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-15",
-                time: "10:00am – 11:30am",
-                opponent: "Qualifier 1",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-19",
-                time: "4:00pm – 5:30pm",
-                opponent: "Young Stars",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-21",
-                time: "10:00am – 11:30am",
-                opponent: "Thunder Elites",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-22",
-                time: "12:00pm – 1:30pm",
-                opponent: "Venom",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-27",
-                time: "10:00am – 11:30am",
-                opponent: "Pocusa",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-11-28",
-                time: "12:00pm – 1:30pm",
-                opponent: "Vipers",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-12-03",
-                time: "12:00pm – 1:30pm",
-                opponent: "Qualifier 2",
-                leg: "Second Leg",
-                h: true
-            },
-            {
-                date: "2026-10-23",
-                time: "8:00am – 6:00pm",
-                opponent: "Knockouts",
-                leg: "CPL Cup",
-                h: true
-            },
-            {
-                date: "2026-10-24",
-                time: "8:00am – 6:00pm",
-                opponent: "Round of 16",
-                leg: "CPL Cup",
-                h: true
-            },
-            {
-                date: "2026-10-25",
-                time: "8:00am – 6:00pm",
-                opponent: "QF / SF",
-                leg: "CPL Cup",
-                h: true
-            }
+            { date: "2026-09-10", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "First Leg", h: true },
+            { date: "2026-09-12", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg", h: true },
+            { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
+            { date: "2026-09-19", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
+            { date: "2026-09-24", time: "12:00pm – 1:30pm", opponent: "Qualifier 3", leg: "First Leg", h: true },
+            { date: "2026-09-26", time: "8:00am – 9:30am", opponent: "Qualifier 4", leg: "First Leg", h: false },
+            { date: "2026-09-27", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "First Leg", h: false },
+            { date: "2026-10-01", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg", h: false },
+            { date: "2026-10-03", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg", h: false },
+            { date: "2026-10-04", time: "12:00pm – 1:30pm", opponent: "Ashland", leg: "First Leg", h: false },
+            { date: "2026-10-09", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "First Leg", h: false },
+            { date: "2026-10-10", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "First Leg", h: false },
+            { date: "2026-10-14", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "First Leg", h: true }
         ];
 
         const RESULTS_MATCHES = [
-            {
-                d: "2026-07-11",
-                opp: "Supersport",
-                h: false,
-                us: 1,
-                them: 6
-            }
+            { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
         ];
 
         const SQUAD_DATA = [
-            {
-                name: "Morgan undisputed",
-                nick: "Captain Morgan",
-                pos: "DF",
-                no: 4,
-                role: 'captain',
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg",
-                whatsapp: "254704890662",
-                tt: "undisputed",
-                fb: "morgan ongeko"
-            },
-            {
-                name: "Evans",
-                nick: "Evanso",
-                pos: "DF",
-                no: 2,
-                role: 'vice-captain',
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/evansoo.jpeg"
-            },
-            {
-                name: "Alex Juma",
-                nick: "Alekoo",
-                pos: "MF",
-                no: 5,
-                role: 'third',
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/alekoo.jpeg",
-                ig: "Alex.Juma16",
-                tt: "its jumah"
-            },
-            {
-                name: "Wickliff Murimi",
-                nick: "Wikii",
-                pos: "DF",
-                no: 5,
-                role: 'treasurer',
-                whatsapp: "254790111467",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/wikii.jpeg",
-                ig: "recks347",
-                tt: "@reks795"
-            },
-            {
-                name: "Alex Waweru",
-                nick: "topkheed",
-                pos: "DF",
-                no: 3,
-                role: 'treasurer',
-                whatsapp: "254797985875",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg",
-                ig: "t.o.p.k.e.e.d",
-                tt: "t.o.p.k.e.e.d"
-            },
-            {
-                name: "Isaac",
-                nick: "Bazenga",
-                pos: "MF",
-                no: 78,
-                role: 'discipline',
-                assists: 0,
-                photo: "",
-                whatsapp: "254143374333",
-                phone: "+254143374333"
-            },
-            {
-                name: "Ambrose Ngetich",
-                nick: "Grandpa",
-                pos: "DF",
-                no: 66,
-                role: 'discipline',
-                whatsapp: "254769271686",
-                tt: "Dakareems",
-                ig: "Dr Goodluck",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kipyegon.jpeg"
-            },
-            {
-                name: "Outtah Tychicus",
-                nick: "Outtah",
-                pos: "GK",
-                no: 24,
-                role: 'gkcoach',
-                whatsapp: "254114498094",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg",
-                fb: "Outtahjr",
-                tt: "Outtahjr",
-                ig: "outtahjr"
-            },
-            {
-                name: "Brian Mishelelei",
-                nick: "Champez",
-                pos: "MF",
-                no: 8,
-                role: 'spokesman',
-                assists: 0,
-                whatsapp: "254768737643",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg",
-                ig: "call me sage",
-                fb: "sage"
-            },
-            {
-                name: "Johnson Mwakibua",
-                nick: "Mwaki",
-                pos: "FW",
-                no: 7,
-                role: 'secretary',
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
-                whatsapp: "254796497417",
-                ig: "johnson_mwaki",
-                tt: "johnson_mwaki"
-            },
-            {
-                name: "Miguel Fredrick",
-                nick: "Freddie",
-                pos: "MF",
-                no: 8,
-                role: 'tactical-coach',
-                whatsapp: "254710467944",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg"
-            },
-            {
-                name: "Clement",
-                nick: "clemoo",
-                pos: "GK",
-                no: 83,
-                cleanSheets: 0,
-                whatsapp: "254114667280",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/clemoo.jpeg"
-            },
-            {
-                name: "David Munyao",
-                nick: "Finest",
-                pos: "DF",
-                no: 2,
-                ig: "AT_F.I.N.E.S.T_",
-                whatsapp: "254110001330",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/davii1.jpeg"
-            },
-            {
-                name: "Emmanuel Muku",
-                nick: "Manuu",
-                pos: "MF",
-                no: 10,
-                ig: "_major_mk",
-                whatsapp: "254796170120",
-                fb: "Manu mk",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/manuu.jpeg"
-            },
-            {
-                name: "Hillary Lemuya",
-                nick: "Malebo",
-                pos: "FW",
-                no: 9,
-                goals: 0,
-                tt: ";Lemuya ",
-                ig: "Lemuya",
-                fb: "Hillary Lemuya",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hillary.jpeg"
-            },
-            {
-                name: "Godfrey Isaiah",
-                nick: "Minnot",
-                pos: "FW",
-                no: 19,
-                whatsapp: "254117979667",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg"
-            },
-             {
-                name: "Isaac Kim",
-                nick: "Izzoh",
-                pos: "MF",
-                no: 10,
-                whatsapp: "254743471614",
-                ig:"Izzoh011",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/izzoh.jpeg"
-            },
-            {
-                name: "Okinyi stefen",
-                nick: "Hunter",
-                pos: "GK",
-                no: 13,
-                cleanSheets: 0,
-                ig: "stefen 254",
-                fb: "Stefen ke",
-                whatsapp: "254759874092",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hunter4.jpeg"
-            }
+            { name: "Morgan undisputed", nick: "Captain Morgan", pos: "DF", no: 4, role: 'captain',
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg", whatsapp: "254704890662",
+                tt: "undisputed", fb: "morgan ongeko" },
+            { name: "Evans", nick: "Evanso", pos: "DF", no: 2, role: 'vice-captain',
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/evansoo.jpeg" },
+            { name: "Alex Juma", nick: "Alekoo", pos: "MF", no: 5, role: 'third',
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/alekoo.jpeg", ig: "Alex.Juma16",
+                tt: "its jumah" },
+            { name: "Wickliff Murimi", nick: "Wikii", pos: "DF", no: 5, role: 'treasurer', whatsapp: "254790111467",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/wikii.jpeg", ig: "recks347",
+                tt: "@reks795" },
+            { name: "Alex Waweru", nick: "topkheed", pos: "DF", no: 3, role: 'treasurer', whatsapp: "254797985875",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg", ig: "t.o.p.k.e.e.d",
+                tt: "t.o.p.k.e.e.d" },
+            { name: "Isaac", nick: "Bazenga", pos: "MF", no: 78, role: 'discipline', assists: 0, photo: "",
+                whatsapp: "254143374333", phone: "+254143374333" },
+            { name: "Ambrose Ngetich", nick: "Grandpa", pos: "DF", no: 66, role: 'discipline', whatsapp: "254769271686",
+                tt: "Dakareems", ig: "Dr Goodluck",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kipyegon.jpeg" },
+            { name: "Outtah Tychicus", nick: "Outtah", pos: "GK", no: 24, role: 'gkcoach', whatsapp: "254114498094",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/outah.jpeg", fb: "Outtahjr",
+                tt: "Outtahjr", ig: "outtahjr" },
+            { name: "Brian Mishelelei", nick: "Champez", pos: "MF", no: 8, role: 'spokesman', assists: 0,
+                whatsapp: "254768737643", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg",
+                ig: "call me sage", fb: "sage" },
+            { name: "Johnson Mwakibua", nick: "Mwaki", pos: "FW", no: 7, role: 'secretary',
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg", whatsapp: "254796497417",
+                ig: "johnson_mwaki", tt: "johnson_mwaki" },
+            { name: "Miguel Fredrick", nick: "Freddie", pos: "MF", no: 8, role: 'tactical-coach',
+                whatsapp: "254710467944", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/freddie.jpeg" },
+            { name: "Clement", nick: "clemoo", pos: "GK", no: 83, cleanSheets: 0, whatsapp: "254114667280",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/clemoo.jpeg" },
+            { name: "David Munyao", nick: "Finest", pos: "DF", no: 2, ig: "AT_F.I.N.E.S.T_", whatsapp: "254110001330",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/davii1.jpeg" },
+            { name: "Emmanuel Muku", nick: "Manuu", pos: "MF", no: 10, ig: "_major_mk", whatsapp: "254796170120",
+                fb: "Manu mk", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/manuu.jpeg" },
+            { name: "Hillary Lemuya", nick: "Malebo", pos: "FW", no: 9, goals: 0, tt: ";Lemuya ", ig: "Lemuya",
+                fb: "Hillary Lemuya", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hillary.jpeg" },
+            { name: "Godfrey Isaiah", nick: "Minnot", pos: "FW", no: 19, whatsapp: "254117979667",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg" },
+            { name: "Isaac Kim", nick: "Izzoh", pos: "MF", no: 10, whatsapp: "254743471614", ig: "Izzoh011",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/izzoh.jpeg" },
+            { name: "Okinyi stefen", nick: "Hunter", pos: "GK", no: 13, cleanSheets: 0, ig: "stefen 254",
+                fb: "Stefen ke", whatsapp: "254759874092",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hunter4.jpeg" }
         ];
 
         const STAFF_DATA = [
-            {
-                name: "Victor Dhavick",
-                nick: "Helix",
-                role: "Head Coach",
+            { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
                 note: "Ambitious, creative leader passionate about coaching, developing talent, and building a winning culture. Think. Lead. Inspire. Grow.",
-                ig: "thee_dhavick",
-                fb: "Thee Dhavick",
-                x: "theedhavic",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/coach.jpeg"
-            },
-            {
-                name: "Emmaculate Mutua",
-                nick: "Emmy Taylor",
-                role: "Assistant Coach",
-                note: "Passion, unity, and discipline define us. One team. One vision. One dream. 💯",
-                tt: "emmyTaylor",
-                ig: "emmytaylor85",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/emmy1.jpeg"
-            },
-            {
-                name: "Martin Kimathi",
-                nick: "Baite",
-                role: "Team Manager",
+                ig: "thee_dhavick", fb: "Thee Dhavick", x: "theedhavic",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/coach.jpeg" },
+            { name: "Emmaculate Mutua", nick: "Emmy Taylor", role: "Assistant Coach",
+                note: "Passion, unity, and discipline define us. One team. One vision. One dream. 💯", tt: "emmyTaylor",
+                ig: "emmytaylor85", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/emmy1.jpeg" },
+            { name: "Martin Kimathi", nick: "Baite", role: "Team Manager",
                 note: "Manages fixtures, registrations, and logistics to keep the team running smoothly.",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/tm.jpeg"
-            },
-            {
-                name: "Kimanzi Musyoka",
-                nick: "General Musyoka",
-                role: "Team CEO",
-                fb: "Willie Khim ",
-                tt: " It's kim",
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/tm.jpeg" },
+            { name: "Kimanzi Musyoka", nick: "General Musyoka", role: "Team CEO", fb: "Willie Khim ", tt: " It's kim",
                 note: "Proud CEO building a club rooted in talent, discipline, and ambition. Together, we will rise.",
-                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg"
-            }
+                photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg" }
         ];
 
         const NEWS_DATA = [
-            {
-                tag: "New Kit",
-                date: "2026-08-01",
-                title: "A Fresh Look for the 2026 Season",
+            { tag: "New Kit", date: "2026-08-01", title: "A Fresh Look for the 2026 Season",
                 excerpt: "We are raising funds for a fresh new kit. Every contribution counts help us shine brighter.",
-                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newkit.jpeg",
-                full: "The 2026 season brings a fresh identity to City Stars Chuka FC. We're unveiling a brand new kit designed to reflect our celestial spirit bold gold accents, a star-studded pattern, and a fit that screams confidence on the pitch.\n\nWe're currently raising funds to bring this vision to life. Every contribution, big or small, helps us kit out the squad with pride. Want to be part of it? Reach out to us via WhatsApp and become a Star today."
-            },
-            {
-                tag: "Archives",
-                date: "2026-09-28",
-                title: "Back in the Days",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/newb.jpeg",
+                full: "The 2026 season brings a fresh identity to City Stars Chuka FC. We're unveiling a brand new kit designed to reflect our celestial spirit bold gold accents, a star-studded pattern, and a fit that screams confidence on the pitch.\n\nWe're currently raising funds to bring this vision to life. Every contribution, big or small, helps us kit out the squad with pride. Want to be part of it? Reach out to us via WhatsApp and become a Star today." },
+            { tag: "Archives", date: "2026-09-28", title: "Back in the Days",
                 excerpt: "Honoring the founding fathers of this team the ones who lit the first star.",
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/veterans.jpeg",
-                full: "Before the trophies, before the Celestial name echoed across Chuka University, there was a group of dreamers who dared to start something special.\n\nIn February 2022, a handful of students gathered on a dusty pitch with nothing but passion and a ball. They built City Stars from the ground up organizing trainings, chasing registrations, and forging a brotherhood that would last.\n\nToday, we honor those founding fathers. Their vision lights the way for every player who wears the badge."
-            },
-            {
-                tag: "Interview",
-                date: "2026-07-22",
-                title: "Coach's Corner: One Session at a Time",
-                excerpt: "Coach Dhavick on the 2026 season, the title race, and what the Stars mean to campus.",
-                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/coachcorner.jpeg",
-                full: "We sat down with Head Coach Victor Dhavick for an exclusive chat about the season ahead.\n\n'We're not just building a team we're building a culture,' he says. 'Discipline, unity, and hunger. That's what sets City Stars apart. Every session is an opportunity to grow, and every match is a chance to show what we stand for.'\n\nWith the Chuka Premier League heating up, Coach Dhavick is confident the Stars will shine. 'We've got the talent, the staff, and the support. Now we just go out and execute.'"
-            },
-            {
-                tag: "Club",
-                date: "2026-07-15",
-                title: "Become a Star: Membership Now Open",
+                full: "Before the trophies, before the Celestial name echoed across Chuka University, there was a group of dreamers who dared to start something special.\n\nIn February 2022, a handful of students gathered on a dusty pitch with nothing but passion and a ball. They built City Stars from the ground up organizing trainings, chasing registrations, and forging a brotherhood that would last.\n\nToday, we honor those founding fathers. Their vision lights the way for every player who wears the badge." },
+            { tag: "New Keepers Kit", date: "2026-09-1", title: "Our keepers have a new look",
+                excerpt: "The goalkeepers are the last line of defense and the first line of attack. They deserve a kit that matches their importance.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/keepers.jpeg",
+                full: "" },
+            { tag: "Club", date: "2026-07-15", title: "Become a Star: Membership Now Open",
                 excerpt: "One fee, no hidden charges every shilling goes to the team. Join via WhatsApp.",
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/astar.jpeg",
-                full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 350, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars."
-            }
+                full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 350, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars." }
         ];
 
         const STANDINGS_DATA = [
@@ -959,13 +566,8 @@
 
         document.querySelectorAll('[data-soc]').forEach(a => {
             const key = a.dataset.soc;
-            if (key === 'tiktok') {
-                a.href = TIKTOK_URL;
-            } else if (key === 'facebook') {
-                a.href = FACEBOOK_URL;
-            } else if (key !== 'whatsapp') {
-                a.style.display = 'none';
-            }
+            if (key === 'tiktok') { a.href = TIKTOK_URL; } else if (key === 'facebook') { a.href = FACEBOOK_URL; } else if (
+                key !== 'whatsapp') { a.style.display = 'none'; }
         });
 
         const tickerItems = TICKER_MESSAGES.map(t => `<span>${t}</span>`).join('');
@@ -1413,10 +1015,7 @@
 
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
-                if (activeModal) {
-                    closeModal(activeModal);
-                    return;
-                }
+                if (activeModal) { closeModal(activeModal); return; }
                 if (lightbox.classList.contains('open')) closeLightbox();
             }
             if (e.key === 'Tab' && activeModal) {
@@ -1505,20 +1104,16 @@
                     zoomCaptions = [];
                     document.querySelectorAll('img[data-zoom]').forEach(el => {
                         const s = el.dataset.zoom;
-                        if (s) {
-                            zoomImages.push(s);
-                            zoomCaptions.push(el.dataset.caption || '');
-                        }
+                        if (s) { zoomImages.push(s);
+                            zoomCaptions.push(el.dataset.caption || ''); }
                     });
                     const unique = [],
                         uniqueC = [],
                         seen = new Set();
                     for (let i = 0; i < zoomImages.length; i++) {
-                        if (!seen.has(zoomImages[i])) {
-                            seen.add(zoomImages[i]);
+                        if (!seen.has(zoomImages[i])) { seen.add(zoomImages[i]);
                             unique.push(zoomImages[i]);
-                            uniqueC.push(zoomCaptions[i]);
-                        }
+                            uniqueC.push(zoomCaptions[i]); }
                     }
                     zoomImages = unique;
                     zoomCaptions = uniqueC;
@@ -1543,18 +1138,13 @@
         window.addEventListener('scroll', () => {
             backTop.classList.toggle('visible', window.scrollY > 600);
         }, { passive: true });
-        backTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        backTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
         $('#joinForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('joinName').value.trim();
             const reg = document.getElementById('joinReg').value.trim();
-            if (!name) {
-                alert('Please enter your full name.');
-                return;
-            }
+            if (!name) { alert('Please enter your full name.'); return; }
             let msg = `I want to join. My name: ${name}`;
             if (reg) msg += `, Reg: ${reg}`;
             msg += ` ⭐`;
@@ -1674,7 +1264,6 @@
                 const r = Math.max(3, Math.min(7, w * 0.012));
                 ctx.save();
                 ctx.translate(x, y);
-
                 const glow = ctx.createRadialGradient(0, 0, r * 0.1, 0, 0, r * 2.2);
                 glow.addColorStop(0, 'rgba(255,255,255,0.08)');
                 glow.addColorStop(1, 'rgba(255,255,255,0)');
@@ -1682,12 +1271,10 @@
                 ctx.beginPath();
                 ctx.arc(0, 0, r * 2.2, 0, Math.PI * 2);
                 ctx.fill();
-
                 ctx.shadowColor = 'rgba(0,0,0,0.4)';
                 ctx.shadowBlur = r * 1.2;
                 ctx.shadowOffsetX = r * 0.2;
                 ctx.shadowOffsetY = r * 0.3;
-
                 const bodyGrad = ctx.createRadialGradient(-r * 0.3, -r * 0.3, r * 0.1, 0, 0, r);
                 bodyGrad.addColorStop(0, '#f8f8f8');
                 bodyGrad.addColorStop(0.5, '#e8e8e8');
@@ -1700,11 +1287,9 @@
                 ctx.shadowBlur = 0;
                 ctx.shadowOffsetX = 0;
                 ctx.shadowOffsetY = 0;
-
                 ctx.strokeStyle = 'rgba(80,80,80,0.3)';
                 ctx.lineWidth = 0.5;
                 ctx.stroke();
-
                 const angles = [0, 72, 144, 216, 288].map(deg => deg * Math.PI / 180);
                 const panelDist = r * 0.7;
                 const panelSize = r * 0.32;
@@ -1730,7 +1315,6 @@
                     ctx.stroke();
                     ctx.restore();
                 });
-
                 ctx.save();
                 ctx.beginPath();
                 for (let j = 0; j < 5; j++) {
@@ -1744,7 +1328,6 @@
                 ctx.fillStyle = 'rgba(26,26,26,0.6)';
                 ctx.fill();
                 ctx.restore();
-
                 const hl = ctx.createRadialGradient(-r * 0.3, -r * 0.4, r * 0.05, -r * 0.2, -r * 0.2, r * 0.6);
                 hl.addColorStop(0, 'rgba(255,255,255,0.6)');
                 hl.addColorStop(1, 'rgba(255,255,255,0)');
@@ -1752,7 +1335,6 @@
                 ctx.beginPath();
                 ctx.arc(0, 0, r, 0, Math.PI * 2);
                 ctx.fill();
-
                 ctx.restore();
             }
 
@@ -1764,9 +1346,7 @@
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < 5) {
                     let nextPlayer;
-                    do {
-                        nextPlayer = Math.floor(Math.random() * team.length);
-                    } while (nextPlayer === passIndex);
+                    do { nextPlayer = Math.floor(Math.random() * team.length); } while (nextPlayer === passIndex);
                     passIndex = nextPlayer;
                     team.forEach((p, idx) => {
                         if (idx !== passIndex) {
