@@ -24,7 +24,6 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
-        /* --- (unchanged CSS, same as before) --- */
         :root{--bg:#07091a;--bg2:#0c1030;--panel:#11163a;--panel2:#0d1230;--ink:#050714;--line:rgba(244,241,232,.09);--line-strong:rgba(244,241,232,.2);--paper:#f4f1e8;--paper-dim:#d8d4c5;--muted:#8b94b8;--gold:#ffc42e;--gold-deep:#d99411;--gold-glow:rgba(255,196,46,.35);--ember:#ff6b35;--green:#3ce08d;--red:#ff5d5d;--draw:#9aa3b8;--wa:#25d366;--fb:#1877f2;--display:'Anton',sans-serif;--serif:'Instrument Serif',serif;--body:'Space Grotesk',sans-serif;--mono:'Space Mono',monospace;--radius:14px;--shadow-lg:0 30px 80px rgba(0,0,0,.65),0 8px 24px rgba(0,0,0,.4);--shadow-gold:0 20px 60px rgba(255,196,46,.15)}
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
@@ -172,6 +171,11 @@
         .m-res.l{background:var(--red);box-shadow:0 0 20px rgba(255,93,93,.3)}
         @media(max-width:920px){.matches-grid{grid-template-columns:1fr}}
         @media(max-width:480px){.m-row{grid-template-columns:1fr;gap:.7rem;padding:1rem}.m-row::before{display:none}.m-body{padding-left:0}.m-date{display:flex;gap:.8rem;align-items:baseline;flex-wrap:wrap}.m-res{justify-self:start}}
+        .season-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem;margin-top:2.4rem;padding:1.4rem;background:linear-gradient(135deg,var(--panel2),var(--ink));border:1px solid var(--line-strong);border-radius:var(--radius)}
+        .stat-box{text-align:center}
+        .stat-num{font-family:var(--display);font-size:2rem;line-height:1;}
+        .stat-lbl{font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-top:.2rem}
+        @media(max-width:640px){.season-stats{grid-template-columns:repeat(3,1fr);gap:1rem}}
         .countdown-wrap{background:linear-gradient(135deg,var(--panel) 0%,var(--ink) 100%);border:1px solid var(--line-strong);border-radius:var(--radius);padding:1.8rem 2.2rem;margin-top:2.6rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;position:relative;overflow:hidden}
         .countdown-wrap::before{content:"";position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);opacity:.4;pointer-events:none}
         .cd-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
@@ -184,6 +188,10 @@
         .cd-unit .lbl{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
         .cd-add-cal{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);border:1px solid var(--line-strong);padding:.5rem 1rem;border-radius:6px;transition:all .3s;background:rgba(255,255,255,.02);margin-top:.5rem;cursor:pointer}
         .cd-add-cal:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,196,46,.06)}
+        .cd-progress{width:100%;margin-top:1rem;}
+        .cd-progress-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase}
+        .cd-progress-bar{height:6px;background:var(--ink);border-radius:3px;overflow:hidden}
+        .cd-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--ember));transition:width .8s ease;}
         @media(max-width:640px){.countdown-wrap{flex-direction:column;align-items:stretch;text-align:center;padding:1.5rem 1.2rem}.cd-clocks{justify-content:center;gap:.6rem}.cd-unit .num{font-size:2rem;min-width:38px}.cd-sep{font-size:2rem}}
         #squad{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
         .pills{display:flex;gap:.55rem;flex-wrap:wrap}
@@ -690,11 +698,16 @@
                         <div id="resultsList"></div>
                     </div>
                 </div>
+                
+                <!-- Season Stats injected here via JS -->
+                <div id="seasonStatsContainer"></div>
+
                 <div class="countdown-wrap reveal reveal-delay-2" id="countdownWrap">
                     <div>
                         <div class="cd-label">⏤ Next Match Countdown</div>
                         <div class="cd-opp" id="cdOpp">Loading...</div>
                         <button class="cd-add-cal" id="addToCalendarBtn" style="display:none;">📅 Add to Calendar</button>
+                        <button class="cd-add-cal" id="remindMeBtn" style="display:none; margin-left:.5rem;">🔔 Remind Me</button>
                     </div>
                     <div class="cd-clocks" id="cdClocks">
                         <div class="cd-unit"><div class="num" id="cdDays">00</div><div class="lbl">Days</div></div>
@@ -705,6 +718,7 @@
                         <div class="cd-sep">:</div>
                         <div class="cd-unit"><div class="num" id="cdSecs">00</div><div class="lbl">Sec</div></div>
                     </div>
+                    <!-- Progress bar injected here via JS -->
                 </div>
             </div>
         </section>
@@ -878,6 +892,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="foot-base">
                 <span>© <span id="year"></span> City Stars Chuka · Chuka University</span>
                 <span>Up The Celestial ★</span>
@@ -916,12 +931,9 @@
         };
 
         const HERO_IMAGES = [
-            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/new2.jpeg", caption: "★ New Kit",
-                class: "f1" },
-            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/3rd.jpeg", caption: "★ Home Kit",
-                class: "f2" },
-            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg", caption: "★ The Family",
-                class: "f3" }
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/new2.jpeg", caption: "★ New Kit", class: "f1" },
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/3rd.jpeg", caption: "★ Home Kit", class: "f2" },
+            { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg", caption: "★ The Family", class: "f3" }
         ];
 
         // ─── FIXTURES ────────────────────────────────────────────────
@@ -962,7 +974,7 @@
             { name: "Alex Waweru", nick: "topkheed", pos: "DF", no: 3, role: 'treasurer', whatsapp: "254797985875",
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg", ig: "t.o.p.k.e.e.d",
                 tt: "t.o.p.k.e.e.d" },
-            { name: "Isaac", nick: "Bazenga", pos: "MF", no: 78, role: 'discipline', assists: 0, photo: "",
+            { name: "Isaac", nick: "Bazenga", pos: "MF", no: 78, role: 'discipline', assists: 0, 
                 whatsapp: "254143374333", phone: "+254143374333",photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/bazenga.jpeg" },
             { name: "Brian Mishelelei", nick: "Champez", pos: "MF", no: 8, role: 'spokesman', assists: 0,
                 whatsapp: "254768737643", photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/champe.jpeg",
@@ -1139,7 +1151,7 @@
         ];
 
         // ============================================================
-        //  END DATA — REMAINING JAVASCRIPT (unchanged logic, adjusted for home/away removal)
+        //  END DATA — REMAINING JAVASCRIPT 
         // ============================================================
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1158,8 +1170,7 @@
 
         document.querySelectorAll('[data-soc]').forEach(a => {
             const key = a.dataset.soc;
-            if (key === 'tiktok') { a.href = TIKTOK_URL; } else if (key === 'facebook') { a.href = FACEBOOK_URL; } else if (
-                key !== 'whatsapp') { a.style.display = 'none'; }
+            if (key === 'tiktok') { a.href = TIKTOK_URL; } else if (key === 'facebook') { a.href = FACEBOOK_URL; } else if (key !== 'whatsapp') { a.style.display = 'none'; }
         });
 
         const tickerItems = TICKER_MESSAGES.map(t => `<span>${t}</span>`).join('');
@@ -1179,8 +1190,7 @@
         });
 
         $('#heroChips').innerHTML = HERO_CONFIG.chips.map(chip => {
-            const content = chip.link ? `<a href="${chip.link}" target="_blank" rel="noopener">${chip.value}</a>` :
-                chip.value;
+            const content = chip.link ? `<a href="${chip.link}" target="_blank" rel="noopener">${chip.value}</a>` : chip.value;
             return `<span class="hchip"><b>${chip.label}</b> ${content}</span>`;
         }).join('');
 
@@ -1194,19 +1204,36 @@
         const fDow = d => d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
+        // ─── TIME PARSER FIX ───────────────────────────────────────
+        function parseTimeString(timeStr) {
+            if (!timeStr) return { h: 14, m: 0 };
+            let s = String(timeStr).trim().toLowerCase();
+            const isPM = s.includes('pm');
+            const isAM = s.includes('am');
+            s = s.replace(/(am|pm|–|am|pm)/g, '').trim();
+            const parts = s.split(':');
+            let h = parseInt(parts[0], 10);
+            let m = parseInt(parts[1], 10);
+            if (isNaN(h)) h = 14;
+            if (isNaN(m)) m = 0;
+            if (isPM && h < 12) h += 12;
+            if (isAM && h === 12) h = 0;
+            return { h, m };
+        }
+
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.date + 'T00:00:00') }));
         const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
+        
         const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({
             d: f.date,
             t: f.time.split(' – ')[0],
             opp: f.opponent,
-            h: true // force home display
+            h: true 
         }));
 
         const upcoming = UPCOMING_MATCHES.filter(m => m.us === undefined);
-        // Always show "CITY STARS v Opponent"
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
             const d = pd(m.d);
             return `<div class="m-row${i === 0 ? ' next' : ''}">
@@ -1221,8 +1248,7 @@
                         <p>Chuka University Main Pitch</p>
                     </div>
                 </div>`;
-        }).join('') ||
-            `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No upcoming matches scheduled.</p>`;
+        }).join('') || `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No upcoming matches scheduled.</p>`;
 
         const allResults = RESULTS_MATCHES.filter(m => m.us !== undefined);
         const results = allResults.slice(-3).reverse();
@@ -1241,54 +1267,187 @@
                     </div>
                     <span class="m-res ${r}">${r.toUpperCase()}</span>
                 </div>`;
-        }).join('') :
-            `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet. Season starts soon!</p>`;
+        }).join('') : `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No matches played yet. Season starts soon!</p>`;
 
         let nextMatchData = null;
+
+        // ─── SEASON STATS INJECTION ───────────────────────────────
+        (function injectSeasonStats() {
+            const played = allResults.length;
+            const won = allResults.filter(m => m.us > m.them).length;
+            const drawn = allResults.filter(m => m.us === m.them).length;
+            const lost = allResults.filter(m => m.us < m.them).length;
+            const gf = allResults.reduce((a, m) => a + m.us, 0);
+            const ga = allResults.reduce((a, m) => a + m.them, 0);
+            const pts = (won * 3) + drawn;
+
+            const html = `
+                <div class="season-stats reveal reveal-delay-1">
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--paper);">${played}</div>
+                        <div class="stat-lbl">PLAYED</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--green);">${won}</div>
+                        <div class="stat-lbl">WON</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--draw);">${drawn}</div>
+                        <div class="stat-lbl">DRAWN</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--red);">${lost}</div>
+                        <div class="stat-lbl">LOST</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--paper);">${gf}:${ga}</div>
+                        <div class="stat-lbl">GOALS</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color:var(--gold);">${pts}</div>
+                        <div class="stat-lbl">POINTS</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('seasonStatsContainer').innerHTML = html;
+        })();
+
+        // ─── COUNTDOWN & LIVE MATCH LOGIC ─────────────────────────
+        function updateLiveStatus(nextMatch, matchDate) {
+            let liveBanner = document.getElementById('liveBanner');
+            if (!liveBanner) {
+                liveBanner = document.createElement('div');
+                liveBanner.id = 'liveBanner';
+                liveBanner.style.cssText = `
+                    position:fixed;top:0;left:0;right:0;z-index:1000;
+                    background:linear-gradient(90deg,var(--red),var(--ember));
+                    color:#fff;font-family:var(--display);text-align:center;
+                    padding:.6rem 1rem;font-size:.9rem;letter-spacing:.08em;
+                    transform:translateY(-100%);transition:transform .4s ease;
+                    box-shadow:0 4px 20px rgba(255,93,93,.5);text-transform:uppercase;`;
+                document.body.prepend(liveBanner);
+            }
+
+            const now = new Date();
+            const matchEnd = new Date(matchDate.getTime() + 90 * 60 * 1000);
+            const isLive = now >= matchDate && now <= matchEnd;
+
+            if (isLive) {
+                liveBanner.innerHTML = `🔴 LIVE NOW · City Stars vs ${nextMatch.opp} · Chuka University Main Pitch`;
+                liveBanner.style.transform = 'translateY(0)';
+            } else {
+                liveBanner.style.transform = 'translateY(-100%)';
+            }
+        }
 
         function updateCountdown() {
             const nextMatch = upcoming[0];
             if (!nextMatch) {
                 $('#cdOpp').textContent = 'No upcoming matches';
                 document.getElementById('addToCalendarBtn').style.display = 'none';
+                document.getElementById('remindMeBtn').style.display = 'none';
+                $('#cdClocks').style.opacity = '0.3';
                 return;
             }
+            $('#cdClocks').style.opacity = '1';
             nextMatchData = nextMatch;
             const matchDate = pd(nextMatch.d);
-            const [h, m] = (nextMatch.t || '14:00').split(':').map(Number);
-            matchDate.setHours(h || 14, m || 0, 0, 0);
+            const { h, m } = parseTimeString(nextMatch.t);
+            matchDate.setHours(h, m, 0, 0);
+
             const now = new Date();
             let diff = Math.max(0, (matchDate - now) / 1000);
-            const days = Math.floor(diff / 86400);
-            diff -= days * 86400;
-            const hours = Math.floor(diff / 3600);
-            diff -= hours * 3600;
-            const mins = Math.floor(diff / 60);
-            const secs = Math.floor(diff % 60);
-            document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+
+            const days  = Math.floor(diff / 86400); diff -= days  * 86400;
+            const hours = Math.floor(diff / 3600);  diff -= hours * 3600;
+            const mins  = Math.floor(diff / 60);
+            const secs  = Math.floor(diff % 60);
+
+            document.getElementById('cdDays').textContent  = String(days).padStart(2, '0');
             document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
-            document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
-            const opp = nextMatch.opp;
-            document.getElementById('cdOpp').innerHTML = `<em>${fDay(matchDate)}</em> &nbsp;·&nbsp; vs ${opp}`;
+            document.getElementById('cdMins').textContent  = String(mins).padStart(2, '0');
+            document.getElementById('cdSecs').textContent  = String(secs).padStart(2, '0');
+
+            const koTime = matchDate.toLocaleTimeString('en-GB', {
+                hour: '2-digit', minute: '2-digit', hour12: true
+            }).toUpperCase();
+            document.getElementById('cdOpp').innerHTML =
+                `<em>${fDay(matchDate)} · ${koTime}</em> &nbsp;·&nbsp; vs ${nextMatch.opp}`;
+            
             document.getElementById('addToCalendarBtn').style.display = 'inline-flex';
+            document.getElementById('remindMeBtn').style.display = 'inline-flex';
+
+            updateLiveStatus(nextMatch, matchDate);
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
+        // ─── ADD TO CALENDAR FIX ───────────────────────────────────
         document.getElementById('addToCalendarBtn').addEventListener('click', function() {
             if (!nextMatchData) return;
             const d = pd(nextMatchData.d);
-            const [h, m] = (nextMatchData.t || '14:00').split(':').map(Number);
-            d.setHours(h || 14, m || 0, 0, 0);
+            const { h, m } = parseTimeString(nextMatchData.t);
+            d.setHours(h, m, 0, 0);
             const end = new Date(d);
-            end.setHours(end.getHours() + 1, 30, 0, 0);
+            end.setTime(end.getTime() + 90 * 60 * 1000); // +90 mins
             const fmt = dt => dt.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
             const title = `City Stars vs ${nextMatchData.opp}`;
-            const url =
-                `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${fmt(d)}/${fmt(end)}&details=Chuka%20Premier%20League%20match&location=Chuka%20University%20Main%20Pitch`;
+            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${fmt(d)}/${fmt(end)}&details=Chuka%20Premier%20League%20match&location=Chuka%20University%20Main%20Pitch`;
             window.open(url, '_blank');
         });
+
+        // ─── MATCH REMINDER ────────────────────────────────────────
+        document.getElementById('remindMeBtn').addEventListener('click', async () => {
+            if (!('Notification' in window)) {
+                alert('Notifications not supported on this browser');
+                return;
+            }
+            let permission = Notification.permission;
+            if (permission !== 'granted') {
+                permission = await Notification.requestPermission();
+            }
+            if (permission === 'granted' && nextMatchData) {
+                const matchDate = pd(nextMatchData.d);
+                const { h, m } = parseTimeString(nextMatchData.t);
+                matchDate.setHours(h, m, 0, 0);
+                const remindAt = new Date(matchDate.getTime() - 60 * 60 * 1000); // 1 hour before
+                const delay = remindAt - new Date();
+                if (delay > 0) {
+                    setTimeout(() => {
+                        new Notification('⭐ City Stars Match Starting Soon!', {
+                            body: `City Stars vs ${nextMatchData.opp} kicks off in 1 hour at Chuka University Main Pitch.`,
+                            icon: 'https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/circle-logo.png'
+                        });
+                    }, delay);
+                    alert(`✅ Reminder set! You'll be notified 1 hour before City Stars vs ${nextMatchData.opp}.`);
+                } else {
+                    alert('Match is already starting soon!');
+                }
+            } else if (permission !== 'granted') {
+                alert('Notifications were blocked. Please enable them in your browser settings.');
+            }
+        });
+
+        // ─── SEASON PROGRESS BAR ──────────────────────────────────
+        (function injectProgressBar() {
+            const totalFixtures = CITY_STARS_FIXTURES.length;
+            const remainingFixtures = futureFixtures.length;
+            const playedFixtures = totalFixtures - remainingFixtures;
+            const progressPct = totalFixtures > 0 ? Math.round((playedFixtures / totalFixtures) * 100) : 0;
+
+            const html = `
+                <div class="cd-progress">
+                    <div class="cd-progress-meta">
+                        <span>Season Progress</span>
+                        <span>${playedFixtures} / ${totalFixtures} Matches · ${progressPct}%</span>
+                    </div>
+                    <div class="cd-progress-bar">
+                        <div class="cd-progress-fill" style="width:${progressPct}%;"></div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('countdownWrap').insertAdjacentHTML('beforeend', html);
+        })();
 
         function fallbackAvatar(name, no) {
             const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
@@ -1339,20 +1498,13 @@
             const caption = `${p.name} · #${p.no} · ${POS[p.pos]}`;
             const numberBadge = `<span class="player-number">${p.no}</span>`;
             let bottomIcons = '';
-            if (p.ig) bottomIcons +=
-                `<a href="https://instagram.com/${p.ig}" target="_blank" rel="noopener" class="soc-icon ig"><svg><use href="#ig-logo"/></svg>${p.ig}</a>`;
-            if (p.tt) bottomIcons +=
-                `<a href="https://tiktok.com/@${p.tt}" target="_blank" rel="noopener" class="soc-icon tt"><svg><use href="#tt-logo"/></svg>${p.tt}</a>`;
-            if (p.fb) bottomIcons +=
-                `<a href="https://facebook.com/${p.fb}" target="_blank" rel="noopener" class="soc-icon fb"><svg><use href="#fb-logo"/></svg>${p.fb}</a>`;
-            if (p.x) bottomIcons +=
-                `<a href="https://x.com/${p.x}" target="_blank" rel="noopener" class="soc-icon x"><svg><use href="#x-logo"/></svg>${p.x}</a>`;
-            if (p.whatsapp) bottomIcons +=
-                `<a href="https://wa.me/${p.whatsapp}" target="_blank" rel="noopener" class="soc-icon wa icon-only"><svg><use href="#wa-logo"/></svg></a>`;
-            if (p.phone) bottomIcons +=
-                `<a href="tel:${p.phone}" class="soc-icon phone icon-only"><svg><use href="#phone-logo"/></svg></a>`;
-            if (p.email) bottomIcons +=
-                `<a href="mailto:${p.email}" class="soc-icon email icon-only"><svg><use href="#email-logo"/></svg></a>`;
+            if (p.ig) bottomIcons += `<a href="https://instagram.com/${p.ig}" target="_blank" rel="noopener" class="soc-icon ig"><svg><use href="#ig-logo"/></svg>${p.ig}</a>`;
+            if (p.tt) bottomIcons += `<a href="https://tiktok.com/@${p.tt}" target="_blank" rel="noopener" class="soc-icon tt"><svg><use href="#tt-logo"/></svg>${p.tt}</a>`;
+            if (p.fb) bottomIcons += `<a href="https://facebook.com/${p.fb}" target="_blank" rel="noopener" class="soc-icon fb"><svg><use href="#fb-logo"/></svg>${p.fb}</a>`;
+            if (p.x) bottomIcons += `<a href="https://x.com/${p.x}" target="_blank" rel="noopener" class="soc-icon x"><svg><use href="#x-logo"/></svg>${p.x}</a>`;
+            if (p.whatsapp) bottomIcons += `<a href="https://wa.me/${p.whatsapp}" target="_blank" rel="noopener" class="soc-icon wa icon-only"><svg><use href="#wa-logo"/></svg></a>`;
+            if (p.phone) bottomIcons += `<a href="tel:${p.phone}" class="soc-icon phone icon-only"><svg><use href="#phone-logo"/></svg></a>`;
+            if (p.email) bottomIcons += `<a href="mailto:${p.email}" class="soc-icon email icon-only"><svg><use href="#email-logo"/></svg></a>`;
             const roleText = getRoleTag(p.role);
             const roleBadge = roleText ? `<span class="player-role ${p.role}">${roleText}</span>` : '';
             const nickDisplay = p.nick ? `<div class="nick">★ ${p.nick}</div>` : '';
@@ -1421,16 +1573,11 @@
         function buildLegendSoc(handles) {
             if (!handles) return '';
             let soc = '';
-            if (handles.ig) soc +=
-                `<a target="_blank" rel="noopener" href="https://instagram.com/${handles.ig}" class="ig"><svg><use href="#ig-logo"/></svg> Instagram</a>`;
-            if (handles.tt) soc +=
-                `<a target="_blank" rel="noopener" href="https://tiktok.com/@${handles.tt}" class="tt"><svg><use href="#tt-logo"/></svg> TikTok</a>`;
-            if (handles.fb) soc +=
-                `<a target="_blank" rel="noopener" href="https://facebook.com/${handles.fb}" class="fb"><svg><use href="#fb-logo"/></svg> Facebook</a>`;
-            if (handles.x) soc +=
-                `<a target="_blank" rel="noopener" href="https://x.com/${handles.x}" class="x"><svg><use href="#x-logo"/></svg> X</a>`;
-            if (handles.whatsapp) soc +=
-                `<a target="_blank" rel="noopener" href="https://wa.me/${handles.whatsapp}" class="wa"><svg><use href="#wa-logo"/></svg> WhatsApp</a>`;
+            if (handles.ig) soc += `<a target="_blank" rel="noopener" href="https://instagram.com/${handles.ig}" class="ig"><svg><use href="#ig-logo"/></svg> Instagram</a>`;
+            if (handles.tt) soc += `<a target="_blank" rel="noopener" href="https://tiktok.com/@${handles.tt}" class="tt"><svg><use href="#tt-logo"/></svg> TikTok</a>`;
+            if (handles.fb) soc += `<a target="_blank" rel="noopener" href="https://facebook.com/${handles.fb}" class="fb"><svg><use href="#fb-logo"/></svg> Facebook</a>`;
+            if (handles.x) soc += `<a target="_blank" rel="noopener" href="https://x.com/${handles.x}" class="x"><svg><use href="#x-logo"/></svg> X</a>`;
+            if (handles.whatsapp) soc += `<a target="_blank" rel="noopener" href="https://wa.me/${handles.whatsapp}" class="wa"><svg><use href="#wa-logo"/></svg> WhatsApp</a>`;
             return soc ? `<div class="legend-soc">${soc}</div>` : '';
         }
 
@@ -1506,14 +1653,10 @@
         $('#staffGrid').innerHTML = STAFF_DATA.map(s => {
             const img = s.photo || fallbackAvatar(s.name, 'S' + Math.floor(Math.random() * 100));
             let soc = '';
-            if (s.ig) soc +=
-                `<a target="_blank" rel="noopener" href="https://instagram.com/${s.ig}"><svg><use href="#ig-logo"/></svg></a>`;
-            if (s.tt) soc +=
-                `<a target="_blank" rel="noopener" href="https://tiktok.com/@${s.tt}"><svg><use href="#tt-logo"/></svg></a>`;
-            if (s.fb) soc +=
-                `<a target="_blank" rel="noopener" href="https://facebook.com/${s.fb}"><svg><use href="#fb-logo"/></svg></a>`;
-            if (s.x) soc +=
-                `<a target="_blank" rel="noopener" href="https://x.com/${s.x}"><svg><use href="#x-logo"/></svg></a>`;
+            if (s.ig) soc += `<a target="_blank" rel="noopener" href="https://instagram.com/${s.ig}"><svg><use href="#ig-logo"/></svg></a>`;
+            if (s.tt) soc += `<a target="_blank" rel="noopener" href="https://tiktok.com/@${s.tt}"><svg><use href="#tt-logo"/></svg></a>`;
+            if (s.fb) soc += `<a target="_blank" rel="noopener" href="https://facebook.com/${s.fb}"><svg><use href="#fb-logo"/></svg></a>`;
+            if (s.x) soc += `<a target="_blank" rel="noopener" href="https://x.com/${s.x}"><svg><use href="#x-logo"/></svg></a>`;
             const caption = `${s.name} · ${s.role}`;
             const nickDisplay = s.nick ? `<div class="nick">★ ${s.nick}</div>` : '';
             const noteShort = s.note && s.note.length > 160 ? s.note.slice(0, 157) + '…' : s.note;
@@ -1557,8 +1700,7 @@
                     <table>
                         <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
                         <tbody>${rows}</tbody>
-                    </table>` :
-                `<div class="standings-empty">🏆 <strong>Season starts soon!</strong> Standings will appear once matches are played.</div>`;
+                    </table>` : `<div class="standings-empty">🏆 <strong>Season starts soon!</strong> Standings will appear once matches are played.</div>`;
         }
         buildStandingsFromData();
 
@@ -1677,8 +1819,7 @@
         });
 
         const io = new IntersectionObserver(es => {
-            es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in');
-                    io.unobserve(e.target); } });
+            es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
         }, { threshold: .12 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
@@ -1710,8 +1851,7 @@
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
             activeModal = modal;
-            const focusable = modal.querySelectorAll(
-                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
             if (focusable.length) focusable[0].focus();
         }
 
@@ -1732,8 +1872,7 @@
                 if (lightbox.classList.contains('open')) closeLightbox();
             }
             if (e.key === 'Tab' && activeModal) {
-                const focusable = activeModal.querySelectorAll(
-                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const focusable = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (!focusable.length) return;
                 const first = focusable[0];
                 const last = focusable[focusable.length - 1];
@@ -1760,9 +1899,7 @@
         const lightboxPrev = $('#lightboxPrev');
         const lightboxNext = $('#lightboxNext');
         const lightboxCounter = $('#lightboxCounter');
-        let zoomImages = [],
-            zoomCaptions = [],
-            currentIndex = 0;
+        let zoomImages = [], zoomCaptions = [], currentIndex = 0;
 
         function openLightbox(src, caption, index) {
             lightboxImg.src = src;
@@ -1773,8 +1910,7 @@
             updateLightboxControls();
         }
 
-        function closeLightbox() { lightbox.classList.remove('open');
-            document.body.style.overflow = ''; }
+        function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
 
         function updateLightboxControls() {
             const total = zoomImages.length;
@@ -1819,16 +1955,11 @@
                     document.querySelectorAll('img[data-zoom]').forEach(el => {
                         if (el.closest('.legend-card')) return;
                         const s = el.dataset.zoom;
-                        if (s) { zoomImages.push(s);
-                            zoomCaptions.push(el.dataset.caption || ''); }
+                        if (s) { zoomImages.push(s); zoomCaptions.push(el.dataset.caption || ''); }
                     });
-                    const unique = [],
-                        uniqueC = [],
-                        seen = new Set();
+                    const unique = [], uniqueC = [], seen = new Set();
                     for (let i = 0; i < zoomImages.length; i++) {
-                        if (!seen.has(zoomImages[i])) { seen.add(zoomImages[i]);
-                            unique.push(zoomImages[i]);
-                            uniqueC.push(zoomCaptions[i]); }
+                        if (!seen.has(zoomImages[i])) { seen.add(zoomImages[i]); unique.push(zoomImages[i]); uniqueC.push(zoomCaptions[i]); }
                     }
                     zoomImages = unique;
                     zoomCaptions = uniqueC;
@@ -1844,10 +1975,8 @@
             if (e.key === 'ArrowLeft') showPrev();
             if (e.key === 'ArrowRight') showNext();
         });
-        lightboxPrev.addEventListener('click', e => { e.stopPropagation();
-            showPrev(); });
-        lightboxNext.addEventListener('click', e => { e.stopPropagation();
-            showNext(); });
+        lightboxPrev.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
+        lightboxNext.addEventListener('click', e => { e.stopPropagation(); showNext(); });
 
         const backTop = $('#backTop');
         window.addEventListener('scroll', () => {
@@ -1865,6 +1994,28 @@
             msg += ` ⭐`;
             window.open(wa(msg), '_blank');
         });
+
+        // ─── COOKIE CONSENT BANNER ────────────────────────────────
+        (function cookieConsent() {
+            if (localStorage.getItem('cs_cookie_ok')) return;
+            const banner = document.createElement('div');
+            banner.style.cssText = `
+                position:fixed;bottom:0;left:0;right:0;z-index:9999;
+                background:var(--ink);border-top:2px solid var(--gold);
+                padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;
+                gap:1rem;flex-wrap:wrap;font-size:.85rem;box-shadow:0 -10px 40px rgba(0,0,0,.6);`;
+            banner.innerHTML = `
+                <p style="margin:0;color:var(--paper-dim);max-width:60ch;">
+                    We use cookies to understand how you use the City Stars site and improve your experience.
+                    See our <a href="#" style="color:var(--gold);text-decoration:underline;">Privacy Policy</a>.
+                </p>
+                <button style="background:var(--gold);color:var(--ink);border:none;padding:.7rem 1.4rem;font-family:var(--display);cursor:pointer;letter-spacing:.05em;">ACCEPT</button>`;
+            document.body.appendChild(banner);
+            banner.querySelector('button').addEventListener('click', () => {
+                localStorage.setItem('cs_cookie_ok', '1');
+                banner.style.display = 'none';
+            });
+        })();
 
         (function tacticsBoard() {
             if (reduced) return;
@@ -1951,8 +2102,7 @@
                 ctx.beginPath();
                 ctx.arc(w * 0.5, h * 0.5, Math.min(w, h) * 0.08, 0, Math.PI * 2);
                 ctx.stroke();
-                const boxW = w * 0.12,
-                    boxH = h * 0.35;
+                const boxW = w * 0.12, boxH = h * 0.35;
                 ctx.strokeRect(pad, h * 0.5 - boxH / 2, boxW, boxH);
                 ctx.strokeRect(w - pad - boxW, h * 0.5 - boxH / 2, boxW, boxH);
                 ctx.strokeStyle = 'rgba(255, 196, 46, 0.4)';
