@@ -24,6 +24,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
+        /* --- (unchanged CSS, same as before) --- */
         :root{--bg:#07091a;--bg2:#0c1030;--panel:#11163a;--panel2:#0d1230;--ink:#050714;--line:rgba(244,241,232,.09);--line-strong:rgba(244,241,232,.2);--paper:#f4f1e8;--paper-dim:#d8d4c5;--muted:#8b94b8;--gold:#ffc42e;--gold-deep:#d99411;--gold-glow:rgba(255,196,46,.35);--ember:#ff6b35;--green:#3ce08d;--red:#ff5d5d;--draw:#9aa3b8;--wa:#25d366;--fb:#1877f2;--display:'Anton',sans-serif;--serif:'Instrument Serif',serif;--body:'Space Grotesk',sans-serif;--mono:'Space Mono',monospace;--radius:14px;--shadow-lg:0 30px 80px rgba(0,0,0,.65),0 8px 24px rgba(0,0,0,.4);--shadow-gold:0 20px 60px rgba(255,196,46,.15)}
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
@@ -890,10 +891,8 @@
 
     <script>
         // ============================================================
-        //  DATA — Squad, Legends, Fixtures etc.
-        //  The following players have been moved to Legends:
-        //  Ambrose Ngetich, Outtah Tychicus, Miguel Fredrick,
-        //  Bruno, Kangethe Palma, Stephen Wagai
+        //  DATA — CORRECTED AS PER OFFICIAL DRAFT
+        //  No home/away distinction — all matches are "City Stars vs Opponent"
         // ============================================================
 
         const WHATSAPP_NUMBER = "254768737643";
@@ -927,28 +926,28 @@
         ];
 
         // ─── FIXTURES ────────────────────────────────────────────────
+        // All fixtures now use h: true to always show "City Stars vs Opponent"
         const CITY_STARS_FIXTURES = [
             { date: "2026-09-10", time: "4:00pm – 5:30pm", opponent: "Cuksa", leg: "First Leg", h: true },
             { date: "2026-09-12", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg", h: true },
             { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
             { date: "2026-09-19", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
-            { date: "2026-09-24", time: "12:00pm – 1:30pm", opponent: "Qualifier 3", leg: "First Leg", h: true },
-            { date: "2026-09-26", time: "8:00am – 9:30am", opponent: "Qualifier 4", leg: "First Leg", h: false },
-            { date: "2026-09-27", time: "10:00am – 11:30am", opponent: "Qualifier 1", leg: "First Leg", h: false },
-            { date: "2026-10-01", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg", h: false },
-            { date: "2026-10-03", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg", h: false },
-            { date: "2026-10-04", time: "12:00pm – 1:30pm", opponent: "Ashland", leg: "First Leg", h: false },
-            { date: "2026-10-09", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "First Leg", h: false },
-            { date: "2026-10-10", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "First Leg", h: false },
-            { date: "2026-10-14", time: "12:00pm – 1:30pm", opponent: "Qualifier 2", leg: "First Leg", h: true }
+            { date: "2026-09-24", time: "12:00pm – 1:30pm", opponent: "Avengers", leg: "First Leg", h: true },
+            { date: "2026-09-26", time: "8:00am – 9:30am", opponent: "Pochon", leg: "First Leg", h: true },
+            { date: "2026-09-27", time: "10:00am – 11:30am", opponent: "Talanta", leg: "First Leg", h: true },
+            { date: "2026-10-01", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg", h: true },
+            { date: "2026-10-03", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg", h: true },
+            { date: "2026-10-04", time: "12:00pm – 1:30pm", opponent: "Ashland", leg: "First Leg", h: true },
+            { date: "2026-10-09", time: "10:00am – 11:30am", opponent: "Pocusa", leg: "First Leg", h: true },
+            { date: "2026-10-10", time: "12:00pm – 1:30pm", opponent: "Vipers", leg: "First Leg", h: true },
+            { date: "2026-10-14", time: "12:00pm – 1:30pm", opponent: "Cunsa", leg: "First Leg", h: true }
         ];
 
         const RESULTS_MATCHES = [
-            { d: "2026-07-11", opp: "Supersport", h: false, us: 1, them: 6 }
+            { d: "2026-07-11", opp: "Supersport", h: true, us: 1, them: 6 }
         ];
 
-        // ─── SQUAD DATA (players removed: Ambrose Ngetich, Outtah Tychicus,
-        //     Miguel Fredrick, Bruno, Kangethe Palma, Stephen Wagai) ──
+        // ─── SQUAD DATA (unchanged) ──────────────────────────────────
         const SQUAD_DATA = [
             { name: "Morgan undisputed", nick: "Captain Morgan", pos: "DF", no: 4, role: 'captain',
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg", whatsapp: "254704890662",
@@ -1006,7 +1005,7 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg" }
         ];
 
-        // ─── NEWS DATA ──────────────────────────────────────────────
+        // ─── NEWS DATA (unchanged) ──────────────────────────────────
         const NEWS_DATA = [
             { tag: "New Kit", date: "2026-09-01", title: "A Fresh Look for the 2026 Season",
                 excerpt: "We are raising funds for a fresh new kit. Every contribution counts help us shine brighter.",
@@ -1026,25 +1025,25 @@
                 full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 700, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars." }
         ];
 
-        // ─── STANDINGS DATA ──────────────────────────────────────────
+        // ─── STANDINGS DATA — CORRECT 14 TEAMS FROM DRAFT ──────────
         const STANDINGS_DATA = [
             { pos: 1, team: "Vipers", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 2, team: "Gusii", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 3, team: "City Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, isCity: true },
-            { pos: 4, team: "Hitmen", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 5, team: "Pocusa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 6, team: "Felites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 7, team: "Venom", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 8, team: "Meru Boys", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 9, team: "Thunder Elites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 2, team: "Cunsa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 3, team: "Pochon", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 4, team: "Talanta", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 5, team: "City Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, isCity: true },
+            { pos: 6, team: "Cuksa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 7, team: "Avengers", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 8, team: "Young Stars", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 9, team: "Pocusa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 10, team: "Rerina", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 11, team: "Young Stars", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 12, team: "Cuksa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 13, team: "Qualifier 1", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 14, team: "Qualifier 2", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 }
+            { pos: 11, team: "Phelites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 12, team: "Thunder Elites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 13, team: "Ashland", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 14, team: "Meru Boys", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 }
         ];
 
-        // ─── RULES DATA ─────────────────────────────────────────────
+        // ─── RULES DATA (unchanged) ─────────────────────────────────
         const RULES_DATA = [
             "Mandatory registration fee of <strong>700/-</strong> for each player and <strong>100/-</strong> subscription failure to pay means you are not a member and not eligible to play.",
             "As a player you have to train for at least <strong>three days</strong> in a week.",
@@ -1059,9 +1058,7 @@
             "After every training and game session we shall always have a small meeting, concluding with a <strong>WORD OF PRAYER</strong>."
         ];
 
-        // ─── LEGENDS DATA (The Founding Fathers) ──────────────────
-        //  First entry: group photo (veterans.jpeg) – cleaned up
-        //  Then: 6 individual players moved from squad
+        // ─── LEGENDS DATA (unchanged) ──────────────────────────────
         const LEGENDS_DATA = [
             {
                 name: "The Founding Fathers",
@@ -1143,7 +1140,7 @@
         ];
 
         // ============================================================
-        //  END EDITABLE SECTION — DO NOT EDIT BELOW THIS LINE
+        //  END DATA — REMAINING JAVASCRIPT (unchanged logic, adjusted for home/away removal)
         // ============================================================
 
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1206,10 +1203,11 @@
             d: f.date,
             t: f.time.split(' – ')[0],
             opp: f.opponent,
-            h: f.h
+            h: true // force home display
         }));
 
         const upcoming = UPCOMING_MATCHES.filter(m => m.us === undefined);
+        // Always show "CITY STARS v Opponent"
         $('#upcomingList').innerHTML = upcoming.map((m, i) => {
             const d = pd(m.d);
             return `<div class="m-row${i === 0 ? ' next' : ''}">
@@ -1220,8 +1218,8 @@
                     </div>
                     <div class="m-body">
                         <span class="m-tag">Chuka Premier League</span>
-                        <h4>${m.h ? 'CITY STARS v ' + m.opp : m.opp + ' v CITY STARS'}</h4>
-                        <p>${m.h ? 'Home · Chuka University Main Pitch' : 'Away fixture'}</p>
+                        <h4>CITY STARS v ${m.opp}</h4>
+                        <p>Chuka University Main Pitch</p>
                     </div>
                 </div>`;
         }).join('') ||
@@ -1232,14 +1230,14 @@
         $('#resultsList').innerHTML = results.length ? results.map(m => {
             const d = pd(m.d);
             const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
-            const line = m.h ? `CITY STARS ${m.us}–${m.them} ${m.opp}` : `${m.opp} ${m.them}–${m.us} CITY STARS`;
+            const line = `CITY STARS ${m.us}–${m.them} ${m.opp}`;
             return `<div class="m-row">
                     <div class="m-date">
                         <span class="m-dow">${fDow(d)}</span>
                         <span class="m-day">${fDay(d)}</span>
                     </div>
                     <div class="m-body">
-                        <span class="m-tag">${m.h ? 'Home' : 'Away'} · League</span>
+                        <span class="m-tag">League</span>
                         <h4>${line}</h4>
                     </div>
                     <span class="m-res ${r}">${r.toUpperCase()}</span>
@@ -1272,8 +1270,8 @@
             document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
             document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
             document.getElementById('cdSecs').textContent = String(secs).padStart(2, '0');
-            const opp = nextMatch.h ? `vs ${nextMatch.opp}` : `@ ${nextMatch.opp}`;
-            document.getElementById('cdOpp').innerHTML = `<em>${fDay(matchDate)}</em> &nbsp;·&nbsp; ${opp}`;
+            const opp = nextMatch.opp;
+            document.getElementById('cdOpp').innerHTML = `<em>${fDay(matchDate)}</em> &nbsp;·&nbsp; vs ${opp}`;
             document.getElementById('addToCalendarBtn').style.display = 'inline-flex';
         }
         updateCountdown();
@@ -1387,7 +1385,7 @@
                 </article>`;
         }).join('');
 
-        // ─── LEGENDS CARD (entry point to legends page) ────────────
+        // ─── LEGENDS CARD ────────────────────────────────────────────
         function buildLegendCard() {
             const covers = [
                 "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/veterans.jpeg",
@@ -1468,7 +1466,6 @@
                 </article>`;
         }).join('');
 
-        // Open legends full page when card clicked
         const legendsPage = $('#legendsPage');
         const legendsCardEntry = $('#legendCardEntry');
 
@@ -1600,8 +1597,8 @@
             const resColor = m.us > m.them ? 'var(--green)' : m.us < m.them ? 'var(--red)' : 'var(--draw)';
             return `<div class="fixture-item">
                     <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
-                    <div class="fgame" style="color:${resColor}; font-weight:700;">${m.h ? 'CITY STARS ' + m.us + ' - ' + m.them + ' ' + m.opp : m.opp + ' ' + m.them + ' - ' + m.us + ' CITY STARS'} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span></div>
-                    <div class="ftime">${m.h ? 'Home' : 'Away'}</div>
+                    <div class="fgame" style="color:${resColor}; font-weight:700;">CITY STARS ${m.us} - ${m.them} ${m.opp} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span></div>
+                    <div class="ftime">League</div>
                 </div>`;
         }).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
 
