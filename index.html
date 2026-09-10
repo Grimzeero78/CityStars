@@ -518,6 +518,11 @@
         @media(max-width:560px){.squad-grid,.staff-grid{grid-template-columns:repeat(2,1fr)!important;gap:.8rem!important}.player-card .ph,.staff-card .ph{aspect-ratio:3/4!important;height:auto!important}.player-number{font-size:2rem;bottom:8px;right:8px}.player-card h4,.staff-card h4{font-size:1rem;line-height:1.1}.player-card .txt,.staff-card .txt{padding:1rem .8rem}.player-bottom .soc-icon{font-size:0!important;padding:.35rem}.player-bottom .soc-icon svg{width:14px;height:14px}.player-bottom .soc-icon.icon-only svg{width:14px;height:14px}.player-role{font-size:.45rem;padding:.15rem .4rem;margin-left:0}.nick{font-size:.8rem}.staff-role{font-size:.5rem}.player-meta{font-size:.5rem;letter-spacing:.1em;margin:.2rem 0 .4rem}.note{font-size:.7rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.player-soc a{width:28px;height:28px}.player-soc a svg{width:12px;height:12px}.player-stats{font-size:.5rem;gap:.6rem}.player-stats span b{font-size:.65rem}}
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.lm>span{transform:none}.ticker-track,.band-track{animation:none;width:auto}.collage img,.player-card .ph img,.staff-card .ph img,.news-feature img,.news-item img{animation:none!important;transform:none!important}}
         .focus-trap{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+        
+        @keyframes slideInDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -937,9 +942,8 @@
         ];
 
         // ─── FIXTURES ────────────────────────────────────────────────
-        // All fixtures now use h: true to always show "City Stars vs Opponent"
+        // Cuksa removed as it is now a recorded result.
         const CITY_STARS_FIXTURES = [
-            { date: "2026-09-10", time: "1:00pm – 2:30pm", opponent: "Cuksa", leg: "First Leg", h: true },
             { date: "2026-09-12", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg", h: true },
             { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
             { date: "2026-09-19", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
@@ -955,7 +959,7 @@
         ];
 
         const RESULTS_MATCHES = [
-            { d: "2026-07-11", opp: "Supersport", h: true, us: 1, them: 6 }
+            { d: "2026-09-10", opp: "Cuksa", h: true, us: 2, them: 1, scorers: ["Minnot", "Davii"] }
         ];
 
         // ─── SQUAD DATA (unchanged) ──────────────────────────────────
@@ -1016,8 +1020,16 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg" }
         ];
 
-        // ─── NEWS DATA (unchanged) ──────────────────────────────────
+        // ─── NEWS DATA ──────────────────────────────────────────
         const NEWS_DATA = [
+            { tag: "Match Report", date: "2026-09-10", title: "City Stars Open Season With 2-1 Win Over Cuksa",
+                excerpt: "Minnot and Davii find the net as City Stars kick off the new season with a hard-fought victory.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg",
+                full: "City Stars Chuka FC opened their 2026 Chuka Premier League campaign with a thrilling 2-1 victory over Cuksa at the Chuka University Main Pitch.\n\nThe breakthrough came when Godfrey 'Minnot' Isaiah fired home to give City Stars a deserved lead.\n\nCuksa equalized against the run of play, but City Stars refused to be discouraged. The winner came courtesy of David 'Davii' Munyao, who slotted home to seal all three points.\n\nIt's a massive statement of intent from The Celestial as they begin their journey in the new season. Up the Stars! ⭐" },
+            { tag: "Injury Update", date: "2026-09-11", title: "Clemoo Ruled Out — Keeper Needs Training",
+                excerpt: "Goalkeeper Clement 'Clemoo' is down and requires training before returning to the squad.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/clemoo.jpeg",
+                full: "City Stars Chuka FC can confirm that goalkeeper Clement 'Clemoo' is currently sidelined and will require training before he returns to first-team action.\n\nThe keeper has been working hard on his recovery, but the technical team has decided to take a cautious approach to ensure he returns fully fit and ready to compete.\n\nWe wish Clemoo a speedy return to the pitch. ⭐" },
             { tag: "New Kit", date: "2026-09-01", title: "A Fresh Look for the 2026 Season",
                 excerpt: "We are raising funds for a fresh new kit. Every contribution counts help us shine brighter.",
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/new2.jpeg",
@@ -1226,29 +1238,42 @@
         const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.date + 'T00:00:00') }));
         const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
         
-        const UPCOMING_MATCHES = futureFixtures.slice(0, 3).map(f => ({
-            d: f.date,
-            t: f.time.split(' – ')[0],
-            opp: f.opponent,
-            h: true 
-        }));
+        // ─── DYNAMIC UPCOMING MATCHES (auto-rotates when match starts) ─
+        function getLiveUpcomingMatches() {
+            const now = new Date();
+            return futureFixtures.filter(f => {
+                const matchDate = pd(f.date);
+                const { h, m } = parseTimeString(f.time);
+                matchDate.setHours(h, m, 0, 0);
+                // Match is "upcoming" if it hasn't kicked off yet
+                return matchDate > now;
+            }).map(f => ({
+                d: f.date,
+                t: f.time.split(' – ')[0],
+                opp: f.opponent,
+                h: true
+            }));
+        }
 
-        const upcoming = UPCOMING_MATCHES.filter(m => m.us === undefined);
-        $('#upcomingList').innerHTML = upcoming.map((m, i) => {
-            const d = pd(m.d);
-            return `<div class="m-row${i === 0 ? ' next' : ''}">
-                    <div class="m-date">
-                        <span class="m-dow">${i === 0 ? 'NEXT ★' : fDow(d)}</span>
-                        <span class="m-day">${fDay(d)}</span>
-                        <span class="m-time">${m.t || ''} KO</span>
-                    </div>
-                    <div class="m-body">
-                        <span class="m-tag">Chuka Premier League</span>
-                        <h4>CITY STARS v ${m.opp}</h4>
-                        <p>Chuka University Main Pitch</p>
-                    </div>
-                </div>`;
-        }).join('') || `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No upcoming matches scheduled.</p>`;
+        function renderUpcomingList() {
+            const liveUpcoming = getLiveUpcomingMatches().slice(0, 3);
+            $('#upcomingList').innerHTML = liveUpcoming.length ? liveUpcoming.map((m, i) => {
+                const d = pd(m.d);
+                return `<div class="m-row${i === 0 ? ' next' : ''}">
+                        <div class="m-date">
+                            <span class="m-dow">${i === 0 ? 'NEXT ★' : fDow(d)}</span>
+                            <span class="m-day">${fDay(d)}</span>
+                            <span class="m-time">${m.t || ''} KO</span>
+                        </div>
+                        <div class="m-body">
+                            <span class="m-tag">Chuka Premier League</span>
+                            <h4>CITY STARS v ${m.opp}</h4>
+                            <p>Chuka University Main Pitch</p>
+                        </div>
+                    </div>`;
+            }).join('') : `<p class="muted" style="padding:1rem;text-align:center;font-family:var(--mono);font-size:.8rem;">No upcoming matches scheduled.</p>`;
+        }
+        renderUpcomingList();
 
         const allResults = RESULTS_MATCHES.filter(m => m.us !== undefined);
         const results = allResults.slice(-3).reverse();
@@ -1256,6 +1281,7 @@
             const d = pd(m.d);
             const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
             const line = `CITY STARS ${m.us}–${m.them} ${m.opp}`;
+            const scorers = m.scorers ? `<p style="font-size:.7rem;color:var(--gold);margin-top:.2rem;">⚽ ${m.scorers.join(', ')}</p>` : '';
             return `<div class="m-row">
                     <div class="m-date">
                         <span class="m-dow">${fDow(d)}</span>
@@ -1264,6 +1290,7 @@
                     <div class="m-body">
                         <span class="m-tag">League</span>
                         <h4>${line}</h4>
+                        ${scorers}
                     </div>
                     <span class="m-res ${r}">${r.toUpperCase()}</span>
                 </div>`;
@@ -1312,7 +1339,7 @@
             document.getElementById('seasonStatsContainer').innerHTML = html;
         })();
 
-        // ─── COUNTDOWN & LIVE MATCH LOGIC ─────────────────────────
+        // ─── COUNTDOWN & LIVE MATCH LOGIC (Auto-Rotating) ─────────
         function updateLiveStatus(nextMatch, matchDate) {
             let liveBanner = document.getElementById('liveBanner');
             if (!liveBanner) {
@@ -1340,8 +1367,13 @@
             }
         }
 
+        let currentCountdownMatch = null;
+        let lastUpcomingKey = '';
+
         function updateCountdown() {
-            const nextMatch = upcoming[0];
+            const liveUpcoming = getLiveUpcomingMatches();
+            const nextMatch = liveUpcoming[0];
+            
             if (!nextMatch) {
                 $('#cdOpp').textContent = 'No upcoming matches';
                 document.getElementById('addToCalendarBtn').style.display = 'none';
@@ -1349,8 +1381,23 @@
                 $('#cdClocks').style.opacity = '0.3';
                 return;
             }
+            
+            // Auto-rotation: detect when match changes
+            const matchKey = nextMatch.d + '_' + nextMatch.opp;
+            if (matchKey !== lastUpcomingKey) {
+                lastUpcomingKey = matchKey;
+                renderUpcomingList(); // Re-render the upcoming list
+                
+                // Show "MATCH LIVE" flash if it's a transition
+                if (currentCountdownMatch) {
+                    showMatchLiveBanner(currentCountdownMatch.opp);
+                }
+            }
+            
+            currentCountdownMatch = nextMatch;
             $('#cdClocks').style.opacity = '1';
             nextMatchData = nextMatch;
+            
             const matchDate = pd(nextMatch.d);
             const { h, m } = parseTimeString(nextMatch.t);
             matchDate.setHours(h, m, 0, 0);
@@ -1379,6 +1426,34 @@
 
             updateLiveStatus(nextMatch, matchDate);
         }
+
+        function showMatchLiveBanner(oppName) {
+            let banner = document.getElementById('matchLiveFlash');
+            if(!banner) {
+                banner = document.createElement('div');
+                banner.id = 'matchLiveFlash';
+                banner.style.cssText = `
+                    position:fixed;top:76px;left:50%;transform:translateX(-50%);z-index:1000;
+                    background:linear-gradient(90deg,var(--gold),var(--ember));
+                    color:var(--ink);font-family:var(--display);text-align:center;
+                    padding:.8rem 2rem;font-size:.85rem;letter-spacing:.08em;
+                    box-shadow:0 8px 30px var(--gold-glow);text-transform:uppercase;
+                    border-radius:0 0 12px 12px;`;
+                document.body.appendChild(banner);
+            }
+            banner.innerHTML = `🔴 MATCH LIVE: City Stars vs ${oppName} — Countdown advanced to next fixture`;
+            banner.style.display = 'block';
+            banner.style.animation = 'slideInDown .5s ease';
+            banner.style.opacity = '1';
+            banner.style.transform = 'translateX(-50%) translateY(0)';
+            
+            setTimeout(() => {
+                banner.style.transition = 'transform .5s ease, opacity .5s ease';
+                banner.style.transform = 'translateX(-50%) translateY(-100%)';
+                banner.style.opacity = '0';
+            }, 4000);
+        }
+
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
