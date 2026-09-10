@@ -186,13 +186,10 @@
         .cd-unit .num{font-family:var(--display);font-size:2.6rem;color:var(--paper);line-height:1;min-width:50px;text-shadow:0 0 24px var(--gold-glow);background:linear-gradient(180deg,#fff 0%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
         .cd-sep{font-family:var(--display);font-size:2.6rem;color:var(--line-strong);align-self:center}
         .cd-unit .lbl{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
-        .cd-add-cal{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);border:1px solid var(--line-strong);padding:.5rem 1rem;border-radius:6px;transition:all .3s;background:rgba(255,255,255,.02);margin-top:.5rem;cursor:pointer}
+        .cd-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.8rem;}
+        .cd-add-cal{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);border:1px solid var(--line-strong);padding:.5rem 1rem;border-radius:6px;transition:all .3s;background:rgba(255,255,255,.02);cursor:pointer}
         .cd-add-cal:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,196,46,.06)}
-        .cd-progress{width:100%;margin-top:1rem;}
-        .cd-progress-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--muted);margin-bottom:.4rem;text-transform:uppercase}
-        .cd-progress-bar{height:6px;background:var(--ink);border-radius:3px;overflow:hidden}
-        .cd-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--ember));transition:width .8s ease;}
-        @media(max-width:640px){.countdown-wrap{flex-direction:column;align-items:stretch;text-align:center;padding:1.5rem 1.2rem}.cd-clocks{justify-content:center;gap:.6rem}.cd-unit .num{font-size:2rem;min-width:38px}.cd-sep{font-size:2rem}}
+        @media(max-width:640px){.countdown-wrap{flex-direction:column;align-items:stretch;text-align:center;padding:1.5rem 1.2rem}.cd-clocks{justify-content:center;gap:.6rem}.cd-unit .num{font-size:2rem;min-width:38px}.cd-sep{font-size:2rem}.cd-actions{justify-content:center}}
         #squad{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
         .pills{display:flex;gap:.55rem;flex-wrap:wrap}
         .pill{background:none;border:1px solid var(--line-strong);color:var(--muted);font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;padding:.65rem 1.3rem;text-transform:uppercase;transition:all .3s}
@@ -415,9 +412,10 @@
         .rules-list li::before{content:counter(rule-counter,decimal-leading-zero);position:absolute;left:0;top:.85rem;font-family:var(--mono);font-size:.68rem;color:var(--gold);letter-spacing:.1em;font-weight:700}
         .rules-list li strong{color:var(--gold)}
         .rules-list li:last-child{border-bottom:none}
+        #latest-news{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
         #news{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
         .news-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:1.6rem}
-        .news-feature{position:relative;min-height:480px;overflow:hidden;border:1px solid var(--line);display:flex;align-items:flex-end;background:var(--ink);transition:border-color .35s;cursor:pointer}
+        .news-feature{position:relative;min-height:420px;overflow:hidden;border:1px solid var(--line);display:flex;align-items:flex-end;background:var(--ink);transition:border-color .35s;cursor:pointer}
         .news-feature:hover{border-color:var(--gold)}
         .news-feature .kb{position:absolute;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
         .news-feature img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transform:scale(1.2);animation:slowZoomOut 22s ease-in-out infinite alternate;will-change:transform;transition:transform .4s ease,filter .4s ease}
@@ -439,7 +437,7 @@
         .news-item h4{font-size:1rem;letter-spacing:.03em;line-height:1.3;margin:.5rem 0 .5rem}
         .news-item .ex{font-size:.78rem;color:var(--muted);margin-bottom:.5rem}
         @media(max-width:920px){.news-grid{grid-template-columns:1fr}.news-feature{min-height:380px}}
-        @media(max-width:480px){.news-item{grid-template-columns:1fr;gap:.9rem;padding:.9rem}.news-item .thumb{height:180px}.news-feature .nfc{padding:1.4rem}.news-feature h3{font-size:1.3rem}}
+        @media(max-width:480px){.news-item{grid-template-columns:1fr;gap:.9rem;padding:.9rem}.news-item .thumb{height:180px}.news-feature .nfc{padding:1.4rem}.news-feature h3{font-size:1.3rem}.news-feature{min-height:340px}}
         .join-panel{display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--line-strong);background:linear-gradient(135deg,var(--panel2) 0%,var(--ink) 100%);border-radius:var(--radius);overflow:hidden;position:relative}
         .join-panel::before{content:"";position:absolute;top:-100px;left:-100px;width:300px;height:300px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);opacity:.3;pointer-events:none}
         .join-left{padding:3.2rem 2.8rem;position:relative}
@@ -518,11 +516,6 @@
         @media(max-width:560px){.squad-grid,.staff-grid{grid-template-columns:repeat(2,1fr)!important;gap:.8rem!important}.player-card .ph,.staff-card .ph{aspect-ratio:3/4!important;height:auto!important}.player-number{font-size:2rem;bottom:8px;right:8px}.player-card h4,.staff-card h4{font-size:1rem;line-height:1.1}.player-card .txt,.staff-card .txt{padding:1rem .8rem}.player-bottom .soc-icon{font-size:0!important;padding:.35rem}.player-bottom .soc-icon svg{width:14px;height:14px}.player-bottom .soc-icon.icon-only svg{width:14px;height:14px}.player-role{font-size:.45rem;padding:.15rem .4rem;margin-left:0}.nick{font-size:.8rem}.staff-role{font-size:.5rem}.player-meta{font-size:.5rem;letter-spacing:.1em;margin:.2rem 0 .4rem}.note{font-size:.7rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.player-soc a{width:28px;height:28px}.player-soc a svg{width:12px;height:12px}.player-stats{font-size:.5rem;gap:.6rem}.player-stats span b{font-size:.65rem}}
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.lm>span{transform:none}.ticker-track,.band-track{animation:none;width:auto}.collage img,.player-card .ph img,.staff-card .ph img,.news-feature img,.news-item img{animation:none!important;transform:none!important}}
         .focus-trap{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-        
-        @keyframes slideInDown {
-            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
     </style>
 </head>
 <body>
@@ -557,10 +550,10 @@
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#matches" data-section="matches">Matches</a></li>
+                <li><a href="#latest-news" data-section="latest-news">News</a></li>
                 <li><a href="#squad" data-section="squad">Squad</a></li>
                 <li><a href="#staff" data-section="staff">Staff</a></li>
                 <li><a href="#standings" data-section="standings">Table</a></li>
-                <li><a href="#news" data-section="news">Blog</a></li>
                 <li><a href="#join" data-section="join">Join</a></li>
                 <li><a href="#discipline" data-section="discipline">Rules</a></li>
             </ul>
@@ -572,10 +565,10 @@
 
     <nav class="mobile-menu" id="mobileMenu">
         <a href="#matches">Matches</a>
+        <a href="#latest-news">News</a>
         <a href="#squad">Squad</a>
         <a href="#staff">Staff</a>
         <a href="#standings">Table</a>
-        <a href="#news">Blog</a>
         <a href="#join">Join</a>
         <a href="#discipline">Rules</a>
     </nav>
@@ -641,6 +634,7 @@
 
     <main id="top">
 
+        <!-- 1. HERO SECTION -->
         <section class="hero">
             <canvas id="tacticsBoard"></canvas>
             <div class="wrap hero-grid">
@@ -676,6 +670,7 @@
             </div>
         </div>
 
+        <!-- 2. MATCHDAY / COUNTDOWN -->
         <section id="matches">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -704,15 +699,15 @@
                     </div>
                 </div>
                 
-                <!-- Season Stats injected here via JS -->
                 <div id="seasonStatsContainer"></div>
 
                 <div class="countdown-wrap reveal reveal-delay-2" id="countdownWrap">
                     <div>
                         <div class="cd-label">⏤ Next Match Countdown</div>
                         <div class="cd-opp" id="cdOpp">Loading...</div>
-                        <button class="cd-add-cal" id="addToCalendarBtn" style="display:none;">📅 Add to Calendar</button>
-                        <button class="cd-add-cal" id="remindMeBtn" style="display:none; margin-left:.5rem;">🔔 Remind Me</button>
+                        <div class="cd-actions">
+                            <button class="cd-add-cal" id="cdViewPlayedBtn" style="display:none;">📊 Click to View Played Games</button>
+                        </div>
                     </div>
                     <div class="cd-clocks" id="cdClocks">
                         <div class="cd-unit"><div class="num" id="cdDays">00</div><div class="lbl">Days</div></div>
@@ -723,11 +718,24 @@
                         <div class="cd-sep">:</div>
                         <div class="cd-unit"><div class="num" id="cdSecs">00</div><div class="lbl">Sec</div></div>
                     </div>
-                    <!-- Progress bar injected here via JS -->
                 </div>
             </div>
         </section>
 
+        <!-- 3. LATEST NEWS (Featured Story) -->
+        <section id="latest-news">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <div>
+                        <span class="sec-num"><b>★</b> / Latest News</span>
+                        <h2 class="lm"><span>The Story</span></h2>
+                    </div>
+                </div>
+                <div id="latestNewsContainer"></div>
+            </div>
+        </section>
+
+        <!-- 4. SQUAD -->
         <section id="squad">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -745,7 +753,6 @@
                 </div>
                 <div class="squad-grid" id="squadGrid"></div>
 
-                <!-- LEGENDS SECTION -->
                 <div class="legends-strip reveal reveal-delay-2">
                     <div class="legends-head">
                         <div class="legends-title">
@@ -754,13 +761,12 @@
                         </div>
                         <span class="legends-hint">Click the frame to enter the legends page →</span>
                     </div>
-                    <div class="squad-grid" id="legendsGrid" style="margin-top:0;">
-                        <!-- Legend card injected here -->
-                    </div>
+                    <div class="squad-grid" id="legendsGrid" style="margin-top:0;"></div>
                 </div>
             </div>
         </section>
 
+        <!-- 5. STAFF -->
         <section id="staff">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -773,6 +779,7 @@
             </div>
         </section>
 
+        <!-- 6. STANDINGS -->
         <section id="standings">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -786,6 +793,7 @@
             </div>
         </section>
 
+        <!-- 7. FULL NEWS / BLOG SECTION -->
         <section id="news">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -798,6 +806,7 @@
             </div>
         </section>
 
+        <!-- 8. JOIN -->
         <section id="join">
             <div class="wrap">
                 <div class="join-panel reveal">
@@ -829,6 +838,7 @@
             </div>
         </section>
 
+        <!-- 9. RULES -->
         <section id="discipline">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -880,6 +890,7 @@
                     <h5>Navigate</h5>
                     <ul>
                         <li><a href="#matches">Matches</a></li>
+                        <li><a href="#latest-news">Latest News</a></li>
                         <li><a href="#squad">Squad</a></li>
                         <li><a href="#staff">Staff</a></li>
                         <li><a href="#standings">Standings</a></li>
@@ -911,8 +922,7 @@
 
     <script>
         // ============================================================
-        //  DATA — CORRECTED AS PER OFFICIAL DRAFT
-        //  No home/away distinction — all matches are "City Stars vs Opponent"
+        //  DATA
         // ============================================================
 
         const WHATSAPP_NUMBER = "254768737643";
@@ -941,8 +951,6 @@
             { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg", caption: "★ The Family", class: "f3" }
         ];
 
-        // ─── FIXTURES ────────────────────────────────────────────────
-        // Cuksa removed as it is now a recorded result.
         const CITY_STARS_FIXTURES = [
             { date: "2026-09-12", time: "2:00pm – 3:30pm", opponent: "Rerina", leg: "First Leg", h: true },
             { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
@@ -962,7 +970,6 @@
             { d: "2026-09-10", opp: "Cuksa", h: true, us: 2, them: 1, scorers: ["Minnot", "Davii"] }
         ];
 
-        // ─── SQUAD DATA (unchanged) ──────────────────────────────────
         const SQUAD_DATA = [
             { name: "Morgan undisputed", nick: "Captain Morgan", pos: "DF", no: 4, role: 'captain',
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/morga.jpeg", whatsapp: "254704890662",
@@ -1003,7 +1010,6 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hunter4.jpeg" }
         ];
 
-        // ─── STAFF DATA ─────────────────────────────────────────────
         const STAFF_DATA = [
             { name: "Victor Dhavick", nick: "Helix", role: "Head Coach",
                 note: "Ambitious, creative leader passionate about coaching, developing talent, and building a winning culture. Think. Lead. Inspire. Grow.",
@@ -1020,7 +1026,6 @@
                 photo: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/ceo.jpeg" }
         ];
 
-        // ─── NEWS DATA ──────────────────────────────────────────
         const NEWS_DATA = [
             { tag: "Match Report", date: "2026-09-10", title: "City Stars Open Season With 2-1 Win Over Cuksa",
                 excerpt: "Minnot and Davii find the net as City Stars kick off the new season with a hard-fought victory.",
@@ -1040,7 +1045,6 @@
                 full: "City Stars Chuka FC is opening its doors to new members for the 2026 season.\n\nFor just KSH 700, you get an official membership card, insider matchday updates, and your name in our season thank-you post. Every shilling goes directly to team kit, travel, and the celestial dream.\n\nTo join, simply tap 'Become a Star' on our website, fill in your details, and we'll send you a WhatsApp message to complete your registration. One family. One membership. Up the Stars." }
         ];
 
-        // ─── STANDINGS DATA — CORRECT 14 TEAMS FROM DRAFT ──────────
         const STANDINGS_DATA = [
             { pos: 1, team: "Vipers", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 2, team: "Cunsa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
@@ -1058,7 +1062,6 @@
             { pos: 14, team: "Meru Boys", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 }
         ];
 
-        // ─── RULES DATA (unchanged) ─────────────────────────────────
         const RULES_DATA = [
             "Mandatory registration fee of <strong>700/-</strong> for each player and <strong>100/-</strong> subscription failure to pay means you are not a member and not eligible to play.",
             "As a player you have to train for at least <strong>three days</strong> in a week.",
@@ -1073,7 +1076,6 @@
             "After every training and game session we shall always have a small meeting, concluding with a <strong>WORD OF PRAYER</strong>."
         ];
 
-        // ─── LEGENDS DATA (unchanged) ──────────────────────────────
         const LEGENDS_DATA = [
             {
                 name: "The Founding Fathers",
@@ -1208,7 +1210,6 @@
         const fDow = d => d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
         const fDay = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }).toUpperCase();
 
-        // ─── TIME PARSER FIX ───────────────────────────────────────
         function parseTimeString(timeStr) {
             if (!timeStr) return { h: 14, m: 0 };
             let s = String(timeStr).trim().toLowerCase();
@@ -1230,14 +1231,12 @@
         const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.date + 'T00:00:00') }));
         const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
         
-        // ─── DYNAMIC UPCOMING MATCHES (auto-rotates when match starts) ─
         function getLiveUpcomingMatches() {
             const now = new Date();
             return futureFixtures.filter(f => {
                 const matchDate = pd(f.date);
                 const { h, m } = parseTimeString(f.time);
                 matchDate.setHours(h, m, 0, 0);
-                // Match is "upcoming" if it hasn't kicked off yet
                 return matchDate > now;
             }).map(f => ({
                 d: f.date,
@@ -1290,7 +1289,6 @@
 
         let nextMatchData = null;
 
-        // ─── SEASON STATS INJECTION ───────────────────────────────
         (function injectSeasonStats() {
             const played = allResults.length;
             const won = allResults.filter(m => m.us > m.them).length;
@@ -1331,7 +1329,6 @@
             document.getElementById('seasonStatsContainer').innerHTML = html;
         })();
 
-        // ─── COUNTDOWN & LIVE MATCH LOGIC (Auto-Rotating) ─────────
         function updateLiveStatus(nextMatch, matchDate) {
             let liveBanner = document.getElementById('liveBanner');
             if (!liveBanner) {
@@ -1368,22 +1365,15 @@
             
             if (!nextMatch) {
                 $('#cdOpp').textContent = 'No upcoming matches';
-                document.getElementById('addToCalendarBtn').style.display = 'none';
-                document.getElementById('remindMeBtn').style.display = 'none';
+                document.getElementById('cdViewPlayedBtn').style.display = 'none';
                 $('#cdClocks').style.opacity = '0.3';
                 return;
             }
             
-            // Auto-rotation: detect when match changes
             const matchKey = nextMatch.d + '_' + nextMatch.opp;
             if (matchKey !== lastUpcomingKey) {
                 lastUpcomingKey = matchKey;
-                renderUpcomingList(); // Re-render the upcoming list
-                
-                // Show "MATCH LIVE" flash if it's a transition
-                if (currentCountdownMatch) {
-                    showMatchLiveBanner(currentCountdownMatch.opp);
-                }
+                renderUpcomingList();
             }
             
             currentCountdownMatch = nextMatch;
@@ -1413,108 +1403,16 @@
             document.getElementById('cdOpp').innerHTML =
                 `<em>${fDay(matchDate)} · ${koTime}</em> &nbsp;·&nbsp; vs ${nextMatch.opp}`;
             
-            document.getElementById('addToCalendarBtn').style.display = 'inline-flex';
-            document.getElementById('remindMeBtn').style.display = 'inline-flex';
+            document.getElementById('cdViewPlayedBtn').style.display = 'inline-flex';
 
             updateLiveStatus(nextMatch, matchDate);
-        }
-
-        function showMatchLiveBanner(oppName) {
-            let banner = document.getElementById('matchLiveFlash');
-            if(!banner) {
-                banner = document.createElement('div');
-                banner.id = 'matchLiveFlash';
-                banner.style.cssText = `
-                    position:fixed;top:76px;left:50%;transform:translateX(-50%);z-index:1000;
-                    background:linear-gradient(90deg,var(--gold),var(--ember));
-                    color:var(--ink);font-family:var(--display);text-align:center;
-                    padding:.8rem 2rem;font-size:.85rem;letter-spacing:.08em;
-                    box-shadow:0 8px 30px var(--gold-glow);text-transform:uppercase;
-                    border-radius:0 0 12px 12px;`;
-                document.body.appendChild(banner);
-            }
-            banner.innerHTML = `🔴 MATCH LIVE: City Stars vs ${oppName} — Countdown advanced to next fixture`;
-            banner.style.display = 'block';
-            banner.style.animation = 'slideInDown .5s ease';
-            banner.style.opacity = '1';
-            banner.style.transform = 'translateX(-50%) translateY(0)';
-            
-            setTimeout(() => {
-                banner.style.transition = 'transform .5s ease, opacity .5s ease';
-                banner.style.transform = 'translateX(-50%) translateY(-100%)';
-                banner.style.opacity = '0';
-            }, 4000);
         }
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // ─── ADD TO CALENDAR FIX ───────────────────────────────────
-        document.getElementById('addToCalendarBtn').addEventListener('click', function() {
-            if (!nextMatchData) return;
-            const d = pd(nextMatchData.d);
-            const { h, m } = parseTimeString(nextMatchData.t);
-            d.setHours(h, m, 0, 0);
-            const end = new Date(d);
-            end.setTime(end.getTime() + 90 * 60 * 1000); // +90 mins
-            const fmt = dt => dt.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
-            const title = `City Stars vs ${nextMatchData.opp}`;
-            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${fmt(d)}/${fmt(end)}&details=Chuka%20Premier%20League%20match&location=Chuka%20University%20Main%20Pitch`;
-            window.open(url, '_blank');
-        });
-
-        // ─── MATCH REMINDER ────────────────────────────────────────
-        document.getElementById('remindMeBtn').addEventListener('click', async () => {
-            if (!('Notification' in window)) {
-                alert('Notifications not supported on this browser');
-                return;
-            }
-            let permission = Notification.permission;
-            if (permission !== 'granted') {
-                permission = await Notification.requestPermission();
-            }
-            if (permission === 'granted' && nextMatchData) {
-                const matchDate = pd(nextMatchData.d);
-                const { h, m } = parseTimeString(nextMatchData.t);
-                matchDate.setHours(h, m, 0, 0);
-                const remindAt = new Date(matchDate.getTime() - 60 * 60 * 1000); // 1 hour before
-                const delay = remindAt - new Date();
-                if (delay > 0) {
-                    setTimeout(() => {
-                        new Notification('⭐ City Stars Match Starting Soon!', {
-                            body: `City Stars vs ${nextMatchData.opp} kicks off in 1 hour at Chuka University Main Pitch.`,
-                            icon: 'https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/circle-logo.png'
-                        });
-                    }, delay);
-                    alert(`✅ Reminder set! You'll be notified 1 hour before City Stars vs ${nextMatchData.opp}.`);
-                } else {
-                    alert('Match is already starting soon!');
-                }
-            } else if (permission !== 'granted') {
-                alert('Notifications were blocked. Please enable them in your browser settings.');
-            }
-        });
-
-        // ─── SEASON PROGRESS BAR ──────────────────────────────────
-        (function injectProgressBar() {
-            const totalFixtures = CITY_STARS_FIXTURES.length;
-            const remainingFixtures = futureFixtures.length;
-            const playedFixtures = totalFixtures - remainingFixtures;
-            const progressPct = totalFixtures > 0 ? Math.round((playedFixtures / totalFixtures) * 100) : 0;
-
-            const html = `
-                <div class="cd-progress">
-                    <div class="cd-progress-meta">
-                        <span>Season Progress</span>
-                        <span>${playedFixtures} / ${totalFixtures} Matches · ${progressPct}%</span>
-                    </div>
-                    <div class="cd-progress-bar">
-                        <div class="cd-progress-fill" style="width:${progressPct}%;"></div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('countdownWrap').insertAdjacentHTML('beforeend', html);
-        })();
+        // Event Listener for the new countdown button
+        document.getElementById('cdViewPlayedBtn').addEventListener('click', () => { openModal(resultsModal); });
 
         function fallbackAvatar(name, no) {
             const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
@@ -1603,7 +1501,6 @@
                 </article>`;
         }).join('');
 
-        // ─── LEGENDS CARD ────────────────────────────────────────────
         function buildLegendCard() {
             const covers = [
                 "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/veterans.jpeg",
@@ -1636,7 +1533,6 @@
 
         $('#legendsGrid').innerHTML = buildLegendCard();
 
-        // ─── LEGENDS FULL PAGE ──────────────────────────────────────
         function buildLegendSoc(handles) {
             if (!handles) return '';
             let soc = '';
@@ -1841,6 +1737,19 @@
             return `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}" alt="${item.title}" data-zoom="https://picsum.photos/seed/${seed}/1400/1000" data-caption="${item.title}" />`;
         }
 
+        // Render Latest News Section (Only the Featured Item)
+        $('#latestNewsContainer').innerHTML = `
+            <article class="news-feature reveal" data-news-index="0" style="min-height: 380px;">
+                <div class="kb">${renderNewsMedia(feat, true)}</div>
+                <div class="nfc">
+                    <span class="tag">${feat.tag}</span>
+                    <h3>${feat.title}</h3>
+                    <p class="muted" style="margin-top:.8rem;font-size:.92rem;max-width:50ch;">${feat.excerpt}</p>
+                    <span class="date">${fDay(pd(feat.date))} ${pd(feat.date).getFullYear()}</span>
+                </div>
+            </article>`;
+        
+        // Render Full News Section (All items)
         $('#newsGrid').innerHTML = `
                 <article class="news-feature reveal" data-news-index="0">
                     <div class="kb">${renderNewsMedia(feat, true)}</div>
@@ -1890,7 +1799,7 @@
         }, { threshold: .12 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        const sections = ['matches', 'squad', 'staff', 'standings', 'news', 'join', 'discipline'];
+        const sections = ['matches', 'latest-news', 'squad', 'staff', 'standings', 'news', 'join', 'discipline'];
         const navLinks = document.querySelectorAll('.nav-links a');
         const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
 
@@ -2062,7 +1971,6 @@
             window.open(wa(msg), '_blank');
         });
 
-        // ─── COOKIE CONSENT BANNER ────────────────────────────────
         (function cookieConsent() {
             if (localStorage.getItem('cs_cookie_ok')) return;
             const banner = document.createElement('div');
