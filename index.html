@@ -952,7 +952,7 @@
         ];
 
         const CITY_STARS_FIXTURES = [
-            { date: "2026-09-12", time: "12:00pm – 1:30pm", opponent: "Rerina", leg: "First Leg", h: true },
+            { date: "2026-09-12", time: "12:00pm – 1:30pm", opponent: "Rerina", leg: "First Leg", h: true }, // Kept here; JS will auto-hide if result exists
             { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
             { date: "2026-09-19", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
             { date: "2026-09-24", time: "12:00pm – 1:30pm", opponent: "Avengers", leg: "First Leg", h: true },
@@ -968,7 +968,7 @@
 
         const RESULTS_MATCHES = [
             { d: "2026-09-10", opp: "Cuksa", h: true, us: 2, them: 1, scorers: ["Minnot", "Davii"] },
-            { d: "2026-09-12", opp: "Rerina", h: true, us: 0, them: 1,scorers: [] }
+            { d: "2026-09-12", opp: "Rerina", h: true, us: 0, them: 1, scorers: [] }
         ];
 
         const SQUAD_DATA = [
@@ -1028,6 +1028,14 @@
         ];
 
         const NEWS_DATA = [
+            {
+                tag: "Match Report",
+                date: "2026-09-12",
+                title: "City Stars Fall to Rerina — But the Dream Is Still Alive",
+                excerpt: "City Stars suffered their first loss of the season, going down 1-0 to Rerina. The Celestial will rise again.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
+                full: "City Stars Chuka FC suffered their first defeat of the 2026 Chuka Premier League season, falling 1-0 to a strong Rerina side at the Chuka University Main Pitch.\n\nDespite the loss, the boys fought hard from the first whistle to the last. The midfield battled bravely, the defense held strong for long spells, and the fans never stopped singing.\n\nSometimes you lose a battle to win the war. This result is not the end — it is a lesson. Every great team has faced defeat and come back stronger. The Celestial stars do not dim; they only burn brighter.\n\nThe coaches are already back on the training ground. The players are hungry to bounce back. The next match is another chance to shine.\n\nHead Coach Victor Dhavick said: \"We learn, we grow, we rise. One loss does not define us. The badge on our chest does.\"\n\nUp the Stars! ⭐"
+            },
             { tag: "Match Report", date: "2026-09-10", title: "City Stars Open Season With 2-1 Win Over Cuksa",
                 excerpt: "Minnot and Davii find the net as City Stars kick off the new season with a hard-fought victory.",
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/minnot.jpeg",
@@ -1051,12 +1059,12 @@
             { pos: 2, team: "Cunsa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 3, team: "Pochon", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 4, team: "Talanta", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 5, team: "City Stars", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, isCity: true },
-            { pos: 6, team: "Cuksa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 5, team: "City Stars", p: 2, w: 1, d: 0, l: 1, gf: 2, ga: 2, gd: 0, pts: 3, isCity: true },
+            { pos: 6, team: "Cuksa", p: 1, w: 0, d: 0, l: 1, gf: 1, ga: 2, gd: -1, pts: 0 },
             { pos: 7, team: "Avengers", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 8, team: "Young Stars", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 9, team: "Pocusa", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
-            { pos: 10, team: "Rerina", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
+            { pos: 10, team: "Rerina", p: 1, w: 1, d: 0, l: 0, gf: 1, ga: 0, gd: 1, pts: 3 },
             { pos: 11, team: "Phelites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 12, team: "Thunder Elites", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
             { pos: 13, team: "Ashland", p: '–', w: '–', d: '–', l: '–', gf: '–', ga: '–', gd: '–', pts: 0 },
@@ -1229,8 +1237,13 @@
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
+        
+        // Filter out Fixtures that already have a result in RESULTS_MATCHES
         const allFixtures = CITY_STARS_FIXTURES.map(f => ({ ...f, dateObj: new Date(f.date + 'T00:00:00') }));
-        const futureFixtures = allFixtures.filter(f => f.dateObj >= today).sort((a, b) => a.dateObj - b.dateObj);
+        const futureFixtures = allFixtures.filter(f => {
+            const hasResult = RESULTS_MATCHES.some(r => r.d === f.date && r.opp === f.opponent);
+            return f.dateObj >= today && !hasResult;
+        }).sort((a, b) => a.dateObj - b.dateObj);
         
         function getLiveUpcomingMatches() {
             const now = new Date();
@@ -1273,7 +1286,7 @@
             const d = pd(m.d);
             const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
             const line = `CITY STARS ${m.us}–${m.them} ${m.opp}`;
-            const scorers = m.scorers ? `<p style="font-size:.7rem;color:var(--gold);margin-top:.2rem;">⚽ ${m.scorers.join(', ')}</p>` : '';
+            const scorers = m.scorers && m.scorers.length > 0 ? `<p style="font-size:.7rem;color:var(--gold);margin-top:.2rem;">⚽ ${m.scorers.join(', ')}</p>` : '';
             return `<div class="m-row">
                     <div class="m-date">
                         <span class="m-dow">${fDow(d)}</span>
@@ -1640,14 +1653,15 @@
             const rows = STANDINGS_DATA.map(s => {
                 const podiumClass = s.pos <= 3 ? `podium podium-${s.pos}` : '';
                 const cityClass = s.isCity ? 'highlight' : '';
-                const isCity = s.isCity === true;
-                const pVal = isCity ? s.p : '–';
-                const wVal = isCity ? s.w : '–';
-                const dVal = isCity ? s.d : '–';
-                const lVal = isCity ? s.l : '–';
-                const gfVal = isCity ? s.gf : '–';
-                const gaVal = isCity ? s.ga : '–';
-                const gdVal = isCity ? s.gd : '–';
+                
+                // Dynamically show values if they are numbers, otherwise show dashes
+                const pVal = typeof s.p === 'number' ? s.p : '–';
+                const wVal = typeof s.w === 'number' ? s.w : '–';
+                const dVal = typeof s.d === 'number' ? s.d : '–';
+                const lVal = typeof s.l === 'number' ? s.l : '–';
+                const gfVal = typeof s.gf === 'number' ? s.gf : '–';
+                const gaVal = typeof s.ga === 'number' ? s.ga : '–';
+                const gdVal = typeof s.gd === 'number' ? s.gd : '–';
                 const ptsVal = s.pts;
 
                 return `<tr class="${podiumClass} ${cityClass}">
@@ -1659,7 +1673,7 @@
                     </tr>`;
             }).join('');
 
-            const hasGames = STANDINGS_DATA.some(s => s.isCity === true || (typeof s.p === 'number' && s.p > 0));
+            const hasGames = STANDINGS_DATA.some(s => (typeof s.p === 'number' && s.p > 0) || s.isCity === true);
             document.getElementById('standingsWrap').innerHTML = hasGames ? `
                     <table>
                         <thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead>
@@ -1672,10 +1686,14 @@
         const resultsModal = $('#resultsModal');
         const todayFixtures = new Date();
         todayFixtures.setHours(0, 0, 0, 0);
+        
+        // Also filter the main Fixtures Modal list so played games don't show as upcoming
         const upcomingFixturesList = CITY_STARS_FIXTURES.filter(f => {
             const fDate = new Date(f.date + 'T00:00:00');
-            return fDate >= todayFixtures;
+            const hasResult = RESULTS_MATCHES.some(r => r.d === f.date && r.opp === f.opponent);
+            return fDate >= todayFixtures && !hasResult;
         });
+        
         $('#fixtureList').innerHTML = upcomingFixturesList.map(f => {
             const d = pd(f.date);
             const dow = d.toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase();
@@ -1700,9 +1718,11 @@
             const dayStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
             const r = m.us > m.them ? 'W' : m.us < m.them ? 'L' : 'D';
             const resColor = m.us > m.them ? 'var(--green)' : m.us < m.them ? 'var(--red)' : 'var(--draw)';
+            const scorers = m.scorers && m.scorers.length > 0 ? `<span style="display:block; font-size:.65rem; color:var(--gold); font-weight:400; margin-top:.3rem; letter-spacing:.02em;">⚽ ${m.scorers.join(', ')}</span>` : '';
+            
             return `<div class="fixture-item">
                     <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
-                    <div class="fgame" style="color:${resColor}; font-weight:700;">CITY STARS ${m.us} - ${m.them} ${m.opp} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span></div>
+                    <div class="fgame" style="color:${resColor}; font-weight:700;">CITY STARS ${m.us} - ${m.them} ${m.opp} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span>${scorers}</div>
                     <div class="ftime">League</div>
                 </div>`;
         }).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
