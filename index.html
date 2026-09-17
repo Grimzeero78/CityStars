@@ -58,8 +58,8 @@
                 </div>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#matches" data-section="matches">Matches</a></li>
-                <li><a href="#latest-news" data-section="latest-news">News</a></li>
+                <li><a href="#latest-news" data-section="latest-news">The Story</a></li>
+                <li><a href="#matches" data-section="matches">Matchday</a></li>
                 <li><a href="#squad" data-section="squad">Squad</a></li>
                 <li><a href="#staff" data-section="staff">Staff</a></li>
                 <li><a href="#standings" data-section="standings">Table</a></li>
@@ -73,8 +73,8 @@
     </header>
 
     <nav class="mobile-menu" id="mobileMenu">
-        <a href="#matches">Matches</a>
-        <a href="#latest-news">News</a>
+        <a href="#latest-news">The Story</a>
+        <a href="#matches">Matchday</a>
         <a href="#squad">Squad</a>
         <a href="#staff">Staff</a>
         <a href="#standings">Table</a>
@@ -177,6 +177,20 @@
             </div>
         </div>
 
+        <!-- THE STORY SECTION MOVED UP (was latest-news) -->
+        <section id="latest-news">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <div>
+                        <span class="sec-num"><b>★</b> / The Story</span>
+                        <h2 class="lm"><span>Latest News</span></h2>
+                    </div>
+                </div>
+                <div id="latestNewsContainer"></div>
+            </div>
+        </section>
+
+        <!-- MATCHDAY SECTION NOW CONTAINS COUNTDOWN, STATS, BUTTONS, THEN LISTS -->
         <section id="matches">
             <div class="wrap">
                 <div class="sec-head reveal">
@@ -184,30 +198,11 @@
                         <span class="sec-num"><b>01</b> / Fixtures & Results</span>
                         <h2 class="lm"><span>Matchday</span></h2>
                     </div>
-                    <div style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;">
-                        <p class="muted" style="font-family:var(--mono);font-size:.66rem;letter-spacing:.22em">CPL · 2026 SEASON</p>
-                        <button class="btn btn-line btn-sm" id="openResultsBtn">
-                            <span>📊 Played Games</span>
-                        </button>
-                        <button class="btn btn-line btn-sm" id="openFixturesBtn">
-                            <span>📋 Click to View All Fixtures</span>
-                        </button>
-                    </div>
+                    <p class="muted" style="font-family:var(--mono);font-size:.66rem;letter-spacing:.22em">CPL · 2026 SEASON</p>
                 </div>
-                <div class="matches-grid">
-                    <div class="mcol reveal">
-                        <h3>Upcoming</h3>
-                        <div id="upcomingList"></div>
-                    </div>
-                    <div class="mcol reveal reveal-delay-1">
-                        <h3>Recent Results</h3>
-                        <div id="resultsList"></div>
-                    </div>
-                </div>
-                
-                <div id="seasonStatsContainer"></div>
 
-                <div class="countdown-wrap reveal reveal-delay-2" id="countdownWrap">
+                <!-- 1. COUNTDOWN FIRST -->
+                <div class="countdown-wrap reveal reveal-delay-1" id="countdownWrap" style="margin-top:0;">
                     <div>
                         <div class="cd-label">⏤ Next Match Countdown</div>
                         <div class="cd-opp" id="cdOpp">Loading...</div>
@@ -225,18 +220,31 @@
                         <div class="cd-unit"><div class="num" id="cdSecs">00</div><div class="lbl">Sec</div></div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="latest-news">
-            <div class="wrap">
-                <div class="sec-head reveal">
-                    <div>
-                        <span class="sec-num"><b>★</b> / Latest News</span>
-                        <h2 class="lm"><span>The Story</span></h2>
-                    </div>
+                <!-- 2. SEASON STATS (PLAYED WON DRAWN FOR LEAGUE) -->
+                <div id="seasonStatsContainer"></div>
+
+                <!-- 3. HIGHLIGHTED BUTTONS FOR FULL FIXTURES AND PLAYED GAMES -->
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin:2rem 0 1.5rem;">
+                    <button class="btn" id="openResultsBtn" style="background:var(--gold);color:var(--ink);font-size:.9rem;padding:.9rem 2rem;box-shadow:0 0 20px var(--gold-glow);">
+                        <span>📊 Click to View Played Games</span>
+                    </button>
+                    <button class="btn" id="openFixturesBtn" style="background:var(--paper);color:var(--ink);font-size:.9rem;padding:.9rem 2rem;box-shadow:0 0 20px rgba(255,255,255,.15);">
+                        <span>📋 Click to View All Fixtures</span>
+                    </button>
                 </div>
-                <div id="latestNewsContainer"></div>
+
+                <!-- 4. UPCOMING MATCHES (next 3) -->
+                <div class="mcol reveal" style="margin-bottom:2.4rem;">
+                    <h3>Upcoming</h3>
+                    <div id="upcomingList"></div>
+                </div>
+
+                <!-- 5. RECENT RESULTS -->
+                <div class="mcol reveal reveal-delay-1">
+                    <h3>Recent Results</h3>
+                    <div id="resultsList"></div>
+                </div>
             </div>
         </section>
 
@@ -388,8 +396,8 @@
                 <div>
                     <h5>Navigate</h5>
                     <ul>
-                        <li><a href="#matches">Matches</a></li>
-                        <li><a href="#latest-news">Latest News</a></li>
+                        <li><a href="#latest-news">The Story</a></li>
+                        <li><a href="#matches">Matchday</a></li>
                         <li><a href="#squad">Squad</a></li>
                         <li><a href="#staff">Staff</a></li>
                         <li><a href="#standings">Standings</a></li>
@@ -1318,7 +1326,7 @@
         }, { threshold: .12 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        const sections = ['matches', 'latest-news', 'squad', 'staff', 'standings', 'news', 'join', 'discipline'];
+        const sections = ['latest-news', 'matches', 'squad', 'staff', 'standings', 'news', 'join', 'discipline'];
         const navLinks = document.querySelectorAll('.nav-links a');
         const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
 
