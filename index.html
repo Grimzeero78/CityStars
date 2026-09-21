@@ -460,11 +460,7 @@
 
         // Fixtures — league only (these are upcoming league games)
         const CITY_STARS_FIXTURES = [
-            { date: "2026-09-17", time: "2:00pm – 3:30pm", opponent: "Meru Boys", leg: "First Leg", h: true },
-            { date: "2026-09-19", time: "12:00pm – 1:30pm", opponent: "Phelites", leg: "First Leg", h: true },
-            { date: "2026-09-24", time: "12:00pm – 1:30pm", opponent: "Avengers", leg: "First Leg", h: true },
-            { date: "2026-09-26", time: "8:00am – 9:30am", opponent: "Pochon", leg: "First Leg", h: true },
-            { date: "2026-09-27", time: "10:00am – 11:30am", opponent: "Talanta", leg: "First Leg", h: true },
+            { date: "2026-09-26", time: "8:00am – 9:30am", opponent: "Philites", leg: "First Leg", h: true },
             { date: "2026-10-01", time: "4:00pm – 5:30pm", opponent: "Young Stars", leg: "First Leg", h: true },
             { date: "2026-10-03", time: "10:00am – 11:30am", opponent: "Thunder Elites", leg: "First Leg", h: true },
             { date: "2026-10-04", time: "12:00pm – 1:30pm", opponent: "Ashland", leg: "First Leg", h: true },
@@ -475,6 +471,9 @@
 
         // Results — now with `type` field: 'league', 'cup', 'friendly'
         const RESULTS_MATCHES = [
+             { d: "2026-09-20", opp: "Talanta", h: true, us: 2, them: 0, scorers: ["topkheed","topkheed"], type: 'league' },
+             { d: "2026-09-18", opp: "Vipers", h: true, us: 0, them: 0, scorers: [], type: 'league' },
+             { d: "2026-09-19", opp: "Snipers", h: true, us: 0, them: 1, scorers: [], type: 'cup' },
             { d: "2026-09-10", opp: "Cuksa", h: true, us: 2, them: 1, scorers: ["Minnot", "Davii"], type: 'league' },
             { d: "2026-09-12", opp: "Rerina", h: true, us: 0, them: 1, scorers: [], type: 'league' },
             // CPL Cup match — not in league, no points
@@ -538,10 +537,10 @@
         const NEWS_DATA = [
             {
                 tag: "Match Report",
-                date: "2026-09-12",
-                title: "Big win for city stars as they knock out Avangers out of the cpl cup ",
-                excerpt: "City Stars Knock out Avangers out of the cpl cup with a 3 to 1 win",
-                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
+                date: "2026-09-20",
+                title: "Big win for city stars as Topkheed nets 2 goals against Talanta ",
+                excerpt: "TopKheed gives citystars 3 points by beating talanta 2 goals to zero",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/topkid.jpeg",
                 full: ""
             },
            
