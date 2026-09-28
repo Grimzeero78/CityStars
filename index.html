@@ -68,7 +68,8 @@
             background:var(--ink);
             border-bottom:1px solid var(--line);
         }
-        .news-modal .news-hero img{
+        .news-modal .news-hero img,
+        .news-modal .news-hero video{
             width:100%;height:100%;
             object-fit:cover;
             object-position:50% 25%;
@@ -80,6 +81,11 @@
             inset:0;
             background:linear-gradient(180deg,transparent 45%,rgba(7,9,26,.95) 100%);
             pointer-events:none;
+            z-index:1;
+        }
+        .news-modal .news-hero video{
+            background:#000;
+            z-index:0;
         }
         .news-modal .news-tag{
             position:absolute;
@@ -172,7 +178,8 @@
             display:block;
             transition:transform .6s ease,filter .4s ease;
         }
-        .news-feature:hover .kb img{transform:scale(1.03);filter:brightness(1.06)}
+        .news-feature:hover .kb img,
+        .news-feature:hover .kb video{transform:scale(1.03);filter:brightness(1.06)}
         .news-feature .kb::after{
             content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
             background:linear-gradient(90deg,transparent 45%,rgba(13,18,48,.9) 100%);
@@ -220,7 +227,8 @@
             display:block;
             transition:transform .5s ease,filter .4s ease;
         }
-        .news-item:hover .thumb img{transform:scale(1.05);filter:brightness(1.06)}
+        .news-item:hover .thumb img,
+        .news-item:hover .thumb video{transform:scale(1.05);filter:brightness(1.06)}
         .news-item .ni-body{
             padding:1.1rem 1.2rem 1.3rem;
             display:flex;flex-direction:column;flex:1;min-width:0;
@@ -344,8 +352,7 @@
     <div class="news-modal" id="newsModal" role="dialog" aria-modal="true" aria-label="News article">
         <div class="modal-box" role="dialog" aria-modal="true">
             <button class="modal-close" id="newsModalClose" aria-label="Close article">✕</button>
-            <div class="news-hero">
-                <img id="newsModalImg" src="" alt="" />
+            <div class="news-hero" id="newsModalHero">
                 <span class="news-tag" id="newsModalTag"></span>
             </div>
             <div class="news-content">
@@ -712,8 +719,6 @@
             { d: "2026-09-23", opp: "Philites", h: true, us: 2, them: 0, scorers: ["Hillary","Hillary"], type: 'league' },
             { d: "2026-09-23", opp: "Youngstars", h: true, us: 1, them: 0, scorers: ["Davii"], type: 'league' },
             { d: "2026-09-27", opp: "Pocusa", h: true, us: 0, them: 0, scorers: [], type: 'league' }
-            
-            
         ];
 
         const SQUAD_DATA = [
@@ -781,7 +786,7 @@
         ];
 
         const NEWS_DATA = [
-              {
+            {
                 tag: "Team Bonding",
                 date: "2026-09-25",
                 title: "TEAM BONDING ON WEEKEND",
@@ -797,7 +802,7 @@
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/3rd.jpeg",
                 full: "City Stars and Pocusa shared the points after a 0-0 draw at Chuka Boys grounds.\n\nUp the Stars! ★"
             },
-             {
+            {
                 tag: "Match Report",
                 date: "2026-09-25",
                 title: "3 wins in a row ...davii gives city stars a 1-0 win against Youngstars",
@@ -805,7 +810,7 @@
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
                 full: "City Stars Chuka FC made it three wins on the bounce with a 1-0 victory over Youngstars in the Chuka Premier League.\n\nUp the Stars! ★"
             },
-             {
+            {
                 tag: "Match Report",
                 date: "2026-09-23",
                 title: "Hillary gets a tap in and a Ronaldo header to give city stars a 2-0 win against Philites",
@@ -1291,7 +1296,6 @@
             const nickDisplay = p.nick ? `<div class="nick">★ ${p.nick}</div>` : '';
             const posLabel = POS[p.pos] || '';
 
-            /* ★ Show ANY stat that exists, regardless of position */
             const statParts = [];
             if (p.goals !== undefined && p.goals !== null) statParts.push(`Goals: ${p.goals}`);
             if (p.assists !== undefined && p.assists !== null) statParts.push(`Assists: ${p.assists}`);
@@ -1515,12 +1519,46 @@
         $('#resultsModalClose').addEventListener('click', () => { closeModal(resultsModal); });
         resultsModal.addEventListener('click', e => { if (e.target === resultsModal) closeModal(resultsModal); });
 
+        // ============================================================
+        //  NEWS MODAL + MEDIA RENDERING (FIXED FOR VIDEO)
+        // ============================================================
         const newsModal = $('#newsModal');
+        const newsModalHero = $('#newsModalHero');
         const newsModalTitle = $('#newsModalTitle');
         const newsModalDate = $('#newsModalDate');
-        const newsModalImg = $('#newsModalImg');
         const newsModalBody = $('#newsModalBody');
         const newsModalTag = $('#newsModalTag');
+
+        // Helper: detect video by extension OR by explicit .video key
+        const isVideoSrc = src => /\.(mp4|webm|ogg|ogv|mov|m4v)(\?.*)?$/i.test(src || '');
+
+        // Inject the right media (img OR video) into the modal hero
+        function setModalMedia(item) {
+            // Remove previous media but keep the .news-tag
+            newsModalHero.querySelectorAll('img, video').forEach(el => el.remove());
+
+            const src = item.video || item.image;
+            if (!src) return;
+
+            let el;
+            if (item.video || isVideoSrc(src)) {
+                el = document.createElement('video');
+                el.src = src;
+                el.autoplay = true;
+                el.muted = true;
+                el.loop = true;
+                el.playsInline = true;
+                el.setAttribute('playsinline', '');
+                el.setAttribute('webkit-playsinline', '');
+                el.setAttribute('controls', '');   // let people unmute / scrub
+                el.setAttribute('preload', 'metadata');
+            } else {
+                el = document.createElement('img');
+                el.src = src;
+                el.alt = item.title;
+            }
+            newsModalHero.prepend(el);
+        }
 
         function openNewsModal(index) {
             const item = NEWS_DATA[index];
@@ -1528,13 +1566,9 @@
             newsModalTitle.textContent = item.title;
             newsModalDate.textContent = fDay(pd(item.date)) + ' ' + pd(item.date).getFullYear();
             newsModalTag.textContent = item.tag || 'News';
-            if (item.image) {
-                newsModalImg.src = item.image;
-                newsModalImg.alt = item.title;
-                newsModalImg.parentElement.style.display = 'block';
-            } else {
-                newsModalImg.parentElement.style.display = 'none';
-            }
+
+            setModalMedia(item);
+
             const body = (item.full && item.full.trim()) ? item.full : (item.excerpt || '').trim();
             if (body) {
                 newsModalBody.textContent = body;
@@ -1552,12 +1586,26 @@
 
         const [feat, ...restNews] = NEWS_DATA;
 
+        // Renders either a <video> or <img> — auto-detects by extension OR .video key
         function renderNewsMedia(item, isFeature) {
-            if (item.video) return `<video autoplay muted loop playsinline src="${item.video}"></video>`;
-            if (item.image) return `<img loading="lazy" src="${item.image}" alt="${item.title}" data-zoom="${item.image}" data-caption="${item.title}" />`;
+            const src = item.video || item.image;
+
+            if (src && (item.video || isVideoSrc(src))) {
+                return `<video autoplay muted loop playsinline preload="metadata"
+                               src="${src}" data-caption="${item.title}"></video>`;
+            }
+
+            if (src) {
+                return `<img loading="lazy" src="${src}" alt="${item.title}"
+                             data-zoom="${src}" data-caption="${item.title}" />`;
+            }
+
             const size = isFeature ? '1000/760' : '400/300';
             const seed = item.seed || 'citystars';
-            return `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}" alt="${item.title}" data-zoom="https://picsum.photos/seed/${seed}/1400/1000" data-caption="${item.title}" />`;
+            return `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}"
+                         alt="${item.title}"
+                         data-zoom="https://picsum.photos/seed/${seed}/1400/1000"
+                         data-caption="${item.title}" />`;
         }
 
         (function renderLatestNews() {
@@ -1590,7 +1638,12 @@
         }).join('');
 
         document.querySelectorAll('.news-feature, .news-item').forEach(el => {
-            el.addEventListener('click', function() {
+            el.addEventListener('click', function(e) {
+                // Don't hijack clicks on the video controls
+                if (e.target.tagName === 'VIDEO' || e.target.closest('video')) {
+                    // Allow the video's own controls to work; only open modal on the wrapper
+                    if (e.target.tagName !== 'VIDEO') return;
+                }
                 const idx = parseInt(this.dataset.newsIndex, 10);
                 if (!isNaN(idx)) openNewsModal(idx);
             });
