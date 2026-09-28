@@ -59,6 +59,7 @@
         }
         .news-modal .modal-close:hover{background:var(--gold);color:var(--ink);transform:rotate(90deg)}
 
+        /* News modal hero — image default (16:9 crop) */
         .news-modal .news-hero{
             position:relative;
             width:100%;
@@ -68,8 +69,7 @@
             background:var(--ink);
             border-bottom:1px solid var(--line);
         }
-        .news-modal .news-hero img,
-        .news-modal .news-hero video{
+        .news-modal .news-hero img{
             width:100%;height:100%;
             object-fit:cover;
             object-position:50% 25%;
@@ -83,9 +83,28 @@
             pointer-events:none;
             z-index:1;
         }
-        .news-modal .news-hero video{
+        /* News modal hero — VIDEO variant: adapts to video aspect, black bg, no crop */
+        .news-modal .news-hero.has-video{
+            aspect-ratio:auto;
+            max-height:none;
             background:#000;
-            z-index:0;
+            display:grid;
+            place-items:center;
+            min-height:220px;
+        }
+        .news-modal .news-hero.has-video video{
+            position:relative;
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:70vh;
+            object-fit:contain;
+            object-position:center;
+            display:block;
+            background:#000;
+        }
+        .news-modal .news-hero.has-video::after{
+            background:linear-gradient(180deg,transparent 78%,rgba(7,9,26,.9) 100%);
         }
         .news-modal .news-tag{
             position:absolute;
@@ -143,6 +162,8 @@
             .news-modal{padding:.8rem}
             .news-modal .modal-box{max-height:92vh}
             .news-modal .news-hero{aspect-ratio:4/3;max-height:none}
+            .news-modal .news-hero.has-video{aspect-ratio:auto;max-height:none;min-height:180px}
+            .news-modal .news-hero.has-video video{max-height:60vh}
             .news-modal .news-tag{left:14px;bottom:14px;font-size:.55rem;padding:.32rem .75rem}
             .news-modal .news-content{padding:1.3rem 1.2rem 1.8rem}
             .news-modal h2{font-size:1.2rem;margin-bottom:1rem}
@@ -184,6 +205,38 @@
             content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
             background:linear-gradient(90deg,transparent 45%,rgba(13,18,48,.9) 100%);
         }
+
+        /* === FEATURED CARD WITH VIDEO: full-frame, no crop === */
+        .news-feature.has-video{
+            grid-template-columns:1fr;
+            min-height:0;
+        }
+        .news-feature.has-video .kb{
+            min-height:0;
+            background:#000;
+            display:grid;
+            place-items:center;
+            padding:0;
+        }
+        .news-feature.has-video .kb video{
+            position:relative;
+            inset:auto;
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:80vh;
+            object-fit:contain;
+            object-position:center;
+            display:block;
+            background:#000;
+            transition:none;
+        }
+        .news-feature.has-video:hover .kb video{
+            transform:none;
+            filter:none;
+        }
+        .news-feature.has-video .kb::after{display:none;}
+
         .news-feature .nfc{
             position:relative;z-index:2;
             display:flex;flex-direction:column;justify-content:center;
@@ -229,6 +282,33 @@
         }
         .news-item:hover .thumb img,
         .news-item:hover .thumb video{transform:scale(1.05);filter:brightness(1.06)}
+
+        /* === GRID CARD WITH VIDEO: full-frame, no crop === */
+        .news-item.has-video .thumb{
+            aspect-ratio:auto;
+            background:#000;
+            display:grid;
+            place-items:center;
+            min-height:180px;
+        }
+        .news-item.has-video .thumb video{
+            position:relative;
+            inset:auto;
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:340px;
+            object-fit:contain;
+            object-position:center;
+            display:block;
+            background:#000;
+            transition:none;
+        }
+        .news-item.has-video:hover .thumb video{
+            transform:none;
+            filter:none;
+        }
+
         .news-item .ni-body{
             padding:1.1rem 1.2rem 1.3rem;
             display:flex;flex-direction:column;flex:1;min-width:0;
@@ -249,7 +329,9 @@
         @media(max-width:880px){
             .news-feature{grid-template-columns:1fr;min-height:0}
             .news-feature .kb{min-height:0;aspect-ratio:16/10}
+            .news-feature.has-video .kb{aspect-ratio:auto;}
             .news-feature .kb::after{background:linear-gradient(200deg,rgba(7,9,26,.15) 30%,rgba(7,9,26,.9))}
+            .news-feature.has-video .kb::after{display:none;}
             .news-feature .nfc{padding:1.5rem 1.3rem}
             .news-feature h3{max-width:none;font-size:1.4rem}
         }
@@ -688,25 +770,9 @@
             { src: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg", caption: "★ The Family", class: "f3" }
         ];
 
-        /* ============================================================
-           ★★  UPCOMING MATCHES — EDIT / ADD HERE  ★★
-           ------------------------------------------------------------
-           Add a new line and save. It will automatically appear
-           in the countdown clock and in the "Upcoming" list.
-
-           date     : "YYYY-MM-DD"   (e.g. tomorrow = "2026-09-27")
-           time     : kick-off. "3:00pm", "15:00", "12:00am" all work.
-                      A range like "12:00pm – 1:30pm" is also fine —
-                      the first time is used for the countdown.
-           opponent : the other team's name
-           leg      : optional label ("First Leg", "Quarter Final" ...)
-           h        : true = City Stars at home
-           ============================================================ */
         const CITY_STARS_FIXTURES = [
             { date: "2026-09-25", time: "12:00pm – 1:30pm", opponent: "Youngstars", leg: "First Leg", h: true },
-
             // ▼▼ ADD YOUR NEW MATCHES BELOW THIS LINE ▼▼
-            // { date: "2026-09-27", time: "3:00pm", opponent: "Team Name", leg: "League", h: true },
         ];
 
         const RESULTS_MATCHES = [
@@ -1520,7 +1586,7 @@
         resultsModal.addEventListener('click', e => { if (e.target === resultsModal) closeModal(resultsModal); });
 
         // ============================================================
-        //  NEWS MODAL + MEDIA RENDERING (FIXED FOR VIDEO)
+        //  NEWS MODAL + MEDIA RENDERING (VIDEO-FIRST)
         // ============================================================
         const newsModal = $('#newsModal');
         const newsModalHero = $('#newsModalHero');
@@ -1529,13 +1595,12 @@
         const newsModalBody = $('#newsModalBody');
         const newsModalTag = $('#newsModalTag');
 
-        // Helper: detect video by extension OR by explicit .video key
         const isVideoSrc = src => /\.(mp4|webm|ogg|ogv|mov|m4v)(\?.*)?$/i.test(src || '');
 
-        // Inject the right media (img OR video) into the modal hero
         function setModalMedia(item) {
-            // Remove previous media but keep the .news-tag
+            // Clear previous media, keep the news-tag
             newsModalHero.querySelectorAll('img, video').forEach(el => el.remove());
+            newsModalHero.classList.remove('has-video');
 
             const src = item.video || item.image;
             if (!src) return;
@@ -1550,8 +1615,9 @@
                 el.playsInline = true;
                 el.setAttribute('playsinline', '');
                 el.setAttribute('webkit-playsinline', '');
-                el.setAttribute('controls', '');   // let people unmute / scrub
+                el.setAttribute('controls', '');
                 el.setAttribute('preload', 'metadata');
+                newsModalHero.classList.add('has-video');
             } else {
                 el = document.createElement('img');
                 el.src = src;
@@ -1586,34 +1652,39 @@
 
         const [feat, ...restNews] = NEWS_DATA;
 
-        // Renders either a <video> or <img> — auto-detects by extension OR .video key
+        // Returns { html, isVideo } so callers can add the .has-video class
         function renderNewsMedia(item, isFeature) {
             const src = item.video || item.image;
 
             if (src && (item.video || isVideoSrc(src))) {
-                return `<video autoplay muted loop playsinline preload="metadata"
-                               src="${src}" data-caption="${item.title}"></video>`;
+                return {
+                    isVideo: true,
+                    html: `<video autoplay muted loop playsinline preload="metadata" src="${src}"></video>`
+                };
             }
 
             if (src) {
-                return `<img loading="lazy" src="${src}" alt="${item.title}"
-                             data-zoom="${src}" data-caption="${item.title}" />`;
+                return {
+                    isVideo: false,
+                    html: `<img loading="lazy" src="${src}" alt="${item.title}" data-zoom="${src}" data-caption="${item.title}" />`
+                };
             }
 
             const size = isFeature ? '1000/760' : '400/300';
             const seed = item.seed || 'citystars';
-            return `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}"
-                         alt="${item.title}"
-                         data-zoom="https://picsum.photos/seed/${seed}/1400/1000"
-                         data-caption="${item.title}" />`;
+            return {
+                isVideo: false,
+                html: `<img loading="lazy" src="https://picsum.photos/seed/${seed}/${size}" alt="${item.title}" data-zoom="https://picsum.photos/seed/${seed}/1400/1000" data-caption="${item.title}" />`
+            };
         }
 
         (function renderLatestNews() {
             const d = pd(feat.date);
             const blurb = feat.excerpt || feat.full || '';
+            const media = renderNewsMedia(feat, true);
             $('#latestNewsContainer').innerHTML = `
-                <article class="news-feature reveal" data-news-index="0">
-                    <div class="kb">${renderNewsMedia(feat, true)}</div>
+                <article class="news-feature reveal ${media.isVideo ? 'has-video' : ''}" data-news-index="0">
+                    <div class="kb">${media.html}</div>
                     <div class="nfc">
                         <span class="tag">${feat.tag}</span>
                         <h3>${feat.title}</h3>
@@ -1625,9 +1696,10 @@
 
         $('#newsGrid').innerHTML = restNews.map((n, i) => {
             const d = pd(n.date);
+            const media = renderNewsMedia(n, false);
             return `
-                <article class="news-item reveal" data-news-index="${i + 1}">
-                    <div class="thumb">${renderNewsMedia(n, false)}</div>
+                <article class="news-item reveal ${media.isVideo ? 'has-video' : ''}" data-news-index="${i + 1}">
+                    <div class="thumb">${media.html}</div>
                     <div class="ni-body">
                         <span class="tag alt">${n.tag}</span>
                         <h4>${n.title}</h4>
@@ -1637,13 +1709,10 @@
                 </article>`;
         }).join('');
 
+        // Click-to-open-modal: skip clicks that land directly on a <video> (so native controls work)
         document.querySelectorAll('.news-feature, .news-item').forEach(el => {
             el.addEventListener('click', function(e) {
-                // Don't hijack clicks on the video controls
-                if (e.target.tagName === 'VIDEO' || e.target.closest('video')) {
-                    // Allow the video's own controls to work; only open modal on the wrapper
-                    if (e.target.tagName !== 'VIDEO') return;
-                }
+                if (e.target.tagName === 'VIDEO') return;
                 const idx = parseInt(this.dataset.newsIndex, 10);
                 if (!isNaN(idx)) openNewsModal(idx);
             });
