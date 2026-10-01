@@ -887,6 +887,14 @@
 
         const NEWS_DATA = [
             {
+                tag: "Match Report",
+                date: "2026-10-01",
+                title: "Thunder Silenced: City Stars Win 2-1",
+                excerpt: "City Stars beat Thunder Elites 2-1 to keep the pressure on at the top.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
+                full: "City Stars Chuka FC beat Thunder Elites 2-1 at Chuka University Main Pitch.\n\nThree points. Up the Stars! ★"
+            },
+            {
                 tag: "Team Bonding",
                 date: "2026-09-25",
                 title: "TEAM BONDING ON WEEKEND",
@@ -1774,9 +1782,21 @@
             const form = played.filter(m => m.type === 'league' || !m.type).slice(-5)
                 .map(m => m.us > m.them ? 'W' : m.us < m.them ? 'L' : 'D');
 
-            // ---- Table snapshot ----
-            const city = STANDINGS_DATA.find(s => s.isCity) || {};
-            const posTxt = city.pos ? `${city.pos}<small>${ordinalSuffix(city.pos).toUpperCase()}</small>` : '–';
+            // ---- Live snapshot (computed from RESULTS_MATCHES, table untouched) ----
+            const leaguePlayed = played.filter(m => m.type === 'league' || !m.type);
+            const cityPlayed  = leaguePlayed.length;
+            const cityWon     = leaguePlayed.filter(m => m.us > m.them).length;
+            const cityDrawn   = leaguePlayed.filter(m => m.us === m.them).length;
+            const cityPts     = (cityWon * 3) + cityDrawn;
+
+            // League position: compare our live points against the other teams' points
+            const liveTable = STANDINGS_DATA.map(s => s.isCity
+                ? { ...s, pts: cityPts, p: cityPlayed }
+                : { ...s });
+            liveTable.sort((a, b) => (b.pts - a.pts) || ((b.gd ?? 0) - (a.gd ?? 0)));
+            const cityPosIndex = liveTable.findIndex(s => s.isCity);
+            const cityPos = cityPosIndex >= 0 ? cityPosIndex + 1 : null;
+            const posTxt = cityPos ? `${cityPos}<small>${ordinalSuffix(cityPos).toUpperCase()}</small>` : '–';
 
             panel.innerHTML = `
                 <article class="hp-story" id="hpStory" role="button" tabindex="0" aria-label="Read top story: ${story.title}">
@@ -1791,8 +1811,8 @@
 
                 <div class="hp-strip">
                     <div class="hp-stat"><div class="v">${posTxt}</div><div class="k">League Pos</div></div>
-                    <div class="hp-stat"><div class="v">${city.pts ?? 0}</div><div class="k">Points</div></div>
-                    <div class="hp-stat"><div class="v">${city.p ?? 0}</div><div class="k">Played</div></div>
+                    <div class="hp-stat"><div class="v">${cityPts}</div><div class="k">Points</div></div>
+                    <div class="hp-stat"><div class="v">${cityPlayed}</div><div class="k">Played</div></div>
                 </div>
 
                 <div class="hp-results">
