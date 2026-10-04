@@ -805,8 +805,8 @@
         //  Set to null to use the calculated values from RESULTS_MATCHES.
         // ============================================================
         const HERO_PANEL_CONFIG = {
-            leaguePosition: 3,   // e.g. 3
-            points: 21,           // e.g. 17
+            leaguePosition: 2,   // e.g. 3
+            points: null,           // e.g. 17
             played: null,           // e.g. 9
             form: null              // e.g. ['W','W','D','L','W']  (most recent last)
         };
@@ -973,14 +973,14 @@
 
         const STANDINGS_DATA = [
             { pos: 1,  team: "Pochon",         p: 10, w: 8, d: 0, l: 2, gf: 19, ga: 5,  gd: 14, pts: 24 },
-            { pos: 2,  team: "Vipers",         p: 9, w: 5, d: 2, l: 2, gf: 16, ga: 9,  gd: 7,  pts: 17 },
-            { pos: 3,  team: "City Stars",     p: 9, w: 5, d: 2, l: 2, gf: 10, ga: 5,  gd: 5,  pts: 17, isCity: true },
+            { pos: 2,  team: "City Stars",     p: 10, w: 5, d: 3, l: 2, gf: 12, ga: 7,  gd: 5,  pts: 18, isCity: true },
+            { pos: 3,  team: "Vipers",         p: 9, w: 5, d: 2, l: 2, gf: 16, ga: 9,  gd: 7,  pts: 17 },
             { pos: 4,  team: "Talanta",        p: 9, w: 5, d: 2, l: 2, gf: 10, ga: 7,  gd: 3,  pts: 17 },
-            { pos: 5,  team: "Cuksa",          p: 8, w: 4, d: 0, l: 4, gf: 11, ga: 11, gd: 0,  pts: 12 },
-            { pos: 6,  team: "Rerina",         p: 7, w: 4, d: 0, l: 3, gf: 9,  ga: 9,  gd: 0,  pts: 12 },
-            { pos: 7,  team: "Phelites",       p: 8, w: 4, d: 0, l: 4, gf: 12, ga: 14, gd: -2, pts: 12 },
+            { pos: 5,  team: "Rerina",         p: 9, w: 4, d: 2, l: 3, gf: 11, ga: 11, gd: 0,  pts: 14 },
+            { pos: 6,  team: "Phelites",       p: 9, w: 4, d: 1, l: 4, gf: 13, ga: 15, gd: -2, pts: 13 },
+            { pos: 7,  team: "Cuksa",          p: 8, w: 4, d: 0, l: 4, gf: 11, ga: 11, gd: 0,  pts: 12 },
             { pos: 8,  team: "Pokuca",         p: 8, w: 3, d: 2, l: 3, gf: 8,  ga: 7,  gd: 1,  pts: 11 },
-            { pos: 9,  team: "Ashland",        p: 8, w: 2, d: 3, l: 3, gf: 6,  ga: 9,  gd: -3, pts: 9 },
+            { pos: 9,  team: "Ashland",        p: 10, w: 2, d: 5, l: 3, gf: 9,  ga: 12, gd: -3, pts: 11 },
             { pos: 10, team: "Thunder Elites", p: 8, w: 2, d: 1, l: 5, gf: 8,  ga: 10, gd: -2, pts: 7 },
             { pos: 11, team: "Youngsters",     p: 8, w: 1, d: 0, l: 7, gf: 4,  ga: 12, gd: -8, pts: 3 },
             { pos: 12, team: "Avengers",       p: 8, w: 1, d: 0, l: 7, gf: 1,  ga: 16, gd: -15,pts: 3 }
@@ -2384,4 +2384,3 @@
     </script>
 </body>
 </html>
-```
