@@ -816,7 +816,10 @@
             { d: "2026-10-1", opp: "Thunder Elites", h: true, us: 2, them: 1, scorers: ["davii","Alekoo"], type: 'league' },
             { d: "2026-10-02", opp: "Pochon", h: true, us: 1, them: 2, scorers: ["Capitano"], type: 'league' },
             { d: "2026-10-03", opp: "Ashland", h: true, us: 2, them: 2, scorers: ["Alekoo", "Kamara"], type: 'league' },
-            { d: "2026-10-04", opp: "Avengers", h: true, us: 2, them: 0, scorers: ["kamara", "Kamara"], type: 'league' }
+            { d: "2026-10-04", opp: "Avengers", h: true, us: 2, them: 0, scorers: ["kamara", "Kamara"], type: 'league' },
+            // ▼▼ NEW — recorded in played matches only (no fixtures added) ▼▼
+            { d: "2026-10-05", opp: "Eagles FC", h: true, us: 1, them: 1, scorers: [], type: 'friendly' },
+            { d: "2026-10-06", opp: "Santos", h: true, us: 0, them: 3, scorers: [], type: 'mental' }
         ];
 
         const SQUAD_DATA = [
@@ -1199,6 +1202,7 @@
             const scorers = m.scorers && m.scorers.length > 0 ? `<p style="font-size:.7rem;color:var(--gold);margin-top:.2rem;">⚽ ${m.scorers.join(', ')}</p>` : '';
             let typeLabel = 'League';
             if (m.type === 'cup') typeLabel = '🏆 CPL Cup';
+            else if (m.type === 'mental') typeLabel = '🧠 Mental Health Cup';
             else if (m.type === 'friendly') typeLabel = '🤝 Friendly';
             return `<div class="m-row">
                     <div class="m-date">
@@ -1265,6 +1269,7 @@
             const scorers = m.scorers && m.scorers.length > 0 ? `<span style="display:block; font-size:.65rem; color:var(--gold); font-weight:400; margin-top:.3rem; letter-spacing:.02em;">⚽ ${m.scorers.join(', ')}</span>` : '';
             let typeLabel = 'League';
             if (m.type === 'cup') typeLabel = '🏆 CPL Cup';
+            else if (m.type === 'mental') typeLabel = '🧠 Mental Health Cup';
             else if (m.type === 'friendly') typeLabel = '🤝 Friendly';
             return `<div class="fixture-item">
                     <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
