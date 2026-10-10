@@ -199,6 +199,7 @@
            ============================================================ */
         .tag{display:inline-block;font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:.35rem .8rem;margin-bottom:1rem;line-height:1.4}
         .tag.alt{background:var(--paper)}
+        .tag.leg{background:var(--ember);color:var(--ink);margin-left:.35rem}
 
         #latestNewsContainer{width:100%}
         .news-feature{
@@ -361,6 +362,29 @@
         @media(max-width:620px){
             .news-grid{grid-template-columns:1fr;gap:1rem}
         }
+
+        /* ============================================================
+           HERO PANEL — TOP STORY CARD
+           ============================================================ */
+        .hp-news{
+            border:1px solid var(--line-strong);
+            background:linear-gradient(135deg,var(--panel2) 0%,var(--ink) 100%);
+            overflow:hidden;cursor:pointer;
+            transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+            display:flex;flex-direction:column;
+        }
+        .hp-news:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.45)}
+        .hp-news .thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:var(--ink);flex-shrink:0}
+        .hp-news .thumb img,
+        .hp-news .thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;transition:transform .5s ease}
+        .hp-news:hover .thumb img{transform:scale(1.05)}
+        .hp-news.has-video .thumb{aspect-ratio:auto;background:#000;display:grid;place-items:center;min-height:140px}
+        .hp-news.has-video .thumb video{position:relative;inset:auto;width:auto;height:auto;max-width:100%;max-height:260px;object-fit:contain;background:#000}
+        .hp-news .body{padding:.85rem 1rem 1rem;display:flex;flex-direction:column}
+        .hp-news .tag{margin-bottom:0}
+        .hp-news .tag-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+        .hp-news h4{font-size:.95rem;line-height:1.25;letter-spacing:.02em;margin:.55rem 0 .5rem;overflow-wrap:anywhere}
+        .hp-news .date{font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-top:auto}
 
         .join-panel{display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--line-strong);background:linear-gradient(135deg,var(--panel2) 0%,var(--ink) 100%);border-radius:var(--radius);overflow:hidden;position:relative}.join-panel::before{content:"";position:absolute;top:-100px;left:-100px;width:300px;height:300px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);opacity:.3;pointer-events:none}.join-left{padding:3.2rem 2.8rem;position:relative}.join-left h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-bottom:1.4rem}.join-left ul{list-style:none;margin-top:1.6rem}.join-left li{padding:.7rem 0;border-bottom:1px dashed var(--line);display:flex;gap:.85rem;font-size:.94rem;align-items:flex-start}.join-left li::before{content:"★";color:var(--gold);flex-shrink:0}.join-right{background:linear-gradient(165deg,#ffd766 0%,#f2a80c 100%);color:var(--ink);padding:3.2rem 2.8rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.join-right::before{content:"★";position:absolute;top:-40px;right:-40px;font-size:280px;color:rgba(7,9,26,.07);font-family:var(--display);line-height:1;pointer-events:none}.join-right .price{font-family:var(--display);font-size:clamp(3.2rem,7vw,5rem);line-height:1;position:relative}.join-right .price::before{content:"KSH";font-size:.22em;letter-spacing:.2em;display:block;color:rgba(7,9,26,.7);margin-bottom:.4rem}.join-right .per{font-family:var(--mono);font-size:.66rem;letter-spacing:.26em;margin:.5rem 0 1rem;text-transform:uppercase}.join-right p{font-size:.92rem;margin-bottom:1rem}.join-right .btn{background:var(--ink);color:var(--gold);align-self:flex-start;position:relative;z-index:2}.join-right .btn:hover{background:#000}.join-form{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0 1.2rem;width:100%}.join-form input{background:rgba(7,9,26,.08);border:1px solid rgba(7,9,26,.15);padding:.7rem 1rem;font-family:var(--body);font-size:.85rem;border-radius:6px;color:var(--ink);width:100%;transition:border .25s}.join-form input::placeholder{color:rgba(7,9,26,.4)}.join-form input:focus{outline:none;border-color:var(--ink)}.join-form .btn{align-self:flex-start}@media(max-width:920px){.join-panel{grid-template-columns:1fr}.join-left,.join-right{padding:2rem 1.6rem}}@media(max-width:480px){.join-left,.join-right{padding:1.6rem 1.2rem}.join-left li{font-size:.84rem;padding:.5rem 0}}#discipline{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.discipline-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center}.discipline-quote{background:linear-gradient(135deg,var(--panel) 0%,var(--ink) 100%);border-left:4px solid var(--gold);padding:2.4rem 2.4rem;border-radius:var(--radius);position:relative;overflow:hidden}.discipline-quote::before{content:"";position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);opacity:.3;pointer-events:none}.discipline-quote .quote-mark{font-family:var(--serif);font-size:5rem;color:var(--gold);line-height:1;opacity:.3;position:absolute;top:1rem;right:2rem;font-style:italic}.discipline-quote blockquote{font-family:var(--serif);font-style:italic;font-size:1.35rem;font-weight:400;line-height:1.5;color:var(--paper);margin-bottom:1.4rem;position:relative;z-index:2}.discipline-quote .attribution{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}.discipline-quote .attribution strong{color:var(--paper);font-weight:700}.discipline-cta{display:flex;flex-direction:column;gap:1.3rem;align-items:flex-start}.discipline-cta .btn{transform:none}.discipline-cta .btn>span{transform:none}@media(max-width:880px){.discipline-grid{grid-template-columns:1fr;gap:2rem}.discipline-quote{padding:1.8rem 1.8rem}.discipline-quote blockquote{font-size:1.1rem}}.back-top{position:fixed;right:22px;bottom:92px;z-index:110;width:52px;height:52px;border-radius:50%;background:rgba(255,196,46,.12);color:var(--gold);border:1px solid var(--line-strong);display:grid;place-items:center;font-size:1.6rem;transition:all .3s cubic-bezier(.2,.7,.2,1);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transform:translateY(20px);font-family:var(--display);line-height:1}.back-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}.back-top:hover{background:var(--gold);color:var(--ink);transform:scale(1.1);box-shadow:0 8px 30px var(--gold-glow)}footer{background:var(--ink);border-top:1px solid var(--line);padding:80px 0 40px;overflow:hidden;position:relative}footer::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.foot-watermark{font-family:var(--display);font-size:clamp(4rem,14vw,12rem);color:transparent;-webkit-text-stroke:1px rgba(244,241,232,.08);text-align:center;line-height:.9;text-transform:uppercase;user-select:none;margin-bottom:3.5rem;position:relative}.foot-watermark::after{content:"★";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.3em;color:var(--gold);-webkit-text-stroke:0;opacity:.5;filter:drop-shadow(0 0 30px var(--gold))}.foot-grid{display:grid;grid-template-columns:1.3fr .7fr 1fr;gap:3rem}.foot-grid h5{font-family:var(--mono);font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}.foot-grid ul{list-style:none}.foot-grid li{margin-bottom:.65rem}.foot-grid a{color:var(--muted);font-size:.88rem;transition:color .25s;display:inline-flex;align-items:center;gap:.4rem}.foot-grid a:hover{color:var(--gold)}.foot-about p{color:var(--muted);font-size:.88rem;max-width:38ch;margin-top:1.2rem}.socials{display:flex;gap:.7rem;margin-top:1.4rem;flex-wrap:wrap}.socials a{min-width:44px;height:44px;padding:0 .8rem;border:1px solid var(--line-strong);display:inline-flex;place-items:center;font-family:var(--mono);font-size:.66rem;font-weight:700;transition:all .25s;border-radius:4px;gap:.4rem;color:var(--muted)}.socials a svg{width:18px;height:18px;fill:var(--muted);transition:fill .25s}.socials a:hover{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:translateY(-3px)}.socials a:hover svg{fill:var(--ink)}.socials a.fb:hover{background:var(--fb);border-color:var(--fb);color:#fff}.socials a.fb:hover svg{fill:#fff}.socials a.wa:hover{background:var(--wa);border-color:var(--wa);color:#06210f}.socials a.wa:hover svg{fill:#06210f}.foot-base{border-top:1px solid var(--line);margin-top:3.5rem;padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}@media(max-width:920px){.foot-grid{grid-template-columns:1fr;gap:2.2rem}.foot-about p{max-width:100%}}.wa-float{position:fixed;right:22px;bottom:22px;z-index:120;width:60px;height:60px;border-radius:50%;background:var(--wa);color:#06210f;display:grid;place-items:center;box-shadow:0 14px 34px rgba(37,211,102,.4);transition:transform .3s cubic-bezier(.2,.7,.2,1);border:none}.wa-float svg{width:30px;height:30px;fill:#06210f}.wa-float:hover{transform:scale(1.1) rotate(6deg)}.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;padding:2rem 2rem 4rem;cursor:zoom-out}.lightbox.open{display:flex}.lightbox .lb-image-wrap{max-width:90vw;max-height:75vh;display:flex;align-items:center;justify-content:center;background:var(--ink);border-radius:6px;overflow:hidden}.lightbox img{max-width:100%;max-height:75vh;object-fit:contain;border-radius:4px;box-shadow:var(--shadow-lg);cursor:default;animation:zoomIn .35s ease both}@keyframes zoomIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}.lightbox .close-btn{position:absolute;top:20px;right:30px;font-size:2.4rem;color:var(--paper);background:none;border:none;cursor:pointer;font-family:var(--display);transition:transform .3s,color .3s;z-index:10}.lightbox .close-btn:hover{transform:rotate(90deg);color:var(--gold)}.lightbox .counter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.76rem;color:var(--muted);letter-spacing:.22em;background:rgba(0,0,0,.5);padding:.35rem 1.2rem;border-radius:30px}.lightbox .nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid var(--line-strong);color:var(--paper);width:50px;height:50px;border-radius:50%;font-size:1.7rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;font-family:var(--display)}.lightbox .nav-btn:hover{background:rgba(255,196,46,.2);border-color:var(--gold)}.lightbox .nav-btn.prev{left:20px}.lightbox .nav-btn.next{right:20px}@media(max-width:640px){.lightbox .nav-btn{width:38px;height:38px;font-size:1.3rem}.lightbox .nav-btn.prev{left:8px}.lightbox .nav-btn.next{right:8px}.lightbox .lb-caption{font-size:.68rem;padding:.35rem 1rem}}@media(max-width:560px){.squad-grid,.staff-grid{grid-template-columns:repeat(2,1fr)!important;gap:.8rem!important}.player-card .ph,.staff-card .ph{aspect-ratio:3/4!important;height:auto!important}.player-number{font-size:2rem;bottom:8px;right:8px}.player-card h4,.staff-card h4{font-size:1rem;line-height:1.1}.player-card .txt,.staff-card .txt{padding:1rem .8rem}.player-bottom .soc-icon{font-size:0!important;padding:.35rem}.player-bottom .soc-icon svg{width:14px;height:14px}.player-bottom .soc-icon.icon-only svg{width:14px;height:14px}.player-role{font-size:.45rem;padding:.15rem .4rem;margin-left:0}.nick{font-size:.8rem}.staff-role{font-size:.5rem}.player-meta{font-size:.5rem;letter-spacing:.1em;margin:.2rem 0 .4rem}.note{font-size:.7rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.player-soc a{width:28px;height:28px}.player-soc a svg{width:12px;height:12px}.player-stats{font-size:.5rem;gap:.6rem}.player-stats span b{font-size:.65rem}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.lm>span{transform:none}.ticker-track,.band-track{animation:none;width:auto}.collage img,.player-card .ph img,.staff-card .ph img,.news-feature img,.news-item img{animation:none!important;transform:none!important}}.focus-trap{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
     </style>
@@ -527,7 +551,7 @@
                         <h2 class="lm"><span>Latest News</span></h2>
                     </div>
                 </div>
-                <div id="latestNewsContainer"></div>
+                <div class="news-grid" id="newsGrid"></div>
             </div>
         </section>
 
@@ -638,18 +662,6 @@
             </div>
         </section>
 
-        <section id="news">
-            <div class="wrap">
-                <div class="sec-head reveal">
-                    <div>
-                        <span class="sec-num"><b>04</b> / Club Blog</span>
-                        <h2 class="lm"><span>News & Stories</span></h2>
-                    </div>
-                </div>
-                <div class="news-grid" id="newsGrid"></div>
-            </div>
-        </section>
-
         <section id="join">
             <div class="wrap">
                 <div class="join-panel reveal">
@@ -736,7 +748,7 @@
                         <li><a href="#squad">Squad</a></li>
                         <li><a href="#staff">Staff</a></li>
                         <li><a href="#standings">Standings</a></li>
-                        <li><a href="#news">Blog</a></li>
+                        <li><a href="#latest-news">Blog</a></li>
                         <li><a href="#join">Become a Star</a></li>
                         <li><a href="#discipline">Rules</a></li>
                     </ul>
@@ -811,15 +823,16 @@
             { d: "2026-09-18", opp: "Vipers", h: true, us: 0, them: 0, scorers: [], type: 'league' },
             { d: "2026-09-19", opp: "Snipers", h: true, us: 0, them: 1, scorers: [], type: 'cup' },
             { d: "2026-09-23", opp: "Philites", h: true, us: 2, them: 0, scorers: ["Hillary","Hillary"], type: 'league' },
-            { d: "2026-09-23", opp: "Youngstars", h: true, us: 1, them: 0, scorers: ["Davii"], type: 'league' },
+            { d: "2026-09-23", opp: "Youngstars", h: true, us: 1, them: 0, scorers: ["Davii"], type: 'league', leg: 'First Leg' },
             { d: "2026-09-27", opp: "Pocusa", h: true, us: 0, them: 0, scorers: [], type: 'league' },
             { d: "2026-10-1", opp: "Thunder Elites", h: true, us: 2, them: 1, scorers: ["davii","Alekoo"], type: 'league' },
             { d: "2026-10-02", opp: "Pochon", h: true, us: 1, them: 2, scorers: ["Capitano"], type: 'league' },
             { d: "2026-10-03", opp: "Ashland", h: true, us: 2, them: 2, scorers: ["Alekoo", "Kamara"], type: 'league' },
             { d: "2026-10-04", opp: "Avengers", h: true, us: 2, them: 0, scorers: ["kamara", "Kamara"], type: 'league' },
-            // ▼▼ NEW — recorded in played matches only (no fixtures added) ▼▼
             { d: "2026-10-05", opp: "Eagles FC", h: true, us: 1, them: 1, scorers: [], type: 'friendly' },
-            { d: "2026-10-06", opp: "Santos", h: true, us: 0, them: 3, scorers: [], type: 'mental' }
+            { d: "2026-10-06", opp: "Santos", h: true, us: 0, them: 3, scorers: [], type: 'mental' },
+            // ▼▼ Second leg begins — added below the existing first leg ▼▼
+            { d: "2026-10-07", opp: "Youngstars", h: true, us: 1, them: 1, scorers: ["Mwaki"], type: 'league', leg: 'Second Leg' }
         ];
 
         const SQUAD_DATA = [
@@ -942,6 +955,15 @@
                 excerpt: "Davii's late strike seals a hard-fought 1-0 win for City Stars the third victory in a row for the Celestial.",
                 image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/family.jpeg",
                 full: "City Stars Chuka FC made it three wins on the bounce with a 1-0 victory over Youngstars in the Chuka Premier League.\n\nUp the Stars! ★"
+            },
+            {
+                tag: "Match Report",
+                leg: "Second Leg",
+                date: "2026-10-07",
+                title: "Second Leg Opener: Mwaki On Target As City Stars Draw 1-1 With Youngstars",
+                excerpt: "The second leg is underway. Mwaki found the net as City Stars were held to a 1-1 draw by Youngstars.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/kajonny.jpeg",
+                full: "The second leg of the Chuka Premier League season got underway and City Stars Chuka FC were held to a 1-1 draw by Youngstars.\n\nMwaki was the man on the scoresheet for the Celestial, continuing his fine form for the club.\n\nOne point on the board as the second leg begins. Plenty of football still to play.\n\nUp the Stars! ★"
             },
             {
                 tag: "Match Report",
@@ -1204,6 +1226,7 @@
             if (m.type === 'cup') typeLabel = '🏆 CPL Cup';
             else if (m.type === 'mental') typeLabel = '🧠 Mental Health Cup';
             else if (m.type === 'friendly') typeLabel = '🤝 Friendly';
+            if (m.leg) typeLabel += ` · ${m.leg}`;
             return `<div class="m-row">
                     <div class="m-date">
                         <span class="m-dow">${fDow(d)}</span>
@@ -1271,9 +1294,10 @@
             if (m.type === 'cup') typeLabel = '🏆 CPL Cup';
             else if (m.type === 'mental') typeLabel = '🧠 Mental Health Cup';
             else if (m.type === 'friendly') typeLabel = '🤝 Friendly';
+            const legBadge = m.leg ? `<span style="font-size:.55rem; padding:.15rem .5rem; background:var(--ember); color:var(--ink); border-radius:4px; margin-left:.5rem; font-weight:700;">${m.leg}</span>` : '';
             return `<div class="fixture-item">
                     <div class="fdate"><span>${dayStr}</span><span class="dow">${dow}</span></div>
-                    <div class="fgame" style="color:${resColor}; font-weight:700;">CITY STARS ${m.us} - ${m.them} ${m.opp} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span><span style="font-size:.55rem; padding:.15rem .5rem; background:var(--line); border-radius:4px; margin-left:.5rem;">${typeLabel}</span>${scorers}</div>
+                    <div class="fgame" style="color:${resColor}; font-weight:700;">CITY STARS ${m.us} - ${m.them} ${m.opp} <span style="font-size:.6rem; padding:.2rem .5rem; background:var(--panel); border-radius:4px; margin-left:.5rem;">${r}</span><span style="font-size:.55rem; padding:.15rem .5rem; background:var(--line); border-radius:4px; margin-left:.5rem;">${typeLabel}</span>${legBadge}${scorers}</div>
                     <div class="ftime">${typeLabel}</div>
                 </div>`;
         }).join('') : `<p class="muted" style="text-align:center; padding:2rem;">No games played yet.</p>`;
@@ -1694,7 +1718,9 @@
             if (!item) return;
             newsModalTitle.textContent = item.title;
             newsModalDate.textContent = fDay(pd(item.date)) + ' ' + pd(item.date).getFullYear();
-            newsModalTag.textContent = item.tag || 'News';
+            newsModalTag.textContent = item.leg
+                ? `${item.tag || 'News'} · ${item.leg}`
+                : (item.tag || 'News');
 
             setModalMedia(item);
 
@@ -1741,30 +1767,21 @@
             };
         }
 
-        (function renderLatestNews() {
-            const d = pd(feat.date);
-            const blurb = feat.excerpt || feat.full || '';
-            const media = renderNewsMedia(feat, true);
-            $('#latestNewsContainer').innerHTML = `
-                <article class="news-feature reveal ${media.isVideo ? 'has-video' : ''}" data-news-index="0">
-                    <div class="kb">${media.html}</div>
-                    <div class="nfc">
-                        <span class="tag">${feat.tag}</span>
-                        <h3>${feat.title}</h3>
-                        ${blurb ? `<p class="muted" style="margin-top:1rem;font-size:.95rem;line-height:1.6;max-width:46ch;">${blurb}</p>` : ''}
-                        <span class="date">${fDay(d)} ${d.getFullYear()}</span>
-                    </div>
-                </article>`;
-        })();
-
+        // ============================================================
+        //  NEWS GRID — renders everything except the top story (index 0)
+        //  The top story lives inside the hero panel instead.
+        // ============================================================
         $('#newsGrid').innerHTML = restNews.map((n, i) => {
+            const idx = i + 1;
             const d = pd(n.date);
             const media = renderNewsMedia(n, false);
             return `
-                <article class="news-item reveal ${media.isVideo ? 'has-video' : ''}" data-news-index="${i + 1}">
+                <article class="news-item reveal ${media.isVideo ? 'has-video' : ''}" data-news-index="${idx}">
                     <div class="thumb">${media.html}</div>
                     <div class="ni-body">
-                        <span class="tag alt">${n.tag}</span>
+                        <div>
+                            <span class="tag alt">${n.tag}</span>${n.leg ? `<span class="tag leg">${n.leg}</span>` : ''}
+                        </div>
                         <h4>${n.title}</h4>
                         ${n.excerpt ? `<p class="ex">${n.excerpt}</p>` : ''}
                         <span class="date">${fDay(d)} ${d.getFullYear()}</span>
@@ -1773,7 +1790,7 @@
         }).join('');
 
         // ============================================================
-        //  HERO PANEL — stat strip + results + form (top story removed)
+        //  HERO PANEL — stat strip + LEAGUE-only results + form + TOP STORY
         // ============================================================
         function ordinalSuffix(n) {
             const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
@@ -1784,42 +1801,52 @@
             const panel = document.getElementById('heroPanel');
             if (!panel) return;
 
-            // ---- Recent results ----
-            const played = RESULTS_MATCHES.filter(m => m.us !== undefined)
+            // ---- Recent results (LEAGUE ONLY) ----
+            const played = RESULTS_MATCHES
+                .filter(m => m.us !== undefined && (m.type === 'league' || !m.type))
                 .slice().sort((a, b) => pd(a.d) - pd(b.d));
             const recent = played.slice(-3).reverse();
 
             const rowsHTML = recent.length ? recent.map(m => {
                 const r = m.us > m.them ? 'w' : m.us < m.them ? 'l' : 'd';
+                const legTag = m.leg
+                    ? ` <span style="color:var(--gold);font-size:.62rem;font-family:var(--mono);letter-spacing:.08em;">(${m.leg})</span>`
+                    : '';
                 return `<div class="hp-row">
-                        <span class="opp">${m.h ? 'vs' : 'at'} ${m.opp}</span>
+                        <span class="opp">${m.h ? 'vs' : 'at'} ${m.opp}${legTag}</span>
                         <span class="sc">${m.us}–${m.them}</span>
                         <span class="hp-pill ${r}">${r.toUpperCase()}</span>
                     </div>`;
-            }).join('') : '<p class="muted" style="font-size:.8rem;padding:.4rem 0;">No games played yet.</p>';
+            }).join('') : '<p class="muted" style="font-size:.8rem;padding:.4rem 0;">No league games played yet.</p>';
 
-            // ---- Live snapshot (computed from RESULTS_MATCHES, table untouched) ----
-            const leaguePlayed = played.filter(m => m.type === 'league' || !m.type);
-            const cityPlayed  = leaguePlayed.length;
-            const cityWon     = leaguePlayed.filter(m => m.us > m.them).length;
-            const cityDrawn   = leaguePlayed.filter(m => m.us === m.them).length;
-            const cityPts     = (cityWon * 3) + cityDrawn;
+            // ---- Snapshot ----
+            const cityPlayed = played.length;
+            const cityWon    = played.filter(m => m.us > m.them).length;
+            const cityDrawn  = played.filter(m => m.us === m.them).length;
+            const cityPts    = (cityWon * 3) + cityDrawn;
 
-            // League position: compare our live points against the other teams' points
-            const liveTable = STANDINGS_DATA.map(s => s.isCity
-                ? { ...s, pts: cityPts, p: cityPlayed }
-                : { ...s });
+            const liveTable = STANDINGS_DATA.map(s => s.isCity ? { ...s, pts: cityPts, p: cityPlayed } : { ...s });
             liveTable.sort((a, b) => (b.pts - a.pts) || ((b.gd ?? 0) - (a.gd ?? 0)));
             const cityPosIndex = liveTable.findIndex(s => s.isCity);
             const cityPos = cityPosIndex >= 0 ? cityPosIndex + 1 : null;
 
-            // Use HERO_PANEL_CONFIG overrides if provided
-            const finalPos = HERO_PANEL_CONFIG.leaguePosition !== null ? HERO_PANEL_CONFIG.leaguePosition : cityPos;
-            const finalPts = HERO_PANEL_CONFIG.points !== null ? HERO_PANEL_CONFIG.points : cityPts;
+            const finalPos    = HERO_PANEL_CONFIG.leaguePosition !== null ? HERO_PANEL_CONFIG.leaguePosition : cityPos;
+            const finalPts    = HERO_PANEL_CONFIG.points !== null ? HERO_PANEL_CONFIG.points : cityPts;
             const finalPlayed = HERO_PANEL_CONFIG.played !== null ? HERO_PANEL_CONFIG.played : cityPlayed;
-            const finalForm = HERO_PANEL_CONFIG.form !== null ? HERO_PANEL_CONFIG.form : played.filter(m => m.type === 'league' || !m.type).slice(-5).map(m => m.us > m.them ? 'W' : m.us < m.them ? 'L' : 'D');
+            const finalForm   = HERO_PANEL_CONFIG.form !== null
+                ? HERO_PANEL_CONFIG.form
+                : played.slice(-5).map(m => m.us > m.them ? 'W' : m.us < m.them ? 'L' : 'D');
 
             const posTxt = finalPos ? `${finalPos}<small>${ordinalSuffix(finalPos).toUpperCase()}</small>` : '–';
+
+            // ---- Top story (featured news, moved up from Latest News) ----
+            const topStory = NEWS_DATA[0];
+            const tsSrc = topStory.video || topStory.image;
+            const tsIsVideo = tsSrc && (topStory.video || isVideoSrc(tsSrc));
+            const tsMediaHTML = tsIsVideo
+                ? `<video autoplay muted loop playsinline preload="metadata" src="${tsSrc}"></video>`
+                : `<img loading="lazy" src="${tsSrc}" alt="${topStory.title}" />`;
+            const tsDate = pd(topStory.date);
 
             panel.innerHTML = `
                 <div class="hp-strip">
@@ -1830,12 +1857,23 @@
 
                 <div class="hp-results">
                     <div class="hp-head">
-                        <span>★ Recent Results</span>
+                        <span>★ Recent Results · League</span>
                         <button type="button" class="hp-more" id="hpMore">All Games →</button>
                     </div>
                     ${rowsHTML}
                     ${finalForm.length ? `<div class="hp-form"><span class="lbl">Form</span>${finalForm.map(f => `<span class="hp-pill ${f.toLowerCase()}">${f}</span>`).join('')}</div>` : ''}
-                </div>`;
+                </div>
+
+                <article class="hp-news ${tsIsVideo ? 'has-video' : ''}" data-news-index="0" role="button" tabindex="0" aria-label="Read top story">
+                    <div class="thumb">${tsMediaHTML}</div>
+                    <div class="body">
+                        <div class="tag-row">
+                            <span class="tag alt">${topStory.tag}</span>${topStory.leg ? `<span class="tag leg">${topStory.leg}</span>` : ''}
+                        </div>
+                        <h4>${topStory.title}</h4>
+                        <span class="date">${fDay(tsDate)} ${tsDate.getFullYear()}</span>
+                    </div>
+                </article>`;
 
             document.getElementById('hpMore').addEventListener('click', e => {
                 e.stopPropagation();
@@ -1846,7 +1884,7 @@
         renderHeroPanel();
 
         // Click-to-open-modal: skip clicks that land directly on a <video> (so native controls work)
-        document.querySelectorAll('.news-feature, .news-item').forEach(el => {
+        document.querySelectorAll('.news-feature, .news-item, .hp-news').forEach(el => {
             el.addEventListener('click', function(e) {
                 if (e.target.tagName === 'VIDEO') return;
                 const idx = parseInt(this.dataset.newsIndex, 10);
@@ -1874,7 +1912,7 @@
         }, { threshold: .12 });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        const sections = ['latest-news', 'matches', 'squad', 'staff', 'standings', 'news', 'join', 'discipline'];
+        const sections = ['latest-news', 'matches', 'squad', 'staff', 'standings', 'join', 'discipline'];
         const navLinks = document.querySelectorAll('.nav-links a');
         const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
 
