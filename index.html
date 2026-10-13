@@ -785,8 +785,8 @@
         };
 
         const HERO_PANEL_CONFIG = {
-            leaguePosition: 2,
-            points: 22,
+            leaguePosition: null,
+            points: null,
             played: null,
             form: null
         };
@@ -800,7 +800,7 @@
             { d: "2026-09-12", opp: "Rerina", h: true, us: 0, them: 1, scorers: [], type: 'league' },
             { d: "2026-09-15", opp: "Avangers", h: true, us: 3, them: 1, scorers: ["Hillary","Davii","Wikii"], type: 'cup' },
             { d: "2026-09-20", opp: "Talanta", h: true, us: 2, them: 0, scorers: ["topkheed","topkheed"], type: 'league' },
-            { d: "2026-09-18", opp: "Vipers", h: true, us: 0, them: 0, scorers: [], type: 'league' },
+            { d: "2026-09-18", opp: "Vipers", h: true, us: 0, them: 0, scorers: [], type: 'league', leg: 'First Leg' },
             { d: "2026-09-19", opp: "Snipers", h: true, us: 0, them: 1, scorers: [], type: 'cup' },
             { d: "2026-09-23", opp: "Philites", h: true, us: 2, them: 0, scorers: ["Hillary","Hillary"], type: 'league' },
             { d: "2026-09-23", opp: "Youngstars", h: true, us: 1, them: 0, scorers: ["Davii"], type: 'league', leg: 'First Leg' },
@@ -812,7 +812,8 @@
             { d: "2026-10-05", opp: "Eagles FC", h: true, us: 1, them: 1, scorers: [], type: 'friendly' },
             { d: "2026-10-06", opp: "Santos", h: true, us: 0, them: 3, scorers: [], type: 'mental' },
             { d: "2026-10-10", opp: "Youngstars", h: true, us: 1, them: 1, scorers: ["Mwaki"], type: 'league', leg: 'Second Leg' },
-            { d: "2026-10-11", opp: "K All Stars", h: true, us: 3, them: 1, scorers: ["Hillary", "Hillary", "Hillary"], type: 'friendly' }
+            { d: "2026-10-11", opp: "K All Stars", h: true, us: 3, them: 1, scorers: ["Hillary", "Hillary", "Hillary"], type: 'friendly' },
+            { d: "2026-10-13", opp: "Vipers", h: true, us: 1, them: 3, scorers: ["Hillary"], type: 'league', leg: 'Second Leg' }
         ];
 
         const SQUAD_DATA = [
@@ -877,6 +878,14 @@
         ];
 
         const NEWS_DATA = [
+            {
+                tag: "Match Report",
+                date: "2026-10-13",
+                title: "Vipers Take Second Leg 3-1 Despite Hillary's Strike",
+                excerpt: "Hillary Lemuya gets on the scoresheet but City Stars fall 3-1 to Vipers in the second leg.",
+                image: "https://cdn.jsdelivr.net/gh/Grimzeero78/images_cdn/stars/hillary2.jpeg",
+                full: "City Stars Chuka FC went down 3-1 to Vipers in the second leg of the Chuka Premier League fixture at Chuka University Main Pitch.\n\nHillary Lemuya scored our goal on the night, but Vipers were clinical in front of goal and took their chances to claim all three points.\n\nIt's a tough one to swallow, but the Celestial will regroup and go again. Every setback is a setup for a comeback.\n\nUp the Stars! ★"
+            },
             {
                 tag: "Match Report",
                 date: "2026-10-11",
@@ -970,18 +979,18 @@
         ];
 
         const STANDINGS_DATA = [
-            { pos: 1,  team: "Pochon",         p: 10, w: 8, d: 0, l: 2, gf: 19, ga: 5,  gd: 14, pts: 24 },
-            { pos: 2,  team: "Vipers",         p: 9, w: 5, d: 2, l: 2, gf: 16, ga: 9,  gd: 7,  pts: 17 },
-            { pos: 3,  team: "City Stars",     p: 9, w: 5, d: 2, l: 2, gf: 10, ga: 5,  gd: 5,  pts: 17, isCity: true },
-            { pos: 4,  team: "Talanta",        p: 9, w: 5, d: 2, l: 2, gf: 10, ga: 7,  gd: 3,  pts: 17 },
-            { pos: 5,  team: "Cuksa",          p: 8, w: 4, d: 0, l: 4, gf: 11, ga: 11, gd: 0,  pts: 12 },
-            { pos: 6,  team: "Rerina",         p: 7, w: 4, d: 0, l: 3, gf: 9,  ga: 9,  gd: 0,  pts: 12 },
-            { pos: 7,  team: "Phelites",       p: 8, w: 4, d: 0, l: 4, gf: 12, ga: 14, gd: -2, pts: 12 },
-            { pos: 8,  team: "Pokuca",         p: 8, w: 3, d: 2, l: 3, gf: 8,  ga: 7,  gd: 1,  pts: 11 },
-            { pos: 9,  team: "Ashland",        p: 8, w: 2, d: 3, l: 3, gf: 6,  ga: 9,  gd: -3, pts: 9 },
-            { pos: 10, team: "Thunder Elites", p: 8, w: 2, d: 1, l: 5, gf: 8,  ga: 10, gd: -2, pts: 7 },
-            { pos: 11, team: "Youngsters",     p: 8, w: 1, d: 0, l: 7, gf: 4,  ga: 12, gd: -8, pts: 3 },
-            { pos: 12, team: "Avengers",       p: 8, w: 1, d: 0, l: 7, gf: 1,  ga: 16, gd: -15,pts: 3 }
+            { pos: 1,  team: "Pochon",         p: 14, w: 11, d: 1, l: 2,  gf: 27, ga: 8,  gd: 19,  pts: 34 },
+            { pos: 2,  team: "Rerina",         p: 14, w: 8,  d: 2, l: 4,  gf: 21, ga: 17, gd: 4,   pts: 26 },
+            { pos: 3,  team: "Vipers",         p: 13, w: 7,  d: 2, l: 4,  gf: 21, ga: 15, gd: 6,   pts: 23 },
+            { pos: 4,  team: "City Stars",     p: 13, w: 6,  d: 4, l: 3,  gf: 16, ga: 11, gd: 5,   pts: 22, isCity: true },
+            { pos: 5,  team: "Pokuca",         p: 14, w: 6,  d: 3, l: 5,  gf: 17, ga: 16, gd: 1,   pts: 21 },
+            { pos: 6,  team: "Talanta",        p: 14, w: 6,  d: 3, l: 5,  gf: 14, ga: 14, gd: 0,   pts: 21 },
+            { pos: 7,  team: "Phelites",       p: 13, w: 6,  d: 2, l: 5,  gf: 17, ga: 17, gd: 0,   pts: 20 },
+            { pos: 8,  team: "Thunder Elites", p: 13, w: 5,  d: 2, l: 6,  gf: 17, ga: 15, gd: 2,   pts: 17 },
+            { pos: 9,  team: "Cuksa",          p: 14, w: 5,  d: 1, l: 8,  gf: 18, ga: 20, gd: -2,  pts: 16 },
+            { pos: 10, team: "Ashland",        p: 14, w: 3,  d: 6, l: 5,  gf: 16, ga: 19, gd: -3,  pts: 15 },
+            { pos: 11, team: "Youngsters",     p: 13, w: 2,  d: 3, l: 8,  gf: 10, ga: 19, gd: -9,  pts: 9  },
+            { pos: 12, team: "Avengers",       p: 13, w: 1,  d: 1, l: 11, gf: 4,  ga: 27, gd: -23, pts: 4  }
         ];
 
         const RULES_DATA = [
